@@ -19,9 +19,9 @@ Professional market makers, proprietary trading firms, and quantitative funds th
 
 Tier 1 enables these participants to provide consistent, high-quality liquidity without the opaque internalization and discretionary matching common on centralized exchanges.
 
-**Positive Loop**
-
+<div class="gtm-positive-loop">
 Deeper professional liquidity tightens spreads and improves execution quality, which increases trading volume and attracts additional liquidity providers.
+</div>
 
 ---
 
@@ -36,9 +36,9 @@ Sophisticated retail traders and active market participants who are most sensiti
 
 These traders benefit directly from the presence of professional liquidity and deterministic execution, which reduces adverse selection and execution uncertainty compared to existing venues.
 
-**Positive Loop**
-
+<div class="gtm-positive-loop">
 Improved execution outcomes increase trader retention and volume, reinforcing liquidity depth and market quality.
+</div>
 
 ---
 
@@ -54,30 +54,34 @@ Retail participation is supported by:
 - Points-based incentive programs that reward productive trading behavior
 - Clear liquidation mechanics and predictable outcomes
 
-**Positive Loop**
-
+<div class="gtm-positive-loop">
 Retail volume further deepens liquidity, improves price discovery, and strengthens the overall trading environment.
+</div>
 
 ---
 
 ### 4. Ecosystem Partners and Infrastructure Providers
 
-Protocols and service providers that integrate with Tier 1's execution layer, including:
+Protocols and service providers that integrate with Tier 1’s execution layer, including:
 
-- Trading interfaces and analytics platforms
-- Wallets and custody solutions
-- Risk engines, margin tools, and liquidation infrastructure
-- Data and market intelligence providers
+- Trading interfaces, terminals, and analytics platforms  
+- Wallets, custody solutions, and institutional access providers  
+- Risk engines, margin tools, and liquidation infrastructure  
+- Data and market intelligence providers  
+- Lending and capital efficiency protocols  
+- Prediction markets and derivatives built on Tier 1 liquidity  
+- Funded prop trading platforms offering trader evaluation and capital allocation programs  
 
 These partners benefit from:
 
-- High-quality, on-chain trading data
-- Increased user activity driven by deep liquidity
-- Association with a transparent, institutional-grade execution layer
+- High-quality, on-chain execution and market data  
+- Deep, professional liquidity with predictable execution behavior  
+- Increased user activity driven by superior market quality  
+- Integration with a transparent, institutional-grade execution layer  
 
-**Positive Loop**
-
-Ecosystem integrations increase visibility and accessibility, attracting more traders and liquidity to the platform.
+<div class="gtm-positive-loop">
+Ecosystem integrations expand the surface area of Tier 1 liquidity, increase accessibility and use cases, and attract additional traders, capital, and market participants to the network.
+</div>
 
 ---
 

@@ -174,3 +174,30 @@
 .prose strong {
   @apply text-white font-bold;
 }
+
+/* Mermaid Diagram Styles */
+.mermaid-diagram svg {
+  @apply max-w-full;
+}
+
+.mermaid-diagram .node rect,
+.mermaid-diagram .node circle,
+.mermaid-diagram .node polygon {
+  @apply fill-neutral-800 stroke-brand stroke-2;
+}
+
+.mermaid-diagram .node .label {
+  @apply text-white font-bold;
+}
+
+.mermaid-diagram .edgeLabel {
+  @apply bg-black/90 text-brand;
+}
+
+.mermaid-diagram .edgePath .path {
+  @apply stroke-brand stroke-2;
+}
+
+.mermaid-diagram .arrowheadPath {
+  @apply fill-brand stroke-brand;
+}

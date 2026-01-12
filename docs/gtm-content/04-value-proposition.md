@@ -70,33 +70,29 @@ A self-reinforcing trading network where growth compounds through better executi
 
 ## Liquidity Flywheel
 
-Better execution quality →
-
-Professional liquidity provision →
-
-Tighter spreads and lower slippage →
-
-Higher trading volume →
-
-Improved LP returns and incentives →
-
-Deeper, more resilient liquidity
+```mermaid
+graph LR
+    A[Better execution quality] --> B[Professional liquidity provision]
+    B --> C[Tighter spreads and lower slippage]
+    C --> D[Higher trading volume]
+    D --> E[Improved LP returns and incentives]
+    E --> F[Deeper, more resilient liquidity]
+    F --> A
+```
 
 ---
 
 ## Adoption Flywheel
 
-Institutional-grade execution →
-
-Active trader confidence →
-
-Retail trust and participation →
-
-Increased volume and data transparency →
-
-Ecosystem integrations →
-
-Reinforced position as the default on-chain execution layer
+```mermaid
+graph LR
+    A[Institutional-grade execution] --> B[Active trader confidence]
+    B --> C[Retail trust and participation]
+    C --> D[Increased volume and data transparency]
+    D --> E[Ecosystem integrations]
+    E --> F[Reinforced position as the default on-chain execution layer]
+    F --> A
+```
 
 ---
 

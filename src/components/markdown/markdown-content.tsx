@@ -3,6 +3,7 @@ import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import React from 'react';
 import { ChevronRight, RefreshCw, ArrowRight } from 'lucide-react';
+import { MermaidDiagram } from './mermaid-diagram';
 
 interface MarkdownContentProps {
   content: string;
@@ -14,16 +15,7 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
     // Wrap roadmap in a identifiable container
     .replace(/<section class="gtm-roadmap">([\s\S]*?)<\/section>/gi, (match, inner) => {
       return `\n\n<div class="gtm-roadmap-type-container">\n\n${inner}\n\n</div>\n\n`;
-    })
-    // Auto-detect loops and flywheels by their headers - match multi-line format with arrows
-    .replace(
-      /(?:^|\n)(## [^\n]*(?:Loop|Flywheel))\n\n((?:[^\n]+→\s*\n\n)+(?:[^\n]+(?:\n|$)))/gi,
-      (match, title, stepsContent) => {
-        const cleanTitle = title.replace(/^##\s*/, '').trim();
-        const type = cleanTitle.toLowerCase().includes('flywheel') ? 'flywheel' : 'loop';
-        return `\n\n<section class="gtm-${type}-block" data-title="${cleanTitle}">\n\n${stepsContent}\n\n</section>\n\n`;
-      }
-    );
+    });
 
   return (
     <div className="markdown-content">
@@ -176,70 +168,14 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
 
             return <div className={divClass} {...props}>{children}</div>;
           },
-          section: ({ children, className, ...props }) => {
-            const sectionClass = className || (props as any).class;
-            
-            if (sectionClass === 'gtm-flywheel-block' || sectionClass === 'gtm-loop-block') {
-              const isFlywheel = className === 'gtm-flywheel-block';
-              const title = (props as any)['data-title'] || '';
-              
-              // Extract steps from children
-              const childrenArray = React.Children.toArray(children);
-              const steps = childrenArray
-                .filter((child: any) => child.type === 'p')
-                .map((child: any) => {
-                  const textContent = React.Children.toArray(child.props.children)
-                    .map((c: any) => typeof c === 'string' ? c : (c.props?.children || ''))
-                    .join('');
-                  return textContent.replace(/ →$/, '').trim();
-                })
-                .filter(text => text.length > 0);
-
-              // Render horizontal flow diagram for both loops and flywheels (matching screenshot style)
-              if (steps.length > 0) {
-                return (
-                  <div className="my-16">
-                    <h3 className="text-2xl font-black mb-8 text-white">{title}</h3>
-                    <div className="w-full overflow-x-auto pb-4">
-                      <div className="flex items-center gap-0 min-w-max">
-                        {steps.map((step, i) => (
-                          <React.Fragment key={i}>
-                            <div className="bg-neutral-200 text-black px-6 py-4 text-sm font-bold rounded-lg whitespace-nowrap">
-                              {step}
-                            </div>
-                            {i < steps.length - 1 && (
-                              <div className="flex items-center px-4">
-                                <ArrowRight className="w-6 h-6 text-black" />
-                              </div>
-                            )}
-                          </React.Fragment>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                );
-              }
-            }
-            return <section className={className} {...props}>{children}</section>;
-          },
           h1: ({ children }) => (
             <h1 className="text-4xl md:text-5xl font-black mb-8 mt-12 first:mt-0 text-white tracking-tighter">{children}</h1>
           ),
-          h2: ({ children }) => {
-            const textContent = React.Children.toArray(children).join('');
-            const isLoop = textContent.toLowerCase().includes('loop') || textContent.toLowerCase().includes('flywheel');
-
-            // Hide h2 for loops/flywheels since they're rendered in the section component
-            if (isLoop) {
-              return null;
-            }
-
-            return (
-              <h2 className="text-2xl font-bold mb-4 mt-12 pb-2 border-b border-neutral-900 text-white">
-                {children}
-              </h2>
-            );
-          },
+          h2: ({ children }) => (
+            <h2 className="text-2xl font-bold mb-4 mt-12 pb-2 border-b border-neutral-900 text-white">
+              {children}
+            </h2>
+          ),
           h3: ({ children }) => (
             <h3 className="text-xl font-bold mb-3 mt-8 text-neutral-100">{children}</h3>
           ),
@@ -309,6 +245,13 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
           ),
           code: ({ children, className }) => {
             const isInline = !className;
+            const match = /language-(\w+)/.exec(className || '');
+            const language = match ? match[1] : '';
+
+            if (language === 'mermaid') {
+              return <MermaidDiagram chart={String(children)} />;
+            }
+
             if (isInline) {
               return (
                 <code className="bg-neutral-900 px-1.5 py-0.5 rounded-sm text-sm font-mono text-brand">
