@@ -305,7 +305,7 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
               <img
                 src={src}
                 alt={alt || ''}
-                className="max-w-full h-auto rounded-sm border border-neutral-800 shadow-2xl"
+                className="max-w-full h-auto"
               />
             </div>
           )
