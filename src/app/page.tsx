@@ -70,7 +70,7 @@ export default async function Home() {
           </h2>
           <p className="text-neutral-500 text-sm font-bold uppercase tracking-widest mt-6 flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-brand animate-pulse"></span>
-            Stage 01: Strategic Foundation
+            Execution Layer for Professional Trading
           </p>
         </div>
       </div>

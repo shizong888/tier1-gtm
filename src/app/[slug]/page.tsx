@@ -58,7 +58,7 @@ export default async function GTMPage({ params }: GTMPageProps) {
     <GTMLayout navigation={navigation}>
       <div className="mb-8 pb-8 border-b border-neutral-900">
         <h1 className="text-sm font-bold text-brand uppercase tracking-[0.3em] mb-4">
-          Strategy / Stage 0{currentIndex + 1}
+          Tier 1 Go-To-Market Strategy
         </h1>
         <h2 className="text-4xl md:text-5xl font-black text-white tracking-tighter">
           {page.title}
