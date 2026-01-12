@@ -67,11 +67,11 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
               });
 
               return (
-                <div className="my-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                <div className="my-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                   {items.map((item, i) => (
                     <div
                       key={i}
-                      className="bg-neutral-950 border border-neutral-800 p-8 rounded-sm flex flex-col min-h-[360px] group hover:border-brand/40 hover:bg-neutral-900 transition-all duration-500 hover:-translate-y-2 shadow-2xl"
+                      className="bg-neutral-950 border border-neutral-800 p-10 rounded-sm flex flex-col min-h-[280px] group hover:border-brand/40 hover:bg-neutral-900 transition-all duration-500 hover:-translate-y-2 shadow-2xl"
                     >
                       <div className="text-3xl font-bold text-white mb-12">
                         0{i + 1}
@@ -128,15 +128,17 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
               return (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-12">
                   {cards.map((card, i) => (
-                    <div key={i} className="bg-neutral-900/80 border border-neutral-800 p-8 rounded-sm hover:border-brand/30 transition-all flex flex-col h-full group backdrop-blur-md">
-                      <h3 className="text-sm font-black text-white mb-6 uppercase tracking-[0.2em] group-hover:text-brand transition-colors text-left">
-                        {card.title}
-                      </h3>
-                      <div className="flex-1 flex flex-col text-[13px] text-neutral-400 leading-relaxed text-left">
-                        <div className="space-y-4 mb-6">
-                          {card.content.filter(c => !React.isValidElement(c) || (c as any).type !== 'div')}
+                    <div key={i} className="bg-neutral-950 border border-neutral-800 p-10 rounded-sm flex flex-col min-h-[280px] group hover:border-brand/40 hover:bg-neutral-900 transition-all duration-500 hover:-translate-y-2 shadow-2xl">
+                      <div className="flex-1 flex flex-col justify-end">
+                        <h3 className="text-xs font-black text-white/40 uppercase tracking-[0.2em] mb-3 group-hover:text-brand transition-colors">
+                          {card.title}
+                        </h3>
+                        <div className="flex-1 flex flex-col text-[13px] text-neutral-400 leading-relaxed text-left">
+                          <div className="space-y-4 mb-6">
+                            {card.content.filter(c => !React.isValidElement(c) || (c as any).type !== 'div')}
+                          </div>
+                          {card.content.find(c => React.isValidElement(c) && (c as any).type === 'div')}
                         </div>
-                        {card.content.find(c => React.isValidElement(c) && (c as any).type === 'div')}
                       </div>
                     </div>
                   ))}
