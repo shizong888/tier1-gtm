@@ -15,12 +15,13 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
     .replace(/<section class="gtm-roadmap">([\s\S]*?)<\/section>/gi, (match, inner) => {
       return `\n\n<div class="gtm-roadmap-type-container">\n\n${inner}\n\n</div>\n\n`;
     })
-    // Auto-detect loops and flywheels by their headers
+    // Auto-detect loops and flywheels by their headers - match multi-line format with arrows
     .replace(
-      /(?:^|\n)## ([^\n]*(?:Loop|Flywheel))\n\n((?:[^\n]+ →(?:\n\n)?)+[^\n]+)(?=\n|$|##)/gi,
+      /(?:^|\n)(## [^\n]*(?:Loop|Flywheel))\n\n((?:[^\n]+→\s*\n\n)+(?:[^\n]+(?:\n|$)))/gi,
       (match, title, stepsContent) => {
-        const type = title.toLowerCase().includes('flywheel') ? 'flywheel' : 'loop';
-        return `\n\n<section class="gtm-${type}-block" data-title="${title}">\n\n${match}\n\n</section>\n\n`;
+        const cleanTitle = title.replace(/^##\s*/, '').trim();
+        const type = cleanTitle.toLowerCase().includes('flywheel') ? 'flywheel' : 'loop';
+        return `\n\n<section class="gtm-${type}-block" data-title="${cleanTitle}">\n\n${stepsContent}\n\n</section>\n\n`;
       }
     );
 
@@ -194,63 +195,25 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
                 })
                 .filter(text => text.length > 0);
 
-              if (isFlywheel && steps.length > 0) {
-                return (
-                  <div className="my-24 flex flex-col items-center">
-                    <h3 className="text-xl font-bold mb-16 text-white flex items-center gap-3">
-                      <RefreshCw className="w-5 h-5 text-brand animate-spin-slow" /> {title}
-                    </h3>
-                    <div className="relative w-full max-w-lg aspect-square">
-                      <div className="absolute inset-0 border-[40px] border-brand/5 rounded-full"></div>
-                      <div className="absolute inset-0 border border-brand/20 border-dashed rounded-full animate-[spin_60s_linear_infinite]"></div>
-                      
-                      {steps.map((step, i) => {
-                        const angle = (i / steps.length) * 2 * Math.PI - Math.PI / 2;
-                        const radius = 42; // percentage
-                        const x = 50 + radius * Math.cos(angle);
-                        const y = 50 + radius * Math.sin(angle);
-                        
-                        return (
-                          <div 
-                            key={i}
-                            className="absolute -translate-x-1/2 -translate-y-1/2 w-40 md:w-48 text-center z-10"
-                            style={{ left: `${x}%`, top: `${y}%` }}
-                          >
-                            <div className="bg-neutral-900 border border-neutral-800 p-4 rounded-sm shadow-2xl group hover:border-brand/40 transition-all">
-                              <div className="text-[9px] font-black text-brand/50 mb-1 uppercase tracking-widest">Stage 0{i + 1}</div>
-                              <div className="text-xs font-bold text-neutral-300 group-hover:text-white transition-colors leading-tight">
-                                {step}
-                              </div>
-                            </div>
-                          </div>
-                        );
-                      })}
-                      
-                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-black border border-brand/30 rounded-full flex items-center justify-center z-20 shadow-[0_0_40px_-10px_rgba(217,255,0,0.2)]">
-                        <span className="text-brand font-black text-sm uppercase tracking-tighter">Tier 1</span>
-                      </div>
-                    </div>
-                  </div>
-                );
-              }
-
+              // Render horizontal flow diagram for both loops and flywheels (matching screenshot style)
               if (steps.length > 0) {
                 return (
                   <div className="my-16">
-                    <h3 className="text-xl font-bold mb-8 text-white flex items-center gap-3">
-                      <ArrowRight className="w-5 h-5 text-brand" /> {title}
-                    </h3>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 relative">
-                      {steps.map((step, i) => (
-                        <div key={i} className="bg-neutral-900/40 border border-neutral-800/60 p-6 rounded-sm group hover:bg-neutral-900 transition-all flex flex-col">
-                          <div className="text-[10px] font-black text-neutral-600 mb-4 uppercase tracking-[0.2em]">Step 0{i + 1}</div>
-                          <p className="text-sm font-bold text-neutral-400 group-hover:text-white transition-colors leading-relaxed">
-                            {step}
-                          </p>
-                        </div>
-                      ))}
-                      <div className="col-span-full mt-4 h-6 border-x border-b border-neutral-800/50 rounded-b-xl hidden md:block opacity-50 relative">
-                         <div className="absolute left-1/2 -top-3 -translate-x-1/2 bg-black px-4 text-[9px] font-bold text-neutral-700 uppercase tracking-[0.3em]">Self-Reinforcing Cycle</div>
+                    <h3 className="text-2xl font-black mb-8 text-white">{title}</h3>
+                    <div className="w-full overflow-x-auto pb-4">
+                      <div className="flex items-center gap-0 min-w-max">
+                        {steps.map((step, i) => (
+                          <React.Fragment key={i}>
+                            <div className="bg-neutral-200 text-black px-6 py-4 text-sm font-bold rounded-lg whitespace-nowrap">
+                              {step}
+                            </div>
+                            {i < steps.length - 1 && (
+                              <div className="flex items-center px-4">
+                                <ArrowRight className="w-6 h-6 text-black" />
+                              </div>
+                            )}
+                          </React.Fragment>
+                        ))}
                       </div>
                     </div>
                   </div>
@@ -265,16 +228,16 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
           h2: ({ children }) => {
             const textContent = React.Children.toArray(children).join('');
             const isLoop = textContent.toLowerCase().includes('loop') || textContent.toLowerCase().includes('flywheel');
-            
+
+            // Hide h2 for loops/flywheels since they're rendered in the section component
+            if (isLoop) {
+              return null;
+            }
+
             return (
-              <div className={isLoop ? "mt-16 mb-4" : ""}>
-                <h2 className={isLoop 
-                  ? "text-3xl font-black text-white mb-6 tracking-tight" 
-                  : "text-2xl font-bold mb-4 mt-12 pb-2 border-b border-neutral-900 text-white"}>
-                  {children}
-                </h2>
-                {isLoop && <div className="h-px bg-neutral-900 w-full mb-8"></div>}
-              </div>
+              <h2 className="text-2xl font-bold mb-4 mt-12 pb-2 border-b border-neutral-900 text-white">
+                {children}
+              </h2>
             );
           },
           h3: ({ children }) => (
