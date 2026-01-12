@@ -12,8 +12,12 @@ interface MarkdownContentProps {
 export function MarkdownContent({ content }: MarkdownContentProps) {
   // Pre-process content to identify special sections
   const processedContent = content
-    // Wrap roadmap in a identifiable container
-    .replace(/<section class="gtm-roadmap">([\s\S]*?)<\/section>/gi, (match, inner) => {
+          // Wrap growth sequence in a identifiable container
+          .replace(/<section\s+class="gtm-growth-sequence">([\s\S]*?)<\/section>/gi, (match, inner) => {
+            return `\n\n<div class="gtm-growth-sequence-container">\n\n${inner}\n\n</div>\n\n`;
+          })
+          // Wrap roadmap in a identifiable container
+          .replace(/<section\s+class="gtm-roadmap">([\s\S]*?)<\/section>/gi, (match, inner) => {
       return `\n\n<div class="gtm-roadmap-type-container">\n\n${inner}\n\n</div>\n\n`;
     });
 
@@ -78,7 +82,86 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
               );
             }
 
-            // Handle the horizontal roadmap
+                    // Handle the growth sequence cards (screenshot style)
+                    if (divClass === 'gtm-growth-sequence-container') {
+                      const childrenArray = React.Children.toArray(children);
+                      const findList = (nodes: any[]): any => {
+                        for (const node of nodes) {
+                          if (node.type === 'ul' || (node.props && node.props.node && node.props.node.tagName === 'ul')) return node;
+                          if (node.props?.children) {
+                            const found = findList(React.Children.toArray(node.props.children));
+                            if (found) return found;
+                          }
+                        }
+                        return null;
+                      };
+
+                      const list = findList(childrenArray);
+                      if (list) {
+                        const listChildren = React.Children.toArray(list.props.children);
+                        const items = listChildren
+                          .filter((li: any) => li.type === 'li' || (li.props && li.props.node && li.props.node.tagName === 'li'))
+                          .map((li: any) => {
+                            const liChildren = React.Children.toArray(li.props.children);
+                            const strong = liChildren.find((c: any) => c.type === 'strong');
+                            
+                            let title = '';
+                            if (strong) {
+                              title = (strong as any).props.children;
+                            } else {
+                              // Fallback for when strong is not directly a child
+                              const findStrong = (nodes: any[]): any => {
+                                for (const node of nodes) {
+                                  if (node.type === 'strong') return node;
+                                  if (node.props?.children) {
+                                    const found = findStrong(React.Children.toArray(node.props.children));
+                                    if (found) return found;
+                                  }
+                                }
+                                return null;
+                              };
+                              const nestedStrong = findStrong(liChildren);
+                              if (nestedStrong) title = nestedStrong.props.children;
+                            }
+
+                            const description = liChildren
+                              .filter((c: any) => c !== strong)
+                              .map((c: any) => typeof c === 'string' ? c : (c.props?.children || ''))
+                              .join('')
+                              .replace(/^[:\s-]+/, '')
+                              .trim();
+                            
+                            return { title, description };
+                          });
+
+                        return (
+                          <div className="my-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                            {items.map((item, i) => (
+                              <div
+                                key={i}
+                                className="bg-neutral-950 border border-neutral-800 p-8 rounded-sm flex flex-col min-h-[360px] group hover:border-brand/40 hover:bg-neutral-900 transition-all duration-500 hover:-translate-y-2 shadow-2xl"
+                              >
+                                <div className="text-3xl font-bold text-white mb-12">
+                                  0{i + 1}
+                                </div>
+                                <div className="flex-1 flex flex-col justify-end">
+                                  {item.title && (
+                                    <h4 className="text-xs font-black text-white/40 uppercase tracking-[0.2em] mb-3 group-hover:text-brand transition-colors">
+                                      {item.title}
+                                    </h4>
+                                  )}
+                                  <p className="text-sm font-medium text-white leading-relaxed">
+                                    {item.description}
+                                  </p>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        );
+                      }
+                    }
+
+                    // Handle the horizontal roadmap
             if (divClass === 'gtm-roadmap-container' || divClass === 'gtm-roadmap-type-container') {
               const childrenArray = React.Children.toArray(children);
               const findList = (nodes: any[]): any => {
