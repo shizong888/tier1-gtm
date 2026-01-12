@@ -13,6 +13,9 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
   // Pre-process content to identify special sections
   const processedContent = content
           // Wrap growth sequence in a identifiable container
+          .replace(/<!-- gtm-growth-sequence-start -->([\s\S]*?)<!-- gtm-growth-sequence-end -->/gi, (match, inner) => {
+            return `\n\n<div class="gtm-growth-sequence-container">\n\n${inner}\n\n</div>\n\n`;
+          })
           .replace(/<section\s+class="gtm-growth-sequence">([\s\S]*?)<\/section>/gi, (match, inner) => {
             return `\n\n<div class="gtm-growth-sequence-container">\n\n${inner}\n\n</div>\n\n`;
           })
@@ -28,7 +31,64 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
         rehypePlugins={[rehypeRaw]}
         components={{
           div: ({ children, className, ...props }) => {
-            const divClass = className || (props as any).class;
+            const divClass = className || (props as any).class || (props as any).className;
+
+            // Handle growth sequence cards
+            if (divClass === 'gtm-growth-cards') {
+              const childrenArray = React.Children.toArray(children);
+              const items: { title: string; description: string }[] = [];
+
+              // Extract text content from all paragraphs
+              const paragraphs: string[] = [];
+              childrenArray.forEach((child: any) => {
+                if (child.type === 'p') {
+                  const text = React.Children.toArray(child.props.children)
+                    .map((c: any) => {
+                      if (typeof c === 'string') return c;
+                      if (c.type === 'strong') return c.props.children;
+                      return c.props?.children || '';
+                    })
+                    .join('')
+                    .trim();
+                  if (text) paragraphs.push(text);
+                }
+              });
+
+              // Parse pairs: title is bold text, description is next paragraph
+              for (let i = 0; i < paragraphs.length; i += 2) {
+                if (i + 1 < paragraphs.length) {
+                  items.push({
+                    title: paragraphs[i],
+                    description: paragraphs[i + 1]
+                  });
+                }
+              }
+
+              return (
+                <div className="my-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                  {items.map((item, i) => (
+                    <div
+                      key={i}
+                      className="bg-neutral-950 border border-neutral-800 p-8 rounded-sm flex flex-col min-h-[360px] group hover:border-brand/40 hover:bg-neutral-900 transition-all duration-500 hover:-translate-y-2 shadow-2xl"
+                    >
+                      <div className="text-3xl font-bold text-white mb-12">
+                        0{i + 1}
+                      </div>
+                      <div className="flex-1 flex flex-col justify-end">
+                        {item.title && (
+                          <h4 className="text-xs font-black text-white/40 uppercase tracking-[0.2em] mb-3 group-hover:text-brand transition-colors">
+                            {item.title}
+                          </h4>
+                        )}
+                        <p className="text-sm font-medium text-white leading-relaxed">
+                          {item.description}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              );
+            }
 
             // Handle the 4-card grid
             if (divClass === 'gtm-cards-grid' || divClass === 'gtm-cards-grid-container') {
