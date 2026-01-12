@@ -292,13 +292,66 @@ export default async function GTMPage({ params }: GTMPageProps) {
           graphic: (
             <>
               <div className="absolute right-32 top-1/2 -translate-y-1/2">
-                <div className="relative w-48 h-48">
-                  <div className="absolute inset-0 border border-brand/10 rounded-full animate-[spin_30s_linear_infinite]"></div>
-                  <div className="absolute inset-8 border border-brand/20 rounded-full animate-[spin_20s_linear_infinite_reverse]"></div>
-                  <div className="absolute inset-16 border border-brand/30 rounded-full animate-[spin_10s_linear_infinite]"></div>
-                  <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100">
-                    <path d="M 50 10 L 90 50 L 50 90 L 10 50 Z" fill="none" stroke="currentColor" strokeWidth="0.5" className="text-brand/40" />
-                    <circle cx="50" cy="50" r="2" fill="currentColor" className="text-brand shadow-[0_0_10px_var(--color-brand)]" />
+                <div className="relative w-48 h-48 flex items-center justify-center">
+                  {/* Compounding Growth Waves */}
+                  {[...Array(4)].map((_, i) => (
+                    <div 
+                      key={i}
+                      className="absolute border border-brand/30 rounded-full animate-grow"
+                      style={{ 
+                        width: '100%', 
+                        height: '100%', 
+                        animationDelay: `${i * 1}s`,
+                      }}
+                    ></div>
+                  ))}
+                  
+                  {/* Primary Participant Orbit */}
+                  <div className="absolute inset-0 animate-spin-slow">
+                    {[...Array(8)].map((_, i) => (
+                      <div 
+                        key={i}
+                        className="absolute w-2.5 h-2.5 bg-brand rounded-full"
+                        style={{
+                          top: '50%',
+                          left: '50%',
+                          transform: `rotate(${i * 45}deg) translateY(-96px)`,
+                        }}
+                      >
+                        <div className="absolute inset-0 bg-brand/50 rounded-full animate-ping"></div>
+                        {/* Connecting line to center */}
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 w-[1px] h-24 bg-gradient-to-t from-brand/40 to-transparent origin-bottom"></div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Secondary Liquidity Orbit */}
+                  <div className="absolute inset-0 animate-reverse-spin">
+                    {[...Array(12)].map((_, i) => (
+                      <div 
+                        key={i}
+                        className="absolute w-1.5 h-1.5 bg-brand/40 rounded-full"
+                        style={{
+                          top: '50%',
+                          left: '50%',
+                          transform: `rotate(${i * 30}deg) translateY(-60px)`,
+                        }}
+                      >
+                        <div className="absolute inset-0 bg-brand/30 rounded-full animate-pulse"></div>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  {/* The Durable Execution Hub */}
+                  <div className="relative w-12 h-12 bg-black border-2 border-brand/50 rounded-full flex items-center justify-center z-10 shadow-[0_0_50px_rgba(217,255,0,0.2)]">
+                    <div className="w-3 h-3 bg-brand rounded-full shadow-[0_0_20px_var(--color-brand)]"></div>
+                    <div className="absolute inset-0 border border-brand/20 rounded-full animate-ping"></div>
+                  </div>
+
+                  {/* Geometric Moat Mask */}
+                  <svg className="absolute inset-0 w-full h-full opacity-10" viewBox="0 0 100 100">
+                    <path d="M 50 2 L 98 50 L 50 98 L 2 50 Z" fill="none" stroke="currentColor" strokeWidth="0.5" className="text-brand" />
+                    <circle cx="50" cy="50" r="48" fill="none" stroke="currentColor" strokeWidth="0.25" className="text-brand" />
                   </svg>
                 </div>
               </div>
