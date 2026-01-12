@@ -40,8 +40,6 @@ Tier 1's go-to-market strategy is amplified through deep integration across the 
 
 ## Growth Sequence
 
-<div class="gtm-growth-cards">
-
 **Initial Setup**
 Initial liquidity programs establish deep, deterministic markets.
 
@@ -56,7 +54,5 @@ Expanded access increases volume, depth, and execution quality.
 
 **Compounding**
 Liquidity, transparency, and participation reinforce one another.
-
-</div>
 
 Each expansion path strengthens the same underlying execution layer. As Tier 1 scales, every new participant improves the market for all others, creating a continuously compounding trading ecosystem driven by execution quality rather than incentives alone.

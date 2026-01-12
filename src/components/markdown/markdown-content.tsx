@@ -10,14 +10,11 @@ interface MarkdownContentProps {
 }
 
 export function MarkdownContent({ content }: MarkdownContentProps) {
-  // Pre-process content to identify special sections
+  // Pre-process content to identify growth sequence pattern and wrap it
   const processedContent = content
-          // Wrap growth sequence in a identifiable container
-          .replace(/<!-- gtm-growth-sequence-start -->([\s\S]*?)<!-- gtm-growth-sequence-end -->/gi, (match, inner) => {
-            return `\n\n<div class="gtm-growth-sequence-container">\n\n${inner}\n\n</div>\n\n`;
-          })
-          .replace(/<section\s+class="gtm-growth-sequence">([\s\S]*?)<\/section>/gi, (match, inner) => {
-            return `\n\n<div class="gtm-growth-sequence-container">\n\n${inner}\n\n</div>\n\n`;
+          // Find Growth Sequence section and wrap the following 10 paragraphs
+          .replace(/(##\s+Growth Sequence\s*\n\n)((?:\*\*[^*]+\*\*\s*\n[^\n]+\n\n){5})/gi, (match, header, paragraphs) => {
+            return `${header}<div class="gtm-growth-sequence-wrapper">\n\n${paragraphs}</div>\n\n`;
           })
           // Wrap roadmap in a identifiable container
           .replace(/<section\s+class="gtm-roadmap">([\s\S]*?)<\/section>/gi, (match, inner) => {
@@ -34,35 +31,40 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
             const divClass = className || (props as any).class || (props as any).className;
 
             // Handle growth sequence cards
-            if (divClass === 'gtm-growth-cards') {
+            if (divClass === 'gtm-growth-sequence-wrapper') {
               const childrenArray = React.Children.toArray(children);
               const items: { title: string; description: string }[] = [];
 
-              // Extract text content from all paragraphs
-              const paragraphs: string[] = [];
+              // Extract items from paragraphs (each para has both title and description)
               childrenArray.forEach((child: any) => {
-                if (child.type === 'p') {
-                  const text = React.Children.toArray(child.props.children)
-                    .map((c: any) => {
-                      if (typeof c === 'string') return c;
-                      if (c.type === 'strong') return c.props.children;
-                      return c.props?.children || '';
-                    })
-                    .join('')
-                    .trim();
-                  if (text) paragraphs.push(text);
+                // Check if it's a paragraph element
+                const isParagraph = child.type?.toString().includes('p') ||
+                                  child.props?.node?.tagName === 'p' ||
+                                  typeof child.type === 'function';
+
+                if (isParagraph && child.props) {
+                  const childNodes = React.Children.toArray(child.props.children);
+
+                  // Find the strong element (title)
+                  let title = '';
+                  let description = '';
+
+                  childNodes.forEach((c: any) => {
+                    if (c.type?.toString().includes('strong') || c.type === 'strong') {
+                      title = c.props.children;
+                    } else if (typeof c === 'string' && c.trim()) {
+                      description += c;
+                    }
+                  });
+
+                  if (title && description) {
+                    items.push({
+                      title: title.trim(),
+                      description: description.trim()
+                    });
+                  }
                 }
               });
-
-              // Parse pairs: title is bold text, description is next paragraph
-              for (let i = 0; i < paragraphs.length; i += 2) {
-                if (i + 1 < paragraphs.length) {
-                  items.push({
-                    title: paragraphs[i],
-                    description: paragraphs[i + 1]
-                  });
-                }
-              }
 
               return (
                 <div className="my-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
