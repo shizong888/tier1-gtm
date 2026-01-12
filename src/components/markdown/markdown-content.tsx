@@ -1,5 +1,6 @@
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
 import React from 'react';
 import { ChevronRight, RefreshCw, ArrowRight } from 'lucide-react';
 
@@ -8,11 +9,256 @@ interface MarkdownContentProps {
 }
 
 export function MarkdownContent({ content }: MarkdownContentProps) {
+  // Pre-process content to identify special sections
+  const processedContent = content
+    // Wrap roadmap in a identifiable container
+    .replace(/<section class="gtm-roadmap">([\s\S]*?)<\/section>/gi, (match, inner) => {
+      return `\n\n<div class="gtm-roadmap-type-container">\n\n${inner}\n\n</div>\n\n`;
+    })
+    // Auto-detect loops and flywheels by their headers
+    .replace(
+      /(?:^|\n)## ([^\n]*(?:Loop|Flywheel))\n\n((?:[^\n]+ →(?:\n\n)?)+[^\n]+)(?=\n|$|##)/gi,
+      (match, title, stepsContent) => {
+        const type = title.toLowerCase().includes('flywheel') ? 'flywheel' : 'loop';
+        return `\n\n<section class="gtm-${type}-block" data-title="${title}">\n\n${match}\n\n</section>\n\n`;
+      }
+    );
+
   return (
     <div className="markdown-content">
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
+        rehypePlugins={[rehypeRaw]}
         components={{
+          div: ({ children, className, ...props }) => {
+            const divClass = className || (props as any).class;
+
+            // Handle the 4-card grid
+            if (divClass === 'gtm-cards-grid' || divClass === 'gtm-cards-grid-container') {
+              const childrenArray = React.Children.toArray(children);
+              const cards: { title: any; content: any[] }[] = [];
+              let currentCard: { title: any; content: any[] } | null = null;
+
+              childrenArray.forEach((child: any) => {
+                // Determine if this child is a header (card title)
+                const isHeader = child.type === 'h2' || child.type === 'h3' || child.type === 'h4' || 
+                               (child.props && child.props.node && ['h2', 'h3', 'h4'].includes(child.props.node.tagName));
+                
+                if (isHeader) {
+                  if (currentCard) cards.push(currentCard);
+                  currentCard = { title: child.props.children, content: [] };
+                } else if (currentCard) {
+                  // Add outcome styling if it's a strong "Outcome:" paragraph
+                  if (child.type === 'p') {
+                    const text = React.Children.toArray(child.props.children).join('');
+                    if (text.startsWith('Outcome:')) {
+                       currentCard.content.push(
+                         <div key={currentCard.content.length} className="mt-auto pt-6 border-t border-neutral-800/50">
+                           <span className="text-[10px] font-black text-brand uppercase tracking-widest block mb-2 text-left">Outcome</span>
+                           <p className="text-neutral-200 font-bold leading-relaxed">{text.replace('Outcome:', '').trim()}</p>
+                         </div>
+                       );
+                       return;
+                    }
+                  }
+                  currentCard.content.push(child);
+                }
+              });
+              if (currentCard) cards.push(currentCard);
+
+              return (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-12">
+                  {cards.map((card, i) => (
+                    <div key={i} className="bg-neutral-900/80 border border-neutral-800 p-8 rounded-sm hover:border-brand/30 transition-all flex flex-col h-full group backdrop-blur-md">
+                      <h3 className="text-sm font-black text-white mb-6 uppercase tracking-[0.2em] group-hover:text-brand transition-colors text-left">
+                        {card.title}
+                      </h3>
+                      <div className="flex-1 flex flex-col text-[13px] text-neutral-400 leading-relaxed text-left">
+                        <div className="space-y-4 mb-6">
+                          {card.content.filter(c => !React.isValidElement(c) || (c as any).type !== 'div')}
+                        </div>
+                        {card.content.find(c => React.isValidElement(c) && (c as any).type === 'div')}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              );
+            }
+
+            // Handle the horizontal roadmap
+            if (divClass === 'gtm-roadmap-container' || divClass === 'gtm-roadmap-type-container') {
+              const childrenArray = React.Children.toArray(children);
+              const findList = (nodes: any[]): any => {
+                for (const node of nodes) {
+                  if (node.type === 'ul') return node;
+                  if (node.props?.children) {
+                    const found = findList(React.Children.toArray(node.props.children));
+                    if (found) return found;
+                  }
+                }
+                return null;
+              };
+
+              const list = findList(childrenArray);
+              if (list) {
+                const items = React.Children.toArray((list as any).props.children)
+                  .filter((li: any) => li.type === 'li')
+                  .map((li: any) => {
+                    const liChildren = React.Children.toArray((li as any).props.children);
+                    const strong = liChildren.find((c: any) => c.type === 'strong');
+                    
+                    let title = 'Step';
+                    if (strong) {
+                      title = (strong as any).props.children;
+                    } else if (typeof liChildren[0] === 'string') {
+                      const split = liChildren[0].split(':');
+                      if (split.length > 1) title = split[0];
+                    }
+
+                    const description = liChildren
+                      .filter((c: any) => c !== strong)
+                      .map((c: any) => typeof c === 'string' ? c : (c.props?.children || ''))
+                      .join('')
+                      .replace(/^[:\s-]+/, '')
+                      .trim();
+                    
+                    return { title, description };
+                  });
+
+                return (
+                  <div className="my-16 w-full overflow-x-auto pb-8 scrollbar-hide">
+                    <div className="flex items-start gap-0 min-w-[900px] lg:min-w-full">
+                      {items.map((item, i) => (
+                        <React.Fragment key={i}>
+                          <div className="flex-1 flex flex-col">
+                            <div className="w-full bg-neutral-800 border border-neutral-700/30 py-6 px-4 rounded-xl mb-6 text-center group hover:border-brand/40 hover:bg-neutral-700/50 transition-all shadow-xl flex items-center justify-center min-h-[80px]">
+                              <h4 className="text-[11px] font-black text-white uppercase tracking-[0.2em] leading-tight">
+                                {item.title}
+                              </h4>
+                            </div>
+                            <p className="text-[11px] font-bold text-neutral-500 text-center leading-relaxed px-2">
+                              {item.description}
+                            </p>
+                          </div>
+                          {i < items.length - 1 && (
+                            <div className="flex items-center justify-center h-[80px] w-12 shrink-0">
+                              <div className="w-full h-px bg-neutral-800 relative">
+                                <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1.5 h-1.5 border-t border-r border-neutral-600 rotate-45"></div>
+                              </div>
+                            </div>
+                          )}
+                        </React.Fragment>
+                      ))}
+                    </div>
+                  </div>
+                );
+              }
+            }
+
+            if (divClass === 'gtm-positive-loop') {
+              return (
+                <div className="my-10 group">
+                  <div className="relative bg-neutral-900 border border-neutral-800 p-8 rounded-sm overflow-hidden transition-all hover:border-brand/30">
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-brand/5 blur-3xl rounded-full -mr-16 -mt-16 group-hover:bg-brand/10 transition-all"></div>
+                    <div className="relative z-10">
+                      <div className="text-[10px] font-black text-brand uppercase tracking-[0.3em] mb-4 flex items-center gap-2">
+                        <RefreshCw className="w-3 h-3 animate-spin-slow" /> Positive Loop
+                      </div>
+                      <div className="text-base font-bold text-neutral-200 leading-relaxed italic">
+                        {children}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            }
+
+            return <div className={divClass} {...props}>{children}</div>;
+          },
+          section: ({ children, className, ...props }) => {
+            const sectionClass = className || (props as any).class;
+            
+            if (sectionClass === 'gtm-flywheel-block' || sectionClass === 'gtm-loop-block') {
+              const isFlywheel = className === 'gtm-flywheel-block';
+              const title = (props as any)['data-title'] || '';
+              
+              // Extract steps from children
+              const childrenArray = React.Children.toArray(children);
+              const steps = childrenArray
+                .filter((child: any) => child.type === 'p')
+                .map((child: any) => {
+                  const textContent = React.Children.toArray(child.props.children)
+                    .map((c: any) => typeof c === 'string' ? c : (c.props?.children || ''))
+                    .join('');
+                  return textContent.replace(/ →$/, '').trim();
+                })
+                .filter(text => text.length > 0);
+
+              if (isFlywheel && steps.length > 0) {
+                return (
+                  <div className="my-24 flex flex-col items-center">
+                    <h3 className="text-xl font-bold mb-16 text-white flex items-center gap-3">
+                      <RefreshCw className="w-5 h-5 text-brand animate-spin-slow" /> {title}
+                    </h3>
+                    <div className="relative w-full max-w-lg aspect-square">
+                      <div className="absolute inset-0 border-[40px] border-brand/5 rounded-full"></div>
+                      <div className="absolute inset-0 border border-brand/20 border-dashed rounded-full animate-[spin_60s_linear_infinite]"></div>
+                      
+                      {steps.map((step, i) => {
+                        const angle = (i / steps.length) * 2 * Math.PI - Math.PI / 2;
+                        const radius = 42; // percentage
+                        const x = 50 + radius * Math.cos(angle);
+                        const y = 50 + radius * Math.sin(angle);
+                        
+                        return (
+                          <div 
+                            key={i}
+                            className="absolute -translate-x-1/2 -translate-y-1/2 w-40 md:w-48 text-center z-10"
+                            style={{ left: `${x}%`, top: `${y}%` }}
+                          >
+                            <div className="bg-neutral-900 border border-neutral-800 p-4 rounded-sm shadow-2xl group hover:border-brand/40 transition-all">
+                              <div className="text-[9px] font-black text-brand/50 mb-1 uppercase tracking-widest">Stage 0{i + 1}</div>
+                              <div className="text-xs font-bold text-neutral-300 group-hover:text-white transition-colors leading-tight">
+                                {step}
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                      
+                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-black border border-brand/30 rounded-full flex items-center justify-center z-20 shadow-[0_0_40px_-10px_rgba(217,255,0,0.2)]">
+                        <span className="text-brand font-black text-sm uppercase tracking-tighter">Tier 1</span>
+                      </div>
+                    </div>
+                  </div>
+                );
+              }
+
+              if (steps.length > 0) {
+                return (
+                  <div className="my-16">
+                    <h3 className="text-xl font-bold mb-8 text-white flex items-center gap-3">
+                      <ArrowRight className="w-5 h-5 text-brand" /> {title}
+                    </h3>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 relative">
+                      {steps.map((step, i) => (
+                        <div key={i} className="bg-neutral-900/40 border border-neutral-800/60 p-6 rounded-sm group hover:bg-neutral-900 transition-all flex flex-col">
+                          <div className="text-[10px] font-black text-neutral-600 mb-4 uppercase tracking-[0.2em]">Step 0{i + 1}</div>
+                          <p className="text-sm font-bold text-neutral-400 group-hover:text-white transition-colors leading-relaxed">
+                            {step}
+                          </p>
+                        </div>
+                      ))}
+                      <div className="col-span-full mt-4 h-6 border-x border-b border-neutral-800/50 rounded-b-xl hidden md:block opacity-50 relative">
+                         <div className="absolute left-1/2 -top-3 -translate-x-1/2 bg-black px-4 text-[9px] font-bold text-neutral-700 uppercase tracking-[0.3em]">Self-Reinforcing Cycle</div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              }
+            }
+            return <section className={className} {...props}>{children}</section>;
+          },
           h1: ({ children }) => (
             <h1 className="text-4xl md:text-5xl font-black mb-8 mt-12 first:mt-0 text-white tracking-tighter">{children}</h1>
           ),
@@ -41,56 +287,28 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
             const childrenArray = React.Children.toArray(children);
             const textContent = childrenArray.map(c => typeof c === 'string' ? c : (c as any).props?.children?.toString() || '').join('');
             
-            // Check for "**Positive Loop**" or similar
-            const isLoopLabel = textContent.includes('Loop') && childrenArray.some((c: any) => c.type === 'strong');
-            
-            if (isLoopLabel) {
-              return (
-                <div className="mt-12 mb-2">
-                  <p className="text-sm font-black text-white uppercase tracking-[0.2em] mb-4">
-                    {children}
-                  </p>
-                </div>
-              );
-            }
-
             // Heuristic for Roadmap/Flow diagrams from screenshots
-            if (textContent.includes(' → ')) {
+            if (textContent.includes(' → ') && !textContent.trim().endsWith('→')) {
               const steps = textContent.split(' → ');
-              const isLastStepArrow = textContent.trim().endsWith('→');
-              
-              if (isLastStepArrow) {
-                return (
-                  <div className="flex items-center gap-3 mb-4 group">
-                    <div className="bg-neutral-900/50 border border-neutral-800 p-4 rounded-sm flex-1 group-hover:border-brand/30 transition-all">
-                      <p className="text-sm font-bold text-neutral-400 group-hover:text-white transition-colors">
-                        {textContent.replace(/ →$/, '').trim()}
-                      </p>
-                    </div>
-                    <ChevronRight className="w-4 h-4 text-brand" />
-                  </div>
-                );
-              }
-
-              // Final step or multi-step flow
               return (
-                <div className="mb-8">
-                  <div className="flex flex-wrap items-center gap-3 mb-6">
-                    {steps.map((step, i) => (
-                      <React.Fragment key={i}>
-                        <div className="bg-neutral-800/50 border border-neutral-800 px-5 py-3 rounded-sm text-sm font-bold text-neutral-300 shadow-sm">
-                          {step.trim()}
-                        </div>
-                        {i < steps.length - 1 && (
-                          <ChevronRight className="w-4 h-4 text-brand/50" />
-                        )}
-                      </React.Fragment>
-                    ))}
-                  </div>
-                  <div className="h-px bg-neutral-900 w-full mt-8"></div>
+                <div className="flex flex-wrap items-center gap-3 mb-10 bg-neutral-900/30 p-6 rounded-sm border border-neutral-800/50">
+                  {steps.map((step, i) => (
+                    <React.Fragment key={i}>
+                      <div className="bg-neutral-800/50 border border-neutral-800 px-5 py-3 rounded-sm text-sm font-bold text-neutral-300 shadow-sm">
+                        {step.trim()}
+                      </div>
+                      {i < steps.length - 1 && (
+                        <ChevronRight className="w-4 h-4 text-brand opacity-50" />
+                      )}
+                    </React.Fragment>
+                  ))}
                 </div>
               );
             }
+
+            // ONLY hide if it's explicitly a step indicator ending in arrow, 
+            // which is usually captured by our flywheel/loop logic
+            if (textContent.trim().endsWith('→') && textContent.length < 100) return null;
 
             return (
               <p className="text-base mb-6 leading-relaxed text-neutral-400">
@@ -178,7 +396,7 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
           )
         }}
       >
-        {content}
+        {processedContent}
       </ReactMarkdown>
     </div>
   );
