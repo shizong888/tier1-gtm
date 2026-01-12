@@ -13,7 +13,7 @@ interface GTMLayoutProps {
 export function GTMLayout({ children, navigation }: GTMLayoutProps) {
   return (
     <SidebarProvider>
-      <div className="flex min-h-screen w-screen max-w-full bg-black text-white overflow-hidden">
+      <div className="flex min-h-screen w-full bg-black text-white">
         <Sidebar className="border-r border-neutral-900 bg-neutral-950 shrink-0">
           <SidebarContent className="p-4 bg-neutral-950">
             <div className="mb-8 mt-4 px-3">
@@ -24,27 +24,15 @@ export function GTMLayout({ children, navigation }: GTMLayoutProps) {
             <SidebarNav items={navigation} />
           </SidebarContent>
         </Sidebar>
-        <main className="flex-1 flex flex-col min-w-0 w-0 overflow-hidden">
+        <main className="flex-1 flex flex-col min-w-0 relative h-screen">
           <div className="sticky top-0 z-10 bg-black/80 backdrop-blur-md border-b border-neutral-900 px-6 py-3 md:hidden">
             <SidebarTrigger className="text-brand" />
           </div>
-          <div className="w-full overflow-y-auto overflow-x-hidden">
+          <div className="flex-1 overflow-y-auto overflow-x-hidden min-w-0">
             <div className="container max-w-4xl mx-auto px-6 py-12">
               {children}
             </div>
           </div>
-          
-          <footer className="mt-auto px-8 py-8 border-t border-neutral-900/50 flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex flex-col">
-              <span className="text-lg font-black text-white tracking-tight">Trade like the 1%</span>
-              <span className="text-lg font-black text-brand tracking-tight">Be the <span className="underline decoration-brand/30">Tier 1</span></span>
-            </div>
-            <div className="flex items-center gap-4 text-xs font-bold text-neutral-600 uppercase tracking-widest">
-              <span>© 2026 Tier 1</span>
-              <span className="w-1 h-1 bg-neutral-800 rounded-full"></span>
-              <span>Go-To-Market Strategy</span>
-            </div>
-          </footer>
         </main>
       </div>
     </SidebarProvider>

@@ -56,19 +56,13 @@ export default async function GTMPage({ params }: GTMPageProps) {
 
   return (
     <GTMLayout navigation={navigation}>
-      <div className="mb-12 relative overflow-hidden rounded-sm bg-neutral-900/50 border border-neutral-800 p-8 md:p-12">
-        {/* Decorative Circle from inspiration */}
-        <div className="absolute -right-24 -bottom-24 w-64 h-64 border-[32px] border-brand/5 rounded-full pointer-events-none"></div>
-        <div className="absolute -right-12 -bottom-12 w-48 h-48 border-[16px] border-brand/10 rounded-full pointer-events-none"></div>
-        
-        <div className="relative z-10">
-          <h1 className="text-sm font-bold text-brand uppercase tracking-[0.3em] mb-4">
-            Tier 1 Go-To-Market Strategy
-          </h1>
-          <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter">
-            {page.title}
-          </h2>
-        </div>
+      <div className="mb-8 pb-8 border-b border-neutral-900">
+        <h1 className="text-sm font-bold text-brand uppercase tracking-[0.3em] mb-4">
+          Strategy / Stage 0{currentIndex + 1}
+        </h1>
+        <h2 className="text-4xl md:text-5xl font-black text-white tracking-tighter">
+          {page.title}
+        </h2>
       </div>
 
       <article className="max-w-none">
