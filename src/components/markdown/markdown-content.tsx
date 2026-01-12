@@ -330,20 +330,20 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
 
             return <div className={divClass} {...props}>{children}</div>;
           },
-          h1: ({ children }) => (
-            <h1 className="text-4xl md:text-5xl font-black mb-8 mt-12 first:mt-0 text-white tracking-tighter">{children}</h1>
-          ),
-          h2: ({ children }) => (
-            <h2 className="text-2xl font-bold mb-4 mt-12 pb-2 border-b border-neutral-900 text-white">
-              {children}
-            </h2>
-          ),
-          h3: ({ children }) => (
-            <h3 className="text-xl font-bold mb-3 mt-8 text-neutral-100">{children}</h3>
-          ),
-          h4: ({ children }) => (
-            <h4 className="text-lg font-bold mb-2 mt-6 text-neutral-200">{children}</h4>
-          ),
+                  h1: ({ children }) => (
+                    <h1 className="text-4xl md:text-5xl font-medium mb-8 mt-12 first:mt-0 text-white tracking-tighter">{children}</h1>
+                  ),
+                  h2: ({ children }) => (
+                    <h2 className="text-2xl font-medium mb-4 mt-12 pb-2 border-b border-neutral-900 text-white">
+                      {children}
+                    </h2>
+                  ),
+                  h3: ({ children }) => (
+                    <h3 className="text-xl font-medium mb-3 mt-8 text-neutral-100">{children}</h3>
+                  ),
+                  h4: ({ children }) => (
+                    <h4 className="text-lg font-medium mb-2 mt-6 text-neutral-200">{children}</h4>
+                  ),
           p: ({ children }) => {
             const childrenArray = React.Children.toArray(children);
             const textContent = childrenArray.map(c => typeof c === 'string' ? c : (c as any).props?.children?.toString() || '').join('');

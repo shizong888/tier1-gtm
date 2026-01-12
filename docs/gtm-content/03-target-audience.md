@@ -61,7 +61,12 @@ Outcome: Expanded accessibility and use cases that attract additional traders, c
 
 Each participant group reinforces the others through continuous market improvement and compounding network effects.
 
-![Target Audience Feedback Loop](/images/target-audience-feedback-loop.png)
+<figure class="my-12">
+  <img src="/images/target-audience-feedback-loop.png" alt="Target Audience Feedback Loop" class="max-w-full h-auto mx-auto" />
+  <figcaption class="text-center text-xs font-bold text-neutral-400 mt-4">
+    The cycle repeats, compounding liquidity and market quality over time.
+  </figcaption>
+</figure>
 
 ---
 

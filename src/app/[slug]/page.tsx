@@ -382,14 +382,14 @@ export default async function GTMPage({ params }: GTMPageProps) {
           <div className="relative z-10">
             <div className="inline-flex items-center gap-3 mb-6">
               <div className="w-8 h-[2px] bg-brand"></div>
-              <h1 className="text-xs font-black text-brand uppercase tracking-[0.4em]">
+              <h1 className="text-xs font-medium text-brand tracking-[0.4em]">
                 {header.label}
               </h1>
             </div>
-            <h2 className="text-5xl md:text-7xl font-black text-white tracking-tighter leading-[0.9] mb-4 uppercase">
+            <h2 className="text-5xl md:text-7xl font-medium text-white tracking-tighter leading-[0.9] mb-4">
               {header.title}
             </h2>
-            <p className="text-neutral-500 text-sm font-bold uppercase tracking-widest mt-6 flex items-center gap-2">
+            <p className="text-neutral-500 text-sm font-bold tracking-widest mt-6 flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-brand animate-pulse"></span>
               {header.accent}
             </p>
@@ -397,10 +397,10 @@ export default async function GTMPage({ params }: GTMPageProps) {
         </div>
       ) : (
         <div className="mb-8 pb-8 border-b border-neutral-900">
-          <h1 className="text-sm font-bold text-brand uppercase tracking-[0.3em] mb-4">
+          <h1 className="text-sm font-medium text-brand tracking-[0.3em] mb-4">
             Tier 1 Go-To-Market Strategy
           </h1>
-          <h2 className="text-4xl md:text-5xl font-black text-white tracking-tighter">
+          <h2 className="text-4xl md:text-5xl font-medium text-white tracking-tighter">
             {page.title}
           </h2>
         </div>

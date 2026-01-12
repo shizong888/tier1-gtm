@@ -65,10 +65,10 @@ export default async function Home() {
         </div>
         
         <div className="relative z-10">
-          <h2 className="text-5xl md:text-7xl font-black text-white tracking-tighter leading-[0.9] mb-4 uppercase">
+          <h2 className="text-5xl md:text-7xl font-medium text-white tracking-tighter leading-[0.9] mb-4">
             Tier 1 <br />Go-To Market Strategy
           </h2>
-          <p className="text-neutral-500 text-sm font-bold uppercase tracking-widest mt-6 flex items-center gap-2">
+          <p className="text-neutral-500 text-sm font-bold tracking-widest mt-6 flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-brand animate-pulse"></span>
             Execution Layer for Professional Trading
           </p>

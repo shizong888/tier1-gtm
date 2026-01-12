@@ -15,7 +15,7 @@ export function SidebarNav({ items }: SidebarNavProps) {
   return (
     <nav className="space-y-1">
       <div className="mb-4">
-        <h2 className="text-xs font-bold px-3 mb-2 text-neutral-500 uppercase tracking-widest">GTM Strategy</h2>
+        <h2 className="text-xs font-medium px-3 mb-2 text-neutral-500 uppercase tracking-widest">GTM Strategy</h2>
       </div>
       {items.map((item, index) => {
         const isActive = pathname === item.href || (pathname === '/' && index === 0);

@@ -29,7 +29,7 @@ export function GTMLayout({ children, navigation }: GTMLayoutProps) {
             <SidebarTrigger className="text-brand" />
           </div>
           <div className="flex-1 overflow-y-auto overflow-x-hidden min-w-0">
-            <div className="container max-w-4xl mx-auto px-6 py-12">
+            <div className="container max-w-5xl mx-auto px-6 py-12">
               {children}
             </div>
           </div>
