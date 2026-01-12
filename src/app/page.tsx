@@ -30,10 +30,10 @@ export default async function Home() {
 
   return (
     <GTMLayout navigation={navigation}>
-      <div className="mb-12 relative overflow-hidden rounded-sm bg-neutral-900/50 border border-neutral-800 p-8 md:p-12">
+      <div className="mb-12 relative overflow-hidden rounded-sm bg-neutral-900/50 border border-neutral-800 p-8 md:p-12 max-w-full">
         {/* Decorative Circle from inspiration */}
-        <div className="absolute -right-24 -bottom-24 w-64 h-64 border-[32px] border-brand/5 rounded-full pointer-events-none"></div>
-        <div className="absolute -right-12 -bottom-12 w-48 h-48 border-[16px] border-brand/10 rounded-full pointer-events-none"></div>
+        <div className="absolute -right-24 -bottom-24 w-64 h-64 border-[32px] border-brand/5 rounded-full pointer-events-none hidden md:block"></div>
+        <div className="absolute -right-12 -bottom-12 w-48 h-48 border-[16px] border-brand/10 rounded-full pointer-events-none hidden md:block"></div>
         
         <div className="relative z-10">
           <h1 className="text-sm font-bold text-brand uppercase tracking-[0.3em] mb-4">

@@ -13,7 +13,7 @@ interface GTMLayoutProps {
 export function GTMLayout({ children, navigation }: GTMLayoutProps) {
   return (
     <SidebarProvider>
-      <div className="flex min-h-screen w-full bg-black text-white">
+      <div className="flex min-h-screen w-full bg-black text-white overflow-x-hidden">
         <Sidebar className="border-r border-neutral-900 bg-neutral-950">
           <SidebarContent className="p-4 bg-neutral-950">
             <div className="mb-8 mt-4 px-3">
@@ -24,11 +24,11 @@ export function GTMLayout({ children, navigation }: GTMLayoutProps) {
             <SidebarNav items={navigation} />
           </SidebarContent>
         </Sidebar>
-        <main className="flex-1 flex flex-col">
+        <main className="flex-1 flex flex-col min-w-0 overflow-x-hidden">
           <div className="sticky top-0 z-10 bg-black/80 backdrop-blur-md border-b border-neutral-900 px-6 py-3 md:hidden">
             <SidebarTrigger className="text-brand" />
           </div>
-          <div className="container max-w-4xl mx-auto px-6 py-12 flex-1">
+          <div className="container max-w-4xl mx-auto px-6 py-12 flex-1 w-full">
             {children}
           </div>
           
