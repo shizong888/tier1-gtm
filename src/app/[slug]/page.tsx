@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import { getAllSlugs, parseMarkdownFile, generateNavigation } from '@/lib/markdown';
 import { GTMLayout } from '@/components/layout/gtm-layout';
 import { MarkdownContent } from '@/components/markdown/markdown-content';
@@ -37,15 +37,21 @@ export async function generateMetadata({ params }: GTMPageProps): Promise<Metada
 
 export default async function GTMPage({ params }: GTMPageProps) {
   const { slug } = await params;
-  const page = await parseMarkdownFile(slug);
   const navigation = await generateNavigation();
+
+  // If this is the first item, redirect to root
+  if (navigation.length > 0 && navigation[0].slug === slug) {
+    redirect('/');
+  }
+
+  const page = await parseMarkdownFile(slug);
 
   if (!page) {
     notFound();
   }
 
   const currentIndex = navigation.findIndex((item) => item.slug === slug);
-  const prevPage = currentIndex > 0 ? navigation[currentIndex - 1] : null;
+  const prevPage = currentIndex > 0 ? (currentIndex === 1 ? { ...navigation[0], href: '/' } : navigation[currentIndex - 1]) : null;
   const nextPage = currentIndex < navigation.length - 1 ? navigation[currentIndex + 1] : null;
 
   return (
@@ -106,3 +112,4 @@ export default async function GTMPage({ params }: GTMPageProps) {
     </GTMLayout>
   );
 }
+

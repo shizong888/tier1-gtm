@@ -87,7 +87,7 @@ export async function generateNavigation(): Promise<NavItem[]> {
 
   return files.map(file => ({
     title: file.title,
-    href: `/gtm/${file.slug}`,
+    href: `/${file.slug}`,
     order: file.order,
     slug: file.slug,
   }));
