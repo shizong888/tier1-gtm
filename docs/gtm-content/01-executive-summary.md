@@ -29,14 +29,9 @@ It is building the execution infrastructure required for crypto markets to matur
 
 ## Roadmap
 
-Tier 1’s rollout follows an execution-first, phased approach designed to establish deterministic market quality before scaling distribution. Each phase reinforces the next, building deep liquidity, measurable execution improvements, and durable adoption.
+Tier 1's rollout follows an execution-first, phased approach designed to establish deterministic market quality before scaling distribution. Each phase reinforces the next, building deep liquidity, measurable execution improvements, and durable adoption.
 
-<section class="gtm-roadmap">
-- **Execution & Liquidity Launch**: Deterministic execution live, core validator set, and initial professional liquidity to establish tight spreads.
-- **Active Trader Adoption**: Expand participation to execution-sensitive traders, validating execution quality through real trading activity.
-- **Retail Expansion**: Scale retail access once liquidity and execution are proven, supported by incentives tied to productive behavior.
-- **Ecosystem & Governance**: Broaden integrations and transition incentives into long-term network ownership and governance.
-</section>
+![Tier 1 GTM Roadmap](/images/exec-summary-roadmap.png)
 
 <p class="text-center text-xs font-bold text-neutral-400 mt-8">
   Each phase is accompanied by points-based incentives and verifiable execution metrics to reward real contribution and align participants with long-term network health.

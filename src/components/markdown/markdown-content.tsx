@@ -299,6 +299,15 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
           ),
           em: ({ children }) => (
              <em className="italic text-brand/90">{children}</em>
+          ),
+          img: ({ src, alt }) => (
+            <div className="my-12 flex justify-center">
+              <img
+                src={src}
+                alt={alt || ''}
+                className="max-w-full h-auto rounded-sm border border-neutral-800 shadow-2xl"
+              />
+            </div>
           )
         }}
       >
