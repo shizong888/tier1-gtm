@@ -4,6 +4,8 @@ Tier 1 delivers an execution-first trading environment that combines ultra-low l
 
 ---
 
+<div class="gtm-cards-grid">
+
 ## For Liquidity Providers and Market Makers
 
 - Ultra-low-latency and deterministic execution that enables latency-sensitive strategies which do not work on existing on-chain venues
@@ -11,11 +13,7 @@ Tier 1 delivers an execution-first trading environment that combines ultra-low l
 - Deep, stable markets supported by transparent fee structures and verifiable on-chain execution
 - Points-based incentives tied to real liquidity provision, uptime, and sustained participation
 
-**Outcome:**
-
-Consistent, scalable liquidity provision with institutional-grade execution guarantees and long-term alignment with the protocol.
-
----
+Outcome: Consistent, scalable liquidity provision with institutional-grade execution guarantees and long-term alignment with the protocol.
 
 ## For Active Traders and Power Retail
 
@@ -24,11 +22,7 @@ Consistent, scalable liquidity provision with institutional-grade execution guar
 - Transparent liquidation mechanics and predictable risk outcomes
 - Incentives that reward real trading activity rather than short-term speculation
 
-**Outcome:**
-
-Improved realized PnL, higher confidence in execution, and stronger trader retention.
-
----
+Outcome: Improved realized PnL, higher confidence in execution, and stronger trader retention.
 
 ## For Broader Retail Traders
 
@@ -37,11 +31,7 @@ Improved realized PnL, higher confidence in execution, and stronger trader reten
 - Clear incentive programs that reward productive participation and learning
 - A market structure designed to reduce hidden costs and execution uncertainty
 
-**Outcome:**
-
-Fairer access to deep, liquid markets with predictable execution and lower implicit trading costs.
-
----
+Outcome: Fairer access to deep, liquid markets with predictable execution and lower implicit trading costs.
 
 ## For Ecosystem Partners and Infrastructure Providers
 
@@ -49,11 +39,7 @@ Fairer access to deep, liquid markets with predictable execution and lower impli
 - Increased user activity driven by deep liquidity and superior execution quality
 - Integration with a transparent, institutional-grade execution layer that enhances credibility
 
-**Outcome:**
-
-Sustainable ecosystem growth driven by real trading activity rather than incentive-only usage.
-
----
+Outcome: Sustainable ecosystem growth driven by real trading activity rather than incentive-only usage.
 
 ## For the Protocol and Network
 
@@ -62,9 +48,9 @@ Sustainable ecosystem growth driven by real trading activity rather than incenti
 - Points and rewards evolve with network performance, reinforcing healthy growth
 - Every trade strengthens the underlying execution layer
 
-**Outcome:**
+Outcome: A self-reinforcing trading network where growth compounds through better execution rather than dilution.
 
-A self-reinforcing trading network where growth compounds through better execution rather than dilution.
+</div>
 
 ---
 

@@ -8,7 +8,9 @@ This architecture positions Tier 1 as a shared execution layer where institution
 
 ## Primary Audience Segments
 
-### 1. Liquidity Providers and Market Makers
+<div class="gtm-cards-grid">
+
+## Liquidity Providers and Market Makers
 
 Professional market makers, proprietary trading firms, and quantitative funds that require:
 
@@ -17,15 +19,9 @@ Professional market makers, proprietary trading firms, and quantitative funds th
 - The ability to deploy latency-sensitive strategies on-chain
 - Transparent fee structures and verifiable execution rules
 
-Tier 1 enables these participants to provide consistent, high-quality liquidity without the opaque internalization and discretionary matching common on centralized exchanges.
+Outcome: Consistent, high-quality liquidity without the opaque internalization and discretionary matching common on centralized exchanges.
 
-<div class="gtm-positive-loop">
-Deeper professional liquidity tightens spreads and improves execution quality, which increases trading volume and attracts additional liquidity providers.
-</div>
-
----
-
-### 2. Active Traders and Power Retail
+## Active Traders and Power Retail
 
 Sophisticated retail traders and active market participants who are most sensitive to:
 
@@ -34,70 +30,38 @@ Sophisticated retail traders and active market participants who are most sensiti
 - Fair and transparent market structure
 - Reliable liquidation mechanics
 
-These traders benefit directly from the presence of professional liquidity and deterministic execution, which reduces adverse selection and execution uncertainty compared to existing venues.
+Outcome: Reduced adverse selection and execution uncertainty compared to existing venues, resulting in improved realizing PnL.
 
-<div class="gtm-positive-loop">
-Improved execution outcomes increase trader retention and volume, reinforcing liquidity depth and market quality.
-</div>
-
----
-
-### 3. Broader Retail Traders
+## Broader Retail Traders
 
 Retail participants seeking access to deep, liquid markets with transparent execution, without needing to understand or compete on latency.
-
-Retail access is intentionally expanded after liquidity and execution quality are established, ensuring that retail traders enter a market with institutional-grade depth rather than incentive-driven, thin liquidity.
-
-Retail participation is supported by:
 
 - Transparent, on-chain execution and price discovery
 - Points-based incentive programs that reward productive trading behavior
 - Clear liquidation mechanics and predictable outcomes
 
-<div class="gtm-positive-loop">
-Retail volume further deepens liquidity, improves price discovery, and strengthens the overall trading environment.
-</div>
+Outcome: Fairer access to institutional-grade depth and predictable execution with lower implicit trading costs.
 
----
-
-### 4. Ecosystem Partners and Infrastructure Providers
+## Ecosystem and Infrastructure Partners
 
 Protocols and service providers that integrate with Tier 1’s execution layer, including:
 
 - Trading interfaces, terminals, and analytics platforms  
-- Wallets, custody solutions, and institutional access providers  
-- Risk engines, margin tools, and liquidation infrastructure  
-- Data and market intelligence providers  
-- Lending and capital efficiency protocols  
-- Prediction markets and derivatives built on Tier 1 liquidity  
-- Funded prop trading platforms offering trader evaluation and capital allocation programs  
+- Wallets, custody, and institutional access providers  
+- Risk engines, margin tools, and lending protocols  
+- Funded prop trading platforms and evaluation programs
 
-These partners benefit from:
+Outcome: Expanded accessibility and use cases that attract additional traders, capital, and market participants to the network.
 
-- High-quality, on-chain execution and market data  
-- Deep, professional liquidity with predictable execution behavior  
-- Increased user activity driven by superior market quality  
-- Integration with a transparent, institutional-grade execution layer  
-
-<div class="gtm-positive-loop">
-Ecosystem integrations expand the surface area of Tier 1 liquidity, increase accessibility and use cases, and attract additional traders, capital, and market participants to the network.
 </div>
 
 ---
 
 ## Feedback Loop
 
-Liquidity Providers establish deep, stable markets →
+Each participant group reinforces the others through continuous market improvement and compounding network effects.
 
-Active Traders and Retail benefit from tighter spreads and predictable execution →
-
-Increased volume improves liquidity depth and execution quality →
-
-Points and incentives reward productive participation →
-
-Ecosystem partners integrate to capture growing flow →
-
-The cycle repeats, compounding liquidity and market quality over time.
+![Target Audience Feedback Loop](/images/target-audience-feedback-loop.png)
 
 ---
 

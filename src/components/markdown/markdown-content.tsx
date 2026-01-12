@@ -107,18 +107,33 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
                   if (currentCard) cards.push(currentCard);
                   currentCard = { title: child.props.children, content: [] };
                 } else if (currentCard) {
-                  // Add outcome styling if it's a strong "Outcome:" paragraph
-                  if (child.type === 'p') {
-                    const text = React.Children.toArray(child.props.children).join('');
-                    if (text.startsWith('Outcome:')) {
-                       currentCard.content.push(
-                         <div key={currentCard.content.length} className="mt-auto pt-6 border-t border-neutral-800/50">
-                           <span className="text-[10px] font-black text-brand uppercase tracking-widest block mb-2 text-left">Outcome</span>
-                           <p className="text-neutral-200 font-bold leading-relaxed">{text.replace('Outcome:', '').trim()}</p>
-                         </div>
-                       );
-                       return;
-                    }
+                  // Add outcome styling if it's an "Outcome:" paragraph
+                  const childNodes = React.Children.toArray(child.props?.children || []);
+                  const firstChild = childNodes[0];
+                  
+                  const isOutcome = (typeof firstChild === 'string' && firstChild.trim().startsWith('Outcome:')) ||
+                                  (React.isValidElement(firstChild) && 
+                                   String((firstChild.props as any)?.children || '').trim().startsWith('Outcome:'));
+
+                  if (isOutcome) {
+                    const fullText = childNodes.map(c => {
+                      if (typeof c === 'string') return c;
+                      if (React.isValidElement(c)) return (c.props as any).children;
+                      return '';
+                    }).join('');
+
+                    currentCard.content.push(
+                      <div key={currentCard.content.length} className="mt-auto pt-8 w-full">
+                        <div className="bg-brand/5 border border-brand/20 p-6 rounded-sm relative overflow-hidden group/outcome transition-all hover:bg-brand/10 hover:border-brand/40 w-full">
+                          <div className="absolute top-0 right-0 w-24 h-24 bg-brand/5 blur-2xl rounded-full -mr-12 -mt-12 group-hover/outcome:bg-brand/10 transition-all"></div>
+                          <span className="text-[10px] font-black text-brand uppercase tracking-[0.3em] block mb-3 text-left relative z-10">Outcome</span>
+                          <p className="text-[13px] text-neutral-200 font-bold leading-relaxed text-left relative z-10">
+                            {fullText.replace(/Outcome:\s*/i, '').trim()}
+                          </p>
+                        </div>
+                      </div>
+                    );
+                    return;
                   }
                   currentCard.content.push(child);
                 }
