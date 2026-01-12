@@ -29,7 +29,7 @@ export function MermaidDiagram({ chart }: MermaidDiagramProps) {
           mainBkg: '#262626',
           secondBkg: '#1a1a1a',
           textColor: '#ffffff',
-          fontSize: '14px',
+          fontSize: '18px',
           fontFamily: 'var(--font-meltmino), ui-sans-serif, system-ui',
         },
         flowchart: {
