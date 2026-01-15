@@ -20,12 +20,15 @@ Tier 1 is the first on-chain execution layer that combines sub-millisecond laten
 
 **Channels:** BSO partnership, direct institutional sales, pilot liquidity programs
 
-**KPIs (Good Enough → Home Run):**
-- Active MMs: 4-6 → 8-12 providing continuous two-sided quotes
-- Depth: $10-15M → $20-30M within 25bps of mid across 3-5 flagship markets
-- Execution quality: <0.5% → <0.1% of trades with queue manipulation or irregularities
-- Uptime: 99.9% → 99.95%+ for colocation infrastructure
-- Spread compression: 15-25% → 30-40% vs. comparable venues
+**KPIs:**
+
+| Metric | Good Enough | Home Run |
+|--------|-------------|----------|
+| Active MMs | 4-6 providing continuous two-sided quotes | 8-12 providing continuous two-sided quotes |
+| Depth | $10-15M within 25bps of mid across 3-5 flagship markets | $20-30M within 25bps of mid across 3-5 flagship markets |
+| Execution quality | <0.5% of trades with queue manipulation or irregularities | <0.1% of trades with queue manipulation or irregularities |
+| Uptime | 99.9% for colocation infrastructure | 99.95%+ for colocation infrastructure |
+| Spread compression | 15-25% vs. comparable venues | 30-40% vs. comparable venues |
 
 **So what for GTM:** Liquidity quality becomes the wedge for trader acquisition in Phase 2.
 
@@ -39,13 +42,16 @@ Tier 1 is the first on-chain execution layer that combines sub-millisecond laten
 
 **Channels:** Partner platforms (prop trading, funded accounts), KOL campaigns (execution-focused), CEX migration programs
 
-**KPIs (Good Enough → Home Run):**
-- Active traders: 150-250 → 400-600 generating daily notional volume
-- Daily volume: $25-40M → $60-100M notional
-- Trader retention: 45-55% → 65-75% (30-day cohort)
-- Average slippage: <20bps → <10bps for $50K trades
-- Institutional volume: 30-40% → 50-60% of total volume
-- Organic referrals: 12-18% → 25-35% of new trader signups
+**KPIs:**
+
+| Metric | Good Enough | Home Run |
+|--------|-------------|----------|
+| Active traders | 150-250 generating daily notional volume | 400-600 generating daily notional volume |
+| Daily volume | $25-40M notional | $60-100M notional |
+| Trader retention | 45-55% (30-day cohort) | 65-75% (30-day cohort) |
+| Average slippage | <20bps for $50K trades | <10bps for $50K trades |
+| Institutional volume | 30-40% of total volume | 50-60% of total volume |
+| Organic referrals | 12-18% of new trader signups | 25-35% of new trader signups |
 
 **So what for GTM:** Execution quality is now proven by third-party data; retail expansion becomes credible.
 
@@ -59,13 +65,16 @@ Tier 1 is the first on-chain execution layer that combines sub-millisecond laten
 
 **Channels:** DEX aggregators, wallet integrations, KOL partnerships, referral schemes
 
-**KPIs (Good Enough → Home Run):**
-- Monthly active retail: 3,000-5,000 → 10,000-15,000 traders
-- Daily open interest: $80-120M → $250-400M
-- Unfair liquidations: <5% → <2% (vs. 8-12% industry avg)
-- 90-day retention: 35-45% → 55-70% of retail traders
-- Net Promoter Score: 25-35 → 45-60
-- Partner-driven volume: 20-30% → 40-50% of total
+**KPIs:**
+
+| Metric | Good Enough | Home Run |
+|--------|-------------|----------|
+| Monthly active retail | 3,000-5,000 traders | 10,000-15,000 traders |
+| Daily open interest | $80-120M | $250-400M |
+| Unfair liquidations | <5% (vs. 8-12% industry avg) | <2% (vs. 8-12% industry avg) |
+| 90-day retention | 35-45% of retail traders | 55-70% of retail traders |
+| Net Promoter Score | 25-35 | 45-60 |
+| Partner-driven volume | 20-30% of total | 40-50% of total |
 
 **So what for GTM:** Retail benefits from HFT liquidity (tighter spreads, better fills) without competing on latency. Retention becomes organic.
 
@@ -217,16 +226,16 @@ Addressing Blockchange/CMT concerns about retail becoming exit liquidity:
 - 150-250 active traders, $25-40M daily volume, 45-55% retention
 - 3,000-5,000 retail MAU, $80-120M OI
 - 3-5 partner integrations, 20-30% partner-driven volume
-- **Valuation:** $60-80M (modest step-up)
+- **Token FDV:** $90-145M
 
 **Home run (strong positioning):**
 - 8-12 MMs, $20-30M depth, 99.95%+ uptime
 - 400-600 active traders, $60-100M daily volume, 65-75% retention
 - 10,000-15,000 retail MAU, $250-400M OI
 - 10+ partner integrations, 40-50% partner-driven volume
-- **Valuation:** $100-150M (significant step-up)
+- **Token FDV:** $220-365M
 
-**So what for investors:** This raise funds 12-15 months of execution-focused GTM. If we hit "good enough" metrics, we're fundable. If we hit "home run" metrics, we're in a strong position for Series A at 3-5x valuation step-up. Capital is allocated to prove liquidity first (Phase 1), then trader adoption (Phase 2), then retail scale (Phase 3)—each phase de-risks the next.
+**So what for investors:** This raise funds 12-15 months of execution-focused GTM. If we hit "good enough" metrics, token FDV reaches $90-145M. If we hit "home run" metrics, token FDV reaches $220-365M. Future rounds are equity+token. Capital is allocated to prove liquidity first (Phase 1), then trader adoption (Phase 2), then retail scale (Phase 3)—each phase de-risks the next.
 
 ---
 

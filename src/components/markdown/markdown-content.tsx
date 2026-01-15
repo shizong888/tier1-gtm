@@ -4,6 +4,14 @@ import rehypeRaw from 'rehype-raw';
 import React from 'react';
 import { ChevronRight, RefreshCw, ArrowRight } from 'lucide-react';
 import { MermaidDiagram } from './mermaid-diagram';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
 
 interface MarkdownContentProps {
   content: string;
@@ -638,30 +646,30 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
             <pre className="mb-6 overflow-x-auto">{children}</pre>
           ),
           table: ({ children }) => (
-            <div className="overflow-x-auto mb-8 border border-neutral-900 rounded-sm">
-              <table className="min-w-full divide-y divide-neutral-900">
+            <div className="mb-8">
+              <Table>
                 {children}
-              </table>
+              </Table>
             </div>
           ),
           thead: ({ children }) => (
-            <thead className="bg-neutral-950">{children}</thead>
+            <TableHeader>{children}</TableHeader>
           ),
           tbody: ({ children }) => (
-            <tbody className="bg-transparent divide-y divide-neutral-900">
+            <TableBody>
               {children}
-            </tbody>
+            </TableBody>
           ),
-          tr: ({ children }) => <tr>{children}</tr>,
+          tr: ({ children }) => <TableRow>{children}</TableRow>,
           th: ({ children }) => (
-            <th className="px-6 py-4 text-left text-xs font-bold text-neutral-500 uppercase tracking-widest">
+            <TableHead>
               {children}
-            </th>
+            </TableHead>
           ),
           td: ({ children }) => (
-            <td className="px-6 py-4 text-sm text-neutral-400">
+            <TableCell>
               {children}
-            </td>
+            </TableCell>
           ),
           strong: ({ children }) => (
              <strong className="font-bold text-white">{children}</strong>
