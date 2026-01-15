@@ -22,7 +22,7 @@ Tier 1 is the first on-chain execution layer that combines sub-millisecond laten
 - Active MMs: 4-6 → 8-12 providing continuous two-sided quotes
 - Depth: $10-15M → $20-30M within 25bps of mid across 3-5 flagship markets
 - Execution quality: <0.5% → <0.1% of trades with queue manipulation or irregularities
-- Uptime: 90-95% → 98%+ for colocation infrastructure
+- Uptime: 99.9% → 99.95%+ for colocation infrastructure
 - Spread compression: 15-25% → 30-40% vs. comparable venues
 
 **So what for GTM:** Liquidity quality becomes the wedge for trader acquisition in Phase 2.
@@ -71,9 +71,9 @@ Tier 1 is the first on-chain execution layer that combines sub-millisecond laten
 - Launch with 4-6 MMs colocated, 3 flagship markets (BTC, ETH, SOL perps)
 - Target ranges: $8-12M depth at top of book, 5-8bps spreads
 - Run internal stress tests simulating 10x volume spikes
-- Success = <0.5% queue manipulation, deterministic fills under load, 90%+ uptime
-- Failure = spreads blow out >15bps consistently or 2+ MMs pull quotes
-- **Decision point:** If <3 MMs remain or spreads >20bps, pause trader onboarding and fix infrastructure before proceeding
+- Success = <0.5% queue manipulation, deterministic fills under load, 99.9%+ uptime
+- Failure = spreads blow out >15bps consistently, uptime <99.5%, or 2+ MMs pull quotes
+- **Decision point:** If <3 MMs remain, spreads >20bps, or uptime drops below 99.5%, pause trader onboarding and fix infrastructure before proceeding
 
 **Week 3-4 (Trader Validation):**
 - Invite 50 power retail + 10 prop firms for early access
@@ -105,7 +105,7 @@ Tier 1 is the first on-chain execution layer that combines sub-millisecond laten
 
 **Week 13+ (Post-60 Day Trajectory Assessment):**
 - Review cumulative KPIs vs. Phase 1 targets
-- Assess: Are we on track for "good enough" Phase 1 exit criteria? (4-6 MMs, $10-15M depth, 90%+ uptime)
+- Assess: Are we on track for "good enough" Phase 1 exit criteria? (4-6 MMs, $10-15M depth, 99.9%+ uptime)
 - If yes: Proceed to Phase 2 trader scaling
 - If no: Extend Phase 1 focus, delay trader scaling, and address root causes (infrastructure, liquidity, or execution quality)
 
@@ -127,7 +127,7 @@ Tier 1 is the first on-chain execution layer that combines sub-millisecond laten
 
 **No exit liquidity risk:** HFTs profit from spread capture, not directional bets against retail. Market structure aligns incentives—MMs earn from providing liquidity, not from trading against users.
 
-**Uptime & resilience:** Colocation + L1 architecture ensures 99.9%+ uptime. Retail avoids "system maintenance" during volatile moves.
+**Uptime & resilience:** Colocation + L1 architecture targets 99.95%+ uptime (industry-leading). Retail avoids "system maintenance" during volatile moves.
 
 ### Retail Protection Mechanisms
 
@@ -185,7 +185,7 @@ Addressing Blockchange/CMT concerns about retail becoming exit liquidity:
 **Phase 1 (Months 0-3):**
 - Deploy colocation infrastructure and onboard 4-6 MMs
 - Launch 3 flagship markets with $10-15M depth
-- Achieve 90-95% uptime and <0.5% execution irregularities
+- Achieve 99.9%+ uptime and <0.5% execution irregularities
 - **Fundraising impact:** Phase 1 success proves infrastructure works and liquidity is viable
 
 **Phase 2 (Months 3-9):**
@@ -207,14 +207,14 @@ Addressing Blockchange/CMT concerns about retail becoming exit liquidity:
 ### Success Criteria for Next Raise
 
 **Good enough (fundable but not optimal):**
-- 4-6 MMs, $10-15M depth, 90%+ uptime
+- 4-6 MMs, $10-15M depth, 99.9%+ uptime
 - 150-250 active traders, $25-40M daily volume, 45-55% retention
 - 3,000-5,000 retail MAU, $80-120M OI
 - 3-5 partner integrations, 20-30% partner-driven volume
 - **Valuation:** $60-80M (modest step-up)
 
 **Home run (strong positioning):**
-- 8-12 MMs, $20-30M depth, 95%+ uptime
+- 8-12 MMs, $20-30M depth, 99.95%+ uptime
 - 400-600 active traders, $60-100M daily volume, 65-75% retention
 - 10,000-15,000 retail MAU, $250-400M OI
 - 10+ partner integrations, 40-50% partner-driven volume

@@ -117,7 +117,7 @@ Tier 1 scales through phase-sequenced distribution: MMs first (supply-side unloc
 - Focus: BSO + MM onboarding
 - Target: 6+ MMs, $15M+ depth, <10bps spreads
 - Tactics: Direct institutional sales, pilot programs, colocation demos
-- Success metric: 95%+ uptime, zero queue manipulation
+- Success metric: 99.9%+ uptime, zero queue manipulation
 
 **Phase 2 (Months 3-9): Trader Validation**
 - Focus: Prop platforms, KOL campaigns, CEX migration

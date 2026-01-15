@@ -20,7 +20,7 @@ Tier 1's partnerships are operational levers, not strategic narratives. Each par
 **What they provide:**
 - Continuous two-sided quotes across 3-5 flagship markets
 - $15M+ depth within 25bps of mid
-- 95%+ uptime commitment
+- 99.9%+ uptime commitment
 
 **Channel execution:**
 - BSO warm intros to top 5 crypto MMs (months 0-1)
@@ -186,7 +186,7 @@ Tier 1's partnerships are operational levers, not strategic narratives. Each par
 
 **Phase 1 (Months 0-3): Liquidity Foundation**
 - Primary: BSO + MM onboarding
-- KPIs: 6+ MMs, $15M+ depth, 95%+ uptime
+- KPIs: 6+ MMs, $15M+ depth, 99.9%+ uptime
 - GTM focus: Liquidity quality before distribution
 
 **Phase 2 (Months 3-9): Trader Validation**

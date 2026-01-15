@@ -25,7 +25,7 @@ Tier 1 serves four participant groups in sequence: market makers (liquidity foun
 **KPIs tied to this segment:**
 - 6+ MMs providing continuous two-sided quotes
 - $15M+ depth within 25bps across flagship markets
-- 95%+ uptime for colocation infrastructure
+- 99.9%+ uptime for colocation infrastructure
 
 **So what for GTM:** This segment IS the product. Without them, there's no execution quality to sell to traders. BSO partnership is our primary unlock here—target signed agreements with 3-4 MMs before public launch.
 

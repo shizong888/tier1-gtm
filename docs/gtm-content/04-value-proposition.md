@@ -18,7 +18,7 @@ Tier 1 delivers measurable execution improvements through deterministic, low-lat
 
 **GTM implication:** This is the supply-side unlock. Without MMs, there's no execution quality to market. BSO partnership + pilot programs are the primary acquisition levers.
 
-**KPI tie-in:** 6+ MMs live, $15M+ depth, 95%+ uptime.
+**KPI tie-in:** 6+ MMs live, $15M+ depth, 99.9%+ uptime.
 
 ## For Active Traders and Power Retail
 
