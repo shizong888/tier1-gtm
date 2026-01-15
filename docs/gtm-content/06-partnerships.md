@@ -1,87 +1,215 @@
 # Key Partnerships, Distribution Channels, and Growth Loops
 
-Tier 1's expansion is driven by a coordinated network of infrastructure, liquidity, and distribution partners, each serving a distinct role in improving execution quality, liquidity depth, and market access. Together, these integrations create self-reinforcing growth loops that compound liquidity, participation, and market quality across the Tier 1 ecosystem.
+Tier 1's partnerships are operational levers, not strategic narratives. Each partnership type maps to specific KPIs and phase-based GTM objectives.
 
 ---
 
 <div class="gtm-cards-grid">
 
-## Liquidity Engine
+## Liquidity Engine (Phase 1: Months 0-3)
 
-Tier 1's liquidity engine is built around deterministic execution and ultra-low latency, enabling professional market makers to deploy strategies that do not function on existing on-chain venues.
+**Partnership type:** Direct MM onboarding via BSO + institutional sales.
 
-- Direct onboarding of market makers via colocation and low-latency access
-- Incentive programs tied to spread quality, depth, uptime, and sustained liquidity provision
-- Transparent, on-chain execution metrics that verify liquidity contribution
+**Who:** 8-12 professional market makers (Jump, Wintermute, Flowdesk, etc.) + HFT shops requiring colocation.
 
-Outcome: Deeper order books, tighter spreads, higher volumes, and a self-reinforcing liquidity flywheel where improved execution attracts additional professional liquidity.
+**What we provide:**
+- Physical colocation with <1ms latency
+- Deterministic queue rules and transparent fee structures
+- Pilot liquidity programs with tiered rebates
 
-## Treasury and Incentive Allocation
+**What they provide:**
+- Continuous two-sided quotes across 3-5 flagship markets
+- $15M+ depth within 25bps of mid
+- 95%+ uptime commitment
 
-Tier 1's treasury and incentive mechanisms are designed to reward productive activity rather than speculative volume.
+**Channel execution:**
+- BSO warm intros to top 5 crypto MMs (months 0-1)
+- Direct outreach to top 20 MMs via institutional sales (months 1-2)
+- Pilot agreements signed pre-launch (month 2)
 
-- Points and incentives allocated based on verified trading volume, liquidity provision, and protocol usage
-- Dynamic incentive allocation that adjusts as markets mature and liquidity stabilizes
-- Alignment of early contributors with long-term network performance
+**KPIs:**
+- 6+ MMs live at launch
+- $15M+ depth across flagships
+- <0.1% queue manipulation incidents
+- 95%+ colocation uptime
 
-Outcome: Incentives compound liquidity and execution quality instead of distorting market behavior.
+**So what for GTM:** No MMs = no product. BSO partnership is the critical path. Target 3-4 signed agreements before public launch.
 
-## Collateral, Margin, and Stablecoin Integration
+## Treasury and Incentive Allocation (All Phases)
 
-Tier 1 integrates deeply with margin systems, collateral frameworks, and stablecoin liquidity to support capital-efficient trading.
+**Partnership type:** Points programs tied to verifiable activity, not speculative volume.
 
-- Support for cross-margining and stablecoin-based settlement
-- Capital-efficient collateral usage for active traders and market makers
-- Reduced friction for large-scale liquidity deployment
+**Who:** All participant groups (MMs, traders, retail, partners).
 
-Outcome: Greater capital efficiency increases trading volume, deepens liquidity, and improves overall market resilience.
+**What we provide:**
+- Points based on sustained volume, liquidity provision, uptime
+- FT1 allocation tied to long-term contribution
+- Transparent on-chain verification
 
-## Institutional Connectivity and Settlement
+**What they provide:**
+- Real trading activity and liquidity (not wash volume)
+- Sustained participation (30+ days)
+- Organic network growth through quality
 
-Tier 1 leverages institutional-grade connectivity and settlement infrastructure to support professional participation.
+**Channel execution:**
+- Launch points dashboard showing real-time accrual (month 1)
+- Publish incentive allocation framework (month 2)
+- Taper incentives as organic liquidity stabilizes (months 12-18)
 
-- Physical connectivity and global access points through institutional-grade network providers
-- Support for institutional custody, risk management, and settlement workflows
-- Transparent, on-chain settlement replacing opaque off-exchange processes
+**KPIs:**
+- Incentive efficiency: $ spent per $ of sustained liquidity
+- 60%+ of points go to users active >30 days
+- Incentive budget utilization tracking vs. plan
+- Organic volume growth rate (month-over-month)
 
-Outcome: Increased institutional confidence, sustained liquidity provision, and long-term market stability.
+**So what for GTM:** Incentives verify contribution, not volume. Use points to reward real participation and align long-term contributors with protocol success.
 
-## Retail Access and Trading Interfaces
+## Institutional Connectivity and Settlement (Phase 1-2: Months 0-6)
 
-Retail access is expanded through trusted trading interfaces and partner platforms once liquidity and execution quality are established.
+**Partnership type:** Infrastructure providers enabling institutional access.
 
-- Integration with trading UIs, wallets, and analytics platforms
-- Clear execution rules and predictable liquidation mechanics
-- Points-based programs that reward productive retail participation
+**Who:** Institutional custody (Fireblocks, Copper), network providers (Equinix, BSO), settlement infrastructure.
 
-Outcome: Retail participation reinforces liquidity and volume without degrading execution quality.
+**What we provide:**
+- Integration support and technical resources
+- Co-marketing for institutional credibility
 
-## Ecosystem Visibility and Composability
+**What they provide:**
+- Global connectivity points for low-latency access
+- Institutional custody and risk management workflows
+- Settlement infrastructure for large-scale liquidity
 
-Tier 1's execution layer becomes more valuable as it integrates across the broader crypto ecosystem.
+**Channel execution:**
+- Sign connectivity agreements pre-launch (month 0)
+- Launch institutional onboarding flow (month 1)
+- Publish case studies with early institutional users (month 6)
 
-- High-quality, on-chain execution data for analytics and tooling
-- Integration with risk engines, margin tools, and liquidation infrastructure
-- Composable execution primitives for advanced trading applications
+**KPIs:**
+- 2+ global connectivity points live at launch
+- 3+ custody integrations by month 6
+- 40%+ of volume from institutional sources
 
-Outcome: Each integration increases visibility, usability, and flow into the Tier 1 ecosystem.
+**So what for GTM:** Institutions need trusted infrastructure. Connectivity + custody partnerships are table stakes for MM onboarding.
+
+## Collateral, Margin, and Stablecoin Integration (Phase 2: Months 3-9)
+
+**Partnership type:** Capital efficiency integrations enabling larger trade sizes.
+
+**Who:** Stablecoin issuers (USDC, USDT), margin protocols, cross-margining infrastructure.
+
+**What we provide:**
+- Native support for stablecoin settlement
+- Cross-margining compatibility
+- Shared liquidity incentives
+
+**What they provide:**
+- Capital-efficient collateral frameworks
+- Reduced friction for large liquidity deployment
+- Institutional-grade margin systems
+
+**Channel execution:**
+- Launch USDC/USDT settlement (month 3)
+- Integrate cross-margining (month 6)
+- Partner announcements with stablecoin issuers (month 6)
+
+**KPIs:**
+- 80%+ of trades settled in stablecoins
+- Average position size increase of 30%+ post-margin integration
+- Capital efficiency improvement (collateral utilization rate)
+
+**So what for GTM:** Capital efficiency = larger trades = more volume. Prioritize stablecoin settlement and cross-margining to unlock institutional capital.
+
+## Retail Access and Trading Interfaces (Phase 3: Months 9-12)
+
+**Partnership type:** Distribution via partner UIs, wallets, and DEX aggregators.
+
+**Who:** Perps UIs (top 10 platforms), wallet providers (MetaMask, Phantom), DEX aggregators (1inch, Matcha).
+
+**What we provide:**
+- Execution quality they can market to users
+- Shared points programs and co-marketing
+- APIs/SDKs for seamless integration
+
+**What they provide:**
+- User acquisition and distribution
+- UI/UX optimized for retail
+- Trust and brand recognition
+
+**Channel execution:**
+- Partner program launch (month 6)
+- First 3 UI integrations live (month 9)
+- Wallet integrations (MetaMask, Phantom) live (month 10)
+- DEX aggregator routing activated (month 12)
+
+**KPIs:**
+- 5+ partner integrations live by month 12
+- 30%+ of volume routed via partner UIs
+- 1,000+ monthly signups from partner channels
+- Partner NPS >50
+
+**So what for GTM:** Partners amplify distribution without fragmenting liquidity. Prioritize integrations that bring high-intent users (prop platforms, execution-focused UIs).
+
+## Ecosystem Visibility and Composability (Phase 3: Months 9-18)
+
+**Partnership type:** Analytics, tooling, and data integrations.
+
+**Who:** Analytics platforms (Nansen, Dune), risk engines, liquidation infrastructure, trading bots.
+
+**What we provide:**
+- High-quality on-chain execution data
+- Developer grants for tooling and infrastructure
+- Co-marketing and case studies
+
+**What they provide:**
+- Ecosystem visibility and credibility
+- Advanced tooling that improves user experience
+- Data-driven narratives showcasing execution quality
+
+**Channel execution:**
+- Launch developer program (month 6)
+- First analytics integration (Dune dashboard) live (month 9)
+- Publish execution quality reports via partner platforms (month 12)
+
+**KPIs:**
+- 3+ analytics integrations live by month 12
+- 10+ community-built tools/dashboards
+- Developer grant utilization rate
+- Ecosystem-driven user acquisition >500/month
+
+**So what for GTM:** Data and tooling integrations create ecosystem lock-in. High-quality execution data becomes a moat as partners build on top of Tier 1 infrastructure.
 
 </div>
+
+---
+
+## Partnership Sequencing and KPI Mapping
+
+**Phase 1 (Months 0-3): Liquidity Foundation**
+- Primary: BSO + MM onboarding
+- KPIs: 6+ MMs, $15M+ depth, 95%+ uptime
+- GTM focus: Liquidity quality before distribution
+
+**Phase 2 (Months 3-9): Trader Validation**
+- Primary: Prop platforms, KOL campaigns, institutional connectivity
+- KPIs: 300+ traders, $50M+ volume, 60%+ retention
+- GTM focus: Execution quality proof via third-party validation
+
+**Phase 3 (Months 9-18): Retail Scale**
+- Primary: Wallet integrations, UI partnerships, referral schemes
+- KPIs: 8,000+ retail traders, $200M+ OI, 50%+ 90-day retention
+- GTM focus: Distribution at scale with proven execution quality
 
 ---
 
 ## Liquidity Flywheel
 
 Execution infrastructure enables professional liquidity →
-
-Professional liquidity tightens spreads and improves execution →
-
-Improved execution attracts active traders and retail volume →
-
+Professional liquidity tightens spreads 20-40% →
+Tighter spreads attract active traders →
 Higher volume improves LP returns and incentive efficiency →
-
-More liquidity deepens the market and strengthens execution
+More MMs join, deepening liquidity further →
+Cycle compounds
 
 ---
 
-Each partnership and distribution channel strengthens the same underlying execution layer. As Tier 1 scales, growth compounds through improved market quality rather than short-term incentives or fragmented liquidity.
+**So what for GTM:** Every partnership maps to a specific phase and KPI. BSO unlocks Phase 1, prop platforms validate Phase 2, wallets/UIs scale Phase 3. Measure everything.

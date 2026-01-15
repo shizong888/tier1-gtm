@@ -15,6 +15,11 @@
     to { transform: translateY(420px); }
   }
 
+  @keyframes node-scan {
+    from { transform: translateY(100%); }
+    to { transform: translateY(-100%); }
+  }
+
   @keyframes move {
     0% { transform: translateX(0); }
     100% { transform: translateX(96px); }

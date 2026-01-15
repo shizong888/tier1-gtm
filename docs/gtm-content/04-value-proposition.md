@@ -1,6 +1,6 @@
 # Value Proposition
 
-Tier 1 delivers an execution-first trading environment that combines ultra-low latency, deterministic on-chain execution, and institutional-grade liquidity. By replacing opaque centralized matching engines with transparent, verifiable execution rules, Tier 1 enables professional trading strategies on-chain while materially improving outcomes for active and retail traders.
+Tier 1 delivers measurable execution improvements through deterministic, low-latency infrastructure. Each participant group captures different value, but all benefit from the same structural unlock: institutional-grade liquidity on-chain.
 
 ---
 
@@ -8,49 +8,88 @@ Tier 1 delivers an execution-first trading environment that combines ultra-low l
 
 ## For Liquidity Providers and Market Makers
 
-- Ultra-low-latency and deterministic execution that enables latency-sensitive strategies which do not work on existing on-chain venues
-- Predictable queue positioning and execution outcomes, removing discretionary matching and internalization risk
-- Deep, stable markets supported by transparent fee structures and verifiable on-chain execution
-- Points-based incentives tied to real liquidity provision, uptime, and sustained participation
+**Core value:** Deploy latency-sensitive strategies on-chain with deterministic fills and transparent queue rules—impossible on existing venues.
 
-Outcome: Consistent, scalable liquidity provision with institutional-grade execution guarantees and long-term alignment with the protocol.
+**Measurable benefits:**
+- Sub-1ms execution latency via colocation
+- Zero discretionary matching or internalization
+- Verifiable on-chain audit trails for all fills
+- Fee rebates tied to sustained depth and uptime
+
+**GTM implication:** This is the supply-side unlock. Without MMs, there's no execution quality to market. BSO partnership + pilot programs are the primary acquisition levers.
+
+**KPI tie-in:** 6+ MMs live, $15M+ depth, 95%+ uptime.
 
 ## For Active Traders and Power Retail
 
-- Tight spreads and reduced slippage driven by professional liquidity
-- Deterministic execution that improves fill quality during volatile market conditions
-- Transparent liquidation mechanics and predictable risk outcomes
-- Incentives that reward real trading activity rather than short-term speculation
+**Core value:** 20-40% tighter spreads and 30-60% lower slippage vs. competing venues, directly improving realized PnL.
 
-Outcome: Improved realized PnL, higher confidence in execution, and stronger trader retention.
+**Measurable benefits:**
+- <10bps spreads on BTC/ETH perps (vs. 15-25bps on CEXs)
+- <15bps slippage for $50K trades (vs. 30-50bps)
+- Transparent execution dashboards showing real-time fill quality
+- Points programs tied to sustained volume, not wash trading
 
-## For Broader Retail Traders
+**GTM implication:** Active traders are the validation layer. If they can measure better fills, we have third-party proof for retail expansion.
 
-- Access to institutional-grade liquidity without needing to compete on latency
-- Transparent, on-chain price discovery and execution fairness
-- Clear incentive programs that reward productive participation and learning
-- A market structure designed to reduce hidden costs and execution uncertainty
+**KPI tie-in:** 300+ active traders, $50M+ daily volume, 60%+ retention, 20%+ organic referrals.
 
-Outcome: Fairer access to deep, liquid markets with predictable execution and lower implicit trading costs.
+## Broader Retail Traders
+
+**Core value:** Access to HFT-grade liquidity without competing on latency—lower costs, predictable liquidations, transparent rules.
+
+**Measurable benefits:**
+- Same spreads as institutions (no two-tier pricing)
+- <2% unfair liquidations (vs. 8-12% CEX average)
+- Transparent on-chain execution rules
+- Educational content explaining execution quality
+
+**GTM implication:** Retail scales once execution quality is proven by active traders. Wallet integrations + referral schemes drive acquisition in months 9-12.
+
+**KPI tie-in:** 8,000+ monthly active retail, $200M+ OI, 50%+ active beyond 90 days, NPS >40.
 
 ## For Ecosystem Partners and Infrastructure Providers
 
-- High-quality, on-chain execution data suitable for analytics, risk engines, and trading tools
-- Increased user activity driven by deep liquidity and superior execution quality
-- Integration with a transparent, institutional-grade execution layer that enhances credibility
+**Core value:** High-quality execution data and shared incentives tied to real user activity, not synthetic volume.
 
-Outcome: Sustainable ecosystem growth driven by real trading activity rather than incentive-only usage.
+**Measurable benefits:**
+- Transparent on-chain data for analytics and tooling
+- APIs/SDKs for seamless integration
+- Co-marketing and shared points programs
+
+**GTM implication:** Partners amplify distribution without fragmenting liquidity. Prioritize prop platforms and execution-focused UIs.
+
+**KPI tie-in:** 5+ integrations live by month 12, 30%+ volume via partners, 1,000+ monthly partner-driven signups.
 
 ## For the Protocol and Network
 
-- Trading volume directly improves execution quality and market depth
-- Fees and incentives are aligned with productive activity and long-term liquidity
-- Points and rewards evolve with network performance, reinforcing healthy growth
-- Every trade strengthens the underlying execution layer
+**Core value:** Trading volume directly improves execution quality—liquidity and market depth compound over time.
 
-Outcome: A self-reinforcing trading network where growth compounds through better execution rather than dilution.
+**Measurable benefits:**
+- Every trade tightens spreads and deepens order books
+- Fees and incentives align with productive activity
+- Points programs verify real contribution
+- Self-reinforcing liquidity flywheel
+
+**GTM implication:** Network effects become the moat. Once liquidity crosses threshold depth, growth becomes self-sustaining.
+
+**KPI tie-in:** Incentive efficiency ($ spent per $ of sustained liquidity), organic volume growth, incentive taper schedule adherence.
 
 </div>
+
+---
+
+## Why This Matters for GTM
+
+**For MMs:** Colocation + deterministic execution is the only way to deploy HFT strategies on-chain. This is not a "better exchange"—it's infrastructure that doesn't exist elsewhere. BSO intros are critical.
+
+**For traders:** Execution quality is measurable. Publish real-time dashboards showing spreads, slippage, and fill quality vs. CEXs. Let traders verify improvements independently.
+
+**For retail:** The story is simple: "HFTs provide liquidity here, they don't trade against you." Transparent liquidations + on-chain rules eliminate CEX discretion.
+
+**For partners:** High-quality data + shared incentives align growth. Partners want execution quality they can market to their users.
+
+**Measurement matters:** Every GTM activity ties to at least one KPI. Liquidity depth, trader retention, execution metrics, and partner-driven signups are the scoreboard.
 
 ---
 
@@ -58,11 +97,11 @@ Outcome: A self-reinforcing trading network where growth compounds through bette
 
 ```mermaid
 graph LR
-    A[Better execution quality] --> B[Professional liquidity provision]
-    B --> C[Tighter spreads and lower slippage]
-    C --> D[Higher trading volume]
-    D --> E[Improved LP returns and incentives]
-    E --> F[Deeper, more resilient liquidity]
+    A[Deterministic execution infrastructure] --> B[Professional MMs deploy capital]
+    B --> C[Spreads compress 20-40%]
+    C --> D[Active traders measure better fills]
+    D --> E[Volume increases, LP returns improve]
+    E --> F[More MMs join, liquidity deepens]
     F --> A
 ```
 
@@ -72,14 +111,14 @@ graph LR
 
 ```mermaid
 graph LR
-    A[Institutional-grade execution] --> B[Active trader confidence]
-    B --> C[Retail trust and participation]
-    C --> D[Increased volume and data transparency]
-    D --> E[Ecosystem integrations]
-    E --> F[Reinforced position as the default on-chain execution layer]
+    A[Institutional-grade execution] --> B[Active traders validate quality]
+    B --> C[Retail trusts execution fairness]
+    C --> D[Volume + data transparency increase]
+    D --> E[Ecosystem partners integrate]
+    E --> F[Tier 1 becomes default on-chain execution layer]
     F --> A
 ```
 
 ---
 
-Tier 1's value proposition is not driven by incentives alone. It is driven by execution quality that compounds over time, creating a trading environment where every participant benefits from the same structural improvements.
+**So what for GTM:** Value proposition is not marketing—it's measurable execution improvements. Every phase proves value for the next. MMs unlock liquidity, traders validate quality, retail scales trust, partners amplify distribution.

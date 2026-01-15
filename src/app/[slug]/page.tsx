@@ -117,24 +117,48 @@ export default async function GTMPage({ params }: GTMPageProps) {
           accent: 'Compounding Network Distribution',
           graphic: (
             <>
+              {/* Background scaling waves */}
+              <div className="absolute right-32 top-1/2 -translate-y-1/2 w-64 h-64 pointer-events-none">
+                {[...Array(3)].map((_, i) => (
+                  <div 
+                    key={i}
+                    className="absolute inset-0 border border-brand/20 rounded-full animate-grow"
+                    style={{ animationDelay: `${i * 1.3}s` }}
+                  ></div>
+                ))}
+              </div>
+
               <div className="absolute right-40 top-1/2 -translate-y-1/2">
-                <div className="relative w-32 h-32">
+                <div className="relative w-40 h-40 flex items-center justify-center">
+                  {/* Rotating orbital paths */}
+                  <div className="absolute inset-0 border border-brand/5 rounded-full animate-spin-slow"></div>
+                  <div className="absolute inset-8 border border-brand/10 rounded-full animate-reverse-spin"></div>
+                  
+                  {/* Expanding nodes */}
                   {[...Array(6)].map((_, i) => (
                     <div key={i} 
-                         className="absolute w-2 h-2 bg-brand rounded-full"
+                         className="absolute"
                          style={{
-                           left: '50%',
-                           top: '50%',
-                           transform: `rotate(${i * 60}deg) translateY(-60px)`,
-                           opacity: 0.4 + (i * 0.1),
-                           animation: `pulse 2s infinite ${i * 0.3}s`
+                           transform: `rotate(${i * 60}deg)`,
+                           height: '140%',
+                           width: '2px',
                          }}>
-                      <div className="absolute inset-0 bg-brand/50 rounded-full animate-ping"></div>
+                      {/* Pulse travels up the line */}
+                      <div className="absolute bottom-1/2 left-0 w-full bg-gradient-to-t from-transparent via-brand to-transparent h-16 animate-[node-scan_2s_linear_infinite]" 
+                           style={{ animationDelay: `${i * 0.3}s` }}></div>
+                      
+                      {/* Node at the end */}
+                      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3 h-3 bg-brand rounded-sm rotate-45 shadow-[0_0_15px_var(--color-brand)] animate-pulse"
+                           style={{ animationDelay: `${i * 0.2}s` }}>
+                        <div className="absolute inset-0 bg-brand/50 rounded-sm animate-ping"></div>
+                      </div>
                     </div>
                   ))}
-                  <div className="absolute inset-0 border border-brand/20 rounded-full animate-spin-slow"></div>
-                  <div className="absolute inset-4 border border-brand/10 rounded-full animate-reverse-spin"></div>
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-brand rounded-full shadow-[0_0_30px_var(--color-brand)]"></div>
+
+                  {/* Central Hub */}
+                  <div className="relative w-10 h-10 bg-black border border-brand/40 rounded-sm rotate-45 flex items-center justify-center z-10 shadow-[0_0_30px_rgba(217,255,0,0.2)]">
+                    <div className="w-2 h-2 bg-brand rounded-full animate-pulse"></div>
+                  </div>
                 </div>
               </div>
             </>

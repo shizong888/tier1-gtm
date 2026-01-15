@@ -92,6 +92,73 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
               );
             }
 
+            // Handle single-column card grid
+            if (divClass === 'gtm-cards-single') {
+              const childrenArray = React.Children.toArray(children);
+              const cards: { title: any; content: any[] }[] = [];
+              let currentCard: { title: any; content: any[] } | null = null;
+
+              childrenArray.forEach((child: any) => {
+                const isHeader = child.type === 'h2' || child.type === 'h3' || child.type === 'h4' ||
+                               (child.props && child.props.node && ['h2', 'h3', 'h4'].includes(child.props.node.tagName));
+
+                if (isHeader) {
+                  if (currentCard) cards.push(currentCard);
+                  currentCard = { title: child.props.children, content: [] };
+                } else if (currentCard) {
+                  const childNodes = React.Children.toArray(child.props?.children || []);
+                  const firstChild = childNodes[0];
+
+                  const isOutcome = (typeof firstChild === 'string' && firstChild.trim().startsWith('Outcome:')) ||
+                                  (React.isValidElement(firstChild) &&
+                                   String((firstChild.props as any)?.children || '').trim().startsWith('Outcome:'));
+
+                  if (isOutcome) {
+                    const fullText = childNodes.map(c => {
+                      if (typeof c === 'string') return c;
+                      if (React.isValidElement(c)) return (c.props as any).children;
+                      return '';
+                    }).join('');
+
+                    currentCard.content.push(
+                      <div key={currentCard.content.length} className="mt-auto pt-8 w-full">
+                        <div className="bg-brand/5 border border-brand/20 p-6 rounded-sm relative overflow-hidden group/outcome transition-all hover:bg-brand/10 hover:border-brand/40 w-full">
+                          <div className="absolute top-0 right-0 w-24 h-24 bg-brand/5 blur-2xl rounded-full -mr-12 -mt-12 group-hover/outcome:bg-brand/10 transition-all"></div>
+                          <span className="text-[10px] font-black text-brand uppercase tracking-[0.3em] block mb-3 text-left relative z-10">Outcome</span>
+                          <p className="text-[13px] text-neutral-200 font-bold leading-relaxed text-left relative z-10">
+                            {fullText.replace(/Outcome:\s*/i, '').trim()}
+                          </p>
+                        </div>
+                      </div>
+                    );
+                    return;
+                  }
+                  currentCard.content.push(child);
+                }
+              });
+              if (currentCard) cards.push(currentCard);
+
+              return (
+                <div className="grid grid-cols-1 gap-6 my-12">
+                  {cards.map((card, i) => (
+                    <div key={i} className="bg-neutral-950 border border-neutral-800 p-10 rounded-sm flex flex-col min-h-[280px] group hover:border-brand/40 hover:bg-neutral-900 transition-all duration-500 hover:-translate-y-2 shadow-2xl">
+                      <div className="flex-1 flex flex-col justify-end">
+                        <h3 className="text-xs font-black text-white/40 uppercase tracking-[0.2em] mb-3 group-hover:text-brand transition-colors">
+                          {card.title}
+                        </h3>
+                        <div className="flex-1 flex flex-col text-[13px] text-neutral-400 leading-relaxed text-left">
+                          <div className="space-y-4 mb-6">
+                            {card.content.filter(c => !React.isValidElement(c) || (c as any).type !== 'div')}
+                          </div>
+                          {card.content.find(c => React.isValidElement(c) && (c as any).type === 'div')}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              );
+            }
+
             // Handle the 4-card grid
             if (divClass === 'gtm-cards-grid' || divClass === 'gtm-cards-grid-container') {
               const childrenArray = React.Children.toArray(children);
@@ -142,21 +209,29 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
 
               return (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-12">
-                  {cards.map((card, i) => (
-                    <div key={i} className="bg-neutral-950 border border-neutral-800 p-10 rounded-sm flex flex-col min-h-[280px] group hover:border-brand/40 hover:bg-neutral-900 transition-all duration-500 hover:-translate-y-2 shadow-2xl">
-                      <div className="flex-1 flex flex-col justify-end">
-                        <h3 className="text-xs font-black text-white/40 uppercase tracking-[0.2em] mb-3 group-hover:text-brand transition-colors">
-                          {card.title}
-                        </h3>
-                        <div className="flex-1 flex flex-col text-[13px] text-neutral-400 leading-relaxed text-left">
-                          <div className="space-y-4 mb-6">
-                            {card.content.filter(c => !React.isValidElement(c) || (c as any).type !== 'div')}
+                  {cards.map((card, i) => {
+                    // Check if this is the last card and there's an odd number of cards
+                    const isLastCardOdd = i === cards.length - 1 && cards.length % 2 !== 0;
+
+                    return (
+                      <div
+                        key={i}
+                        className={`bg-neutral-950 border border-neutral-800 p-10 rounded-sm flex flex-col min-h-[280px] group hover:border-brand/40 hover:bg-neutral-900 transition-all duration-500 hover:-translate-y-2 shadow-2xl ${isLastCardOdd ? 'md:col-span-2' : ''}`}
+                      >
+                        <div className="flex-1 flex flex-col justify-end">
+                          <h3 className="text-xs font-black text-white/40 uppercase tracking-[0.2em] mb-3 group-hover:text-brand transition-colors">
+                            {card.title}
+                          </h3>
+                          <div className="flex-1 flex flex-col text-[13px] text-neutral-400 leading-relaxed text-left">
+                            <div className="space-y-4 mb-6">
+                              {card.content.filter(c => !React.isValidElement(c) || (c as any).type !== 'div')}
+                            </div>
+                            {card.content.find(c => React.isValidElement(c) && (c as any).type === 'div')}
                           </div>
-                          {card.content.find(c => React.isValidElement(c) && (c as any).type === 'div')}
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               );
             }
@@ -329,6 +404,138 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
             }
 
             return <div className={divClass} {...props}>{children}</div>;
+          },
+          section: ({ children, className, ...props }) => {
+            const sectionClass = className || (props as any).class || (props as any).className;
+
+            // Handle exponential referral scheme section
+            if (sectionClass === 'gtm-referral-exponential') {
+              const childrenArray = React.Children.toArray(children);
+              let title: any = null;
+              let description: any = null;
+              let listItems: { title: string; description: string }[] = [];
+              let outcome: any = null;
+
+              childrenArray.forEach((child: any) => {
+                const isHeader = child.type === 'h2' || child.type === 'h3' || child.type === 'h4' ||
+                               (child.props && child.props.node && ['h2', 'h3', 'h4'].includes(child.props.node.tagName));
+
+                if (isHeader) {
+                  title = child.props.children;
+                } else if (child.type === 'p' || (child.props && child.props.node && child.props.node.tagName === 'p')) {
+                  const childNodes = React.Children.toArray(child.props?.children || []);
+                  const firstChild = childNodes[0];
+
+                  const isOutcome = (typeof firstChild === 'string' && firstChild.trim().startsWith('Outcome:')) ||
+                                  (React.isValidElement(firstChild) &&
+                                   String((firstChild.props as any)?.children || '').trim().startsWith('Outcome:'));
+
+                  if (isOutcome) {
+                    const fullText = childNodes.map(c => {
+                      if (typeof c === 'string') return c;
+                      if (React.isValidElement(c)) return (c.props as any).children;
+                      return '';
+                    }).join('');
+                    outcome = fullText.replace(/Outcome:\s*/i, '').trim();
+                  } else if (!description) {
+                    description = child;
+                  }
+                } else if (child.type === 'ul' || (child.props && child.props.node && child.props.node.tagName === 'ul')) {
+                  // Extract list items
+                  const listChildren = React.Children.toArray(child.props.children);
+                  listChildren.forEach((li: any) => {
+                    if (li.type === 'li' || (li.props && li.props.node && li.props.node.tagName === 'li')) {
+                      const liChildren = React.Children.toArray(li.props.children);
+                      let itemTitle = '';
+                      let itemDesc = '';
+
+                      liChildren.forEach((c: any) => {
+                        if (c.type === 'strong' || (c.props && c.type?.toString().includes('strong'))) {
+                          itemTitle = c.props.children;
+                        } else if (typeof c === 'string') {
+                          itemDesc += c;
+                        }
+                      });
+
+                      if (itemTitle) {
+                        listItems.push({
+                          title: itemTitle.trim(),
+                          description: itemDesc.replace(/^[:\s]+/, '').trim()
+                        });
+                      }
+                    }
+                  });
+                }
+              });
+
+              return (
+                <div className="my-16">
+                  <div className="bg-gradient-to-br from-neutral-950 via-neutral-900 to-neutral-950 border-2 border-brand/30 p-12 rounded-sm relative overflow-hidden group hover:border-brand/50 transition-all duration-700 shadow-2xl">
+                    {/* Animated background elements */}
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-brand/5 blur-3xl rounded-full -mr-32 -mt-32 group-hover:bg-brand/10 transition-all duration-700"></div>
+                    <div className="absolute bottom-0 left-0 w-48 h-48 bg-brand/3 blur-2xl rounded-full -ml-24 -mb-24 group-hover:bg-brand/8 transition-all duration-700"></div>
+
+                    {/* Content */}
+                    <div className="relative z-10">
+                      {title && (
+                        <div className="mb-8">
+                          <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-brand transition-colors duration-500">
+                            {title}
+                          </h3>
+                          {description && (
+                            <div className="text-sm text-neutral-400 leading-relaxed">
+                              {description}
+                            </div>
+                          )}
+                        </div>
+                      )}
+
+                      {/* Grid of feature cards */}
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        {listItems.map((item, i) => (
+                          <div
+                            key={i}
+                            className="bg-black/40 border border-brand/20 p-6 rounded-sm backdrop-blur-sm hover:border-brand/40 hover:bg-black/60 transition-all duration-500 group/item"
+                          >
+                            <div className="flex items-start gap-3 mb-3">
+                              <div className="w-8 h-8 rounded-full bg-brand/10 border border-brand/30 flex items-center justify-center shrink-0 group-hover/item:bg-brand/20 transition-all">
+                                <div className="w-2 h-2 rounded-full bg-brand animate-pulse"></div>
+                              </div>
+                              <h4 className="text-xs font-black text-brand uppercase tracking-[0.2em] leading-tight pt-1">
+                                {item.title}
+                              </h4>
+                            </div>
+                            <p className="text-[13px] text-neutral-300 leading-relaxed pl-11">
+                              {item.description}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Outcome section */}
+                      {outcome && (
+                        <div className="bg-brand/5 border-2 border-brand/30 p-8 rounded-sm relative overflow-hidden hover:bg-brand/10 hover:border-brand/50 transition-all duration-500">
+                          <div className="absolute top-0 right-0 w-32 h-32 bg-brand/10 blur-3xl rounded-full -mr-16 -mt-16"></div>
+                          <div className="relative z-10 flex items-start gap-4">
+                            <div className="shrink-0 mt-1">
+                              <RefreshCw className="w-5 h-5 text-brand animate-spin-slow" />
+                            </div>
+                            <div>
+                              <span className="text-[10px] font-black text-brand uppercase tracking-[0.3em] block mb-2">Outcome</span>
+                              <p className="text-sm text-white font-bold leading-relaxed">
+                                {outcome}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              );
+            }
+
+            return <section className={sectionClass} {...props}>{children}</section>;
           },
                   h1: ({ children }) => (
                     <h1 className="text-4xl md:text-5xl font-medium mb-8 mt-12 first:mt-0 text-white tracking-tighter">{children}</h1>

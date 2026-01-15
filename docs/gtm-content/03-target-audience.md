@@ -1,8 +1,6 @@
 # Target Audience
 
-Tier 1 is designed as an execution-first trading venue that serves multiple participant types through a single, transparent market structure. Unlike centralized exchanges, where execution advantages are opaque and unevenly distributed, Tier 1 provides deterministic, on-chain execution rules that apply equally to all participants, while enabling latency-sensitive strategies that cannot operate on existing on-chain venues.
-
-This architecture positions Tier 1 as a shared execution layer where institutional liquidity and retail participation reinforce one another, rather than compete.
+Tier 1 serves four participant groups in sequence: market makers (liquidity foundation), active traders (execution validation), retail (volume scale), and ecosystem partners (distribution). Each group enters through different channels but converges on the same deterministic execution layer.
 
 ---
 
@@ -12,46 +10,95 @@ This architecture positions Tier 1 as a shared execution layer where institution
 
 ## Liquidity Providers and Market Makers
 
-Professional market makers, proprietary trading firms, and quantitative funds that require:
+**Profile:** 8-12 professional HFT shops, prop trading firms, and quant funds requiring sub-ms latency and deterministic fills.
 
-- Ultra-low-latency and deterministic execution
-- Predictable queue positioning and execution outcomes
-- The ability to deploy latency-sensitive strategies on-chain
-- Transparent fee structures and verifiable execution rules
+**Acquisition channels:**
+- BSO direct intros (primary)
+- Institutional sales outreach to top 20 crypto MMs
+- Pilot liquidity programs with tiered fee rebates
 
-Outcome: Consistent, high-quality liquidity without the opaque internalization and discretionary matching common on centralized exchanges.
+**What they need:**
+- Colocation infrastructure with <1ms latency
+- Transparent queue positioning and execution rules
+- Verifiable on-chain fills and audit trails
+
+**KPIs tied to this segment:**
+- 6+ MMs providing continuous two-sided quotes
+- $15M+ depth within 25bps across flagship markets
+- 95%+ uptime for colocation infrastructure
+
+**So what for GTM:** This segment IS the product. Without them, there's no execution quality to sell to traders. BSO partnership is our primary unlock here—target signed agreements with 3-4 MMs before public launch.
 
 ## Active Traders and Power Retail
 
-Sophisticated retail traders and active market participants who are most sensitive to:
+**Profile:** 200-500 execution-sensitive traders: prop firms, funded account traders, power retail seeking better fills.
 
-- Tight spreads and low slippage
-- Predictable execution during volatile conditions
-- Fair and transparent market structure
+**Acquisition channels:**
+- Partner platforms: funded prop trading programs (FTMO, TopStepTrader equivalents)
+- KOL campaigns focused on execution transparency (CT influencers with 50K+ followers)
+- CEX migration programs offering fee discounts + points multipliers
+- Direct outreach to high-volume traders on competing venues
+
+**What they need:**
+- Tight spreads (<10bps on majors) and low slippage
+- Transparent execution dashboards showing real-time metrics
+- Points programs tied to sustained trading volume
 - Reliable liquidation mechanics
 
-Outcome: Reduced adverse selection and execution uncertainty compared to existing venues, resulting in improved realizing PnL.
+**KPIs tied to this segment:**
+- 300+ active traders generating $50M+ daily notional
+- 60%+ 30-day retention
+- Average slippage <15bps for $50K trades
+- 20%+ of new signups from organic referrals
+
+**So what for GTM:** This is the validation layer. If power retail can measure better fills vs. CEXs, we have proof for broader retail expansion. Run 2-3 KOL campaigns in months 3-6, publish execution audit in month 6.
 
 ## Broader Retail Traders
 
-Retail participants seeking access to deep, liquid markets with transparent execution, without needing to understand or compete on latency.
+**Profile:** 5,000-15,000 retail traders seeking fair access to deep liquidity without competing on latency.
 
-- Transparent, on-chain execution and price discovery
-- Points-based incentive programs that reward productive trading behavior
-- Clear liquidation mechanics and predictable outcomes
+**Acquisition channels:**
+- DEX aggregators and wallet integrations (MetaMask, Phantom, Rabby)
+- KOL partnerships (CT influencers, YouTube educators)
+- Referral schemes (tiered rewards for community advocates)
+- Partner UIs and trading interfaces
 
-Outcome: Fairer access to institutional-grade depth and predictable execution with lower implicit trading costs.
+**What they need:**
+- Access to institutional-grade spreads without HFT competition
+- Transparent on-chain liquidation rules
+- Educational content explaining execution quality
+- Points programs rewarding productive trading
+
+**KPIs tied to this segment:**
+- 8,000+ monthly active retail traders
+- $200M+ daily open interest
+- <2% unfair liquidations (vs. 8-12% industry avg)
+- 50%+ of retail active beyond 90 days
+- NPS >40
+
+**So what for GTM:** Retail scales once execution quality is proven. Launch wallet integrations in month 9, activate referral schemes in month 10. Retail story: "Trade where HFTs provide liquidity, not where they trade against you."
 
 ## Ecosystem and Infrastructure Partners
 
-Protocols and service providers that integrate with Tier 1’s execution layer, including:
+**Profile:** Trading interfaces, analytics platforms, wallets, risk engines, and funded prop programs seeking high-quality execution data.
 
-- Trading interfaces, terminals, and analytics platforms  
-- Wallets, custody, and institutional access providers  
-- Risk engines, margin tools, and lending protocols  
-- Funded prop trading platforms and evaluation programs
+**Acquisition channels:**
+- Direct BD outreach to top 10 perps UIs
+- Integration partnerships with custody providers (Fireblocks, Copper)
+- Co-marketing with analytics platforms (Nansen, Dune)
+- Developer grants for tooling and infrastructure
 
-Outcome: Expanded accessibility and use cases that attract additional traders, capital, and market participants to the network.
+**What they need:**
+- High-quality on-chain execution data
+- APIs and SDKs for seamless integration
+- Shared incentives tied to real user activity
+
+**KPIs tied to this segment:**
+- 5+ partner integrations live by month 12
+- 30%+ of volume routed through partner UIs
+- Partner-driven user acquisition >1,000/month
+
+**So what for GTM:** Partners amplify distribution without fragmenting liquidity. Prioritize integrations that bring high-intent users (prop platforms, execution-focused UIs). Launch partner program in month 6.
 
 </div>
 
@@ -64,10 +111,10 @@ Each participant group reinforces the others through continuous market improveme
 <figure class="my-12">
   <img src="/images/target-audience-feedback-loop.png" alt="Target Audience Feedback Loop" class="max-w-full h-auto mx-auto" />
   <figcaption class="text-center text-xs font-bold text-neutral-400 mt-4">
-    The cycle repeats, compounding liquidity and market quality over time.
+    MMs → tight spreads → active traders → volume → retail trust → ecosystem growth → more MMs.
   </figcaption>
 </figure>
 
 ---
 
-Each participant group enters the ecosystem for different reasons, but all benefit from the same underlying improvements in execution quality and transparency. Tier 1's go-to-market strategy is designed to ensure that every new participant strengthens the system rather than diluting it.
+**Sequencing matters:** MMs before traders, traders before retail, retail before broad ecosystem. Each phase proves value for the next. Incentives verify contribution at every step.
