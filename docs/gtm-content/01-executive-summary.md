@@ -15,7 +15,9 @@ Tier 1 is the first on-chain execution layer that combines sub-millisecond laten
 ### Phase 1: Liquidity Foundation (Months 0-3)
 
 **Who:** 8-12 professional market makers and HFT shops via BSO intros + direct outreach
+
 **What:** Colocation, deterministic queueing, transparent fee structures
+
 **Channels:** BSO partnership, direct institutional sales, pilot liquidity programs
 
 **KPIs (Good Enough → Home Run):**
@@ -32,7 +34,9 @@ Tier 1 is the first on-chain execution layer that combines sub-millisecond laten
 ### Phase 2: Active Trader Validation (Months 3-9)
 
 **Who:** 200-500 execution-sensitive traders (prop firms, power retail, quant funds)
+
 **What:** Early access, points tied to real volume, transparent execution metrics
+
 **Channels:** Partner platforms (prop trading, funded accounts), KOL campaigns (execution-focused), CEX migration programs
 
 **KPIs (Good Enough → Home Run):**
@@ -50,7 +54,9 @@ Tier 1 is the first on-chain execution layer that combines sub-millisecond laten
 ### Phase 3: Retail Scale (Months 9-18)
 
 **Who:** 5,000-15,000 retail traders via partner UIs, wallets, and community channels
+
 **What:** Access to institutional-grade liquidity, transparent liquidations, points programs
+
 **Channels:** DEX aggregators, wallet integrations, KOL partnerships, referral schemes
 
 **KPIs (Good Enough → Home Run):**
@@ -194,15 +200,15 @@ Addressing Blockchange/CMT concerns about retail becoming exit liquidity:
 - Publish third-party execution audit showing 15-25% better metrics than CEXs
 - **Fundraising impact:** Phase 2 success proves product-market fit with execution-sensitive traders
 
+**Next raise target (Month 3-9):**
+- Seed extension: $3M at $30M post-money
+- Goal: Fund Phase 3 retail expansion, scale to 2,000-8,000 retail MAU, expand to 8-12 markets
+
 **Phase 3 (Months 9-15):**
 - Begin retail scaling to 3,000-5,000 monthly active users
 - Reach $80-120M daily open interest
 - Launch 5+ partner integrations driving 20-30% of volume
 - **Fundraising impact:** Phase 3 success proves retail adoption and organic growth
-
-**Next raise target (Month 12-15):**
-- Series A: $8-12M at $80-120M post-money
-- Goal: Scale retail to 10K+ MAU, expand to 10-15 markets, launch governance
 
 ### Success Criteria for Next Raise
 

@@ -22,7 +22,7 @@ Tier 1 delivers measurable execution improvements through deterministic, low-lat
 
 ## For Active Traders and Power Retail
 
-**Core value:** 20-40% tighter spreads and 30-60% lower slippage vs. competing venues, directly improving realized PnL.
+**Core value:** 20-40% tighter spreads and 30-60% lower slippage vs. competing venues, directly improving realized PnL. Active traders drive 70-80% of platform volume.
 
 **Measurable benefits:**
 - <10bps spreads on BTC/ETH perps (vs. 15-25bps on CEXs)
@@ -30,13 +30,13 @@ Tier 1 delivers measurable execution improvements through deterministic, low-lat
 - Transparent execution dashboards showing real-time fill quality
 - Points programs tied to sustained volume, not wash trading
 
-**GTM implication:** Active traders are the validation layer. If they can measure better fills, we have third-party proof for retail expansion.
+**GTM implication:** Active traders are the validation layer and primary volume driver. A few hundred highly active institutional traders generate more value than thousands of casual retail users.
 
-**KPI tie-in:** 300+ active traders, $50M+ daily volume, 60%+ retention, 20%+ organic referrals.
+**KPI tie-in:** 600-1,000 active traders, $150-300M daily volume, 60%+ retention, 20%+ organic referrals, 70-80% of total volume.
 
 ## Broader Retail Traders
 
-**Core value:** Access to HFT-grade liquidity without competing on latency—lower costs, predictable liquidations, transparent rules.
+**Core value:** Access to HFT-grade liquidity without competing on latency—lower costs, predictable liquidations, transparent rules. Retail contributes 20-30% of platform volume.
 
 **Measurable benefits:**
 - Same spreads as institutions (no two-tier pricing)
@@ -44,9 +44,9 @@ Tier 1 delivers measurable execution improvements through deterministic, low-lat
 - Transparent on-chain execution rules
 - Educational content explaining execution quality
 
-**GTM implication:** Retail scales once execution quality is proven by active traders. Wallet integrations + referral schemes drive acquisition in months 9-12.
+**GTM implication:** Retail scales once execution quality is proven by active traders. Wallet integrations + referral schemes drive acquisition in months 9-12. Volume concentration in institutional traders allows platform to thrive without massive retail user counts.
 
-**KPI tie-in:** 8,000+ monthly active retail, $200M+ OI, 50%+ active beyond 90 days, NPS >40.
+**KPI tie-in:** 2,000-8,000 monthly active retail, $400-600M OI, 50%+ active beyond 90 days, NPS >40, 20-30% of total volume.
 
 ## For Ecosystem Partners and Infrastructure Providers
 

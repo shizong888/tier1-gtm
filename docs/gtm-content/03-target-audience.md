@@ -31,7 +31,7 @@ Tier 1 serves four participant groups in sequence: market makers (liquidity foun
 
 ## Active Traders and Power Retail
 
-**Profile:** 200-500 execution-sensitive traders: prop firms, funded account traders, power retail seeking better fills.
+**Profile:** 400-1,000 execution-sensitive traders: prop firms, funded account traders, power retail seeking better fills. These traders drive 70-80% of platform volume.
 
 **Acquisition channels:**
 - Partner platforms: funded prop trading programs (FTMO, TopStepTrader equivalents)
@@ -46,16 +46,17 @@ Tier 1 serves four participant groups in sequence: market makers (liquidity foun
 - Reliable liquidation mechanics
 
 **KPIs tied to this segment:**
-- 300+ active traders generating $50M+ daily notional
+- 600-1,000 active traders generating $150-300M daily notional
 - 60%+ 30-day retention
 - Average slippage <15bps for $50K trades
 - 20%+ of new signups from organic referrals
+- 70-80% of total platform volume from institutional/active traders
 
-**So what for GTM:** This is the validation layer. If power retail can measure better fills vs. CEXs, we have proof for broader retail expansion. Run 2-3 KOL campaigns in months 3-6, publish execution audit in month 6.
+**So what for GTM:** This is the validation layer and primary volume driver. A few hundred highly active institutional traders generate more volume than thousands of casual retail users. Run 2-3 KOL campaigns in months 3-6, publish execution audit in month 6.
 
 ## Broader Retail Traders
 
-**Profile:** 5,000-15,000 retail traders seeking fair access to deep liquidity without competing on latency.
+**Profile:** 2,000-8,000 retail traders seeking fair access to deep liquidity without competing on latency. Retail contributes 20-30% of platform volume.
 
 **Acquisition channels:**
 - DEX aggregators and wallet integrations (MetaMask, Phantom, Rabby)
@@ -70,13 +71,14 @@ Tier 1 serves four participant groups in sequence: market makers (liquidity foun
 - Points programs rewarding productive trading
 
 **KPIs tied to this segment:**
-- 8,000+ monthly active retail traders
-- $200M+ daily open interest
+- 2,000-8,000 monthly active retail traders
+- $400-600M daily open interest
 - <2% unfair liquidations (vs. 8-12% industry avg)
 - 50%+ of retail active beyond 90 days
 - NPS >40
+- 20-30% of total platform volume from retail
 
-**So what for GTM:** Retail scales once execution quality is proven. Launch wallet integrations in month 9, activate referral schemes in month 10. Retail story: "Trade where HFTs provide liquidity, not where they trade against you."
+**So what for GTM:** Retail scales once execution quality is proven. Launch wallet integrations in month 9, activate referral schemes in month 10. Retail story: "Trade where HFTs provide liquidity, not where they trade against you." Volume concentration matters more than user count—platform success comes from institutional participation.
 
 ## Ecosystem and Infrastructure Partners
 

@@ -31,13 +31,13 @@ Tier 1 scales through phase-sequenced distribution: MMs first (supply-side unloc
 
 ## Active Traders and Power Retail (Phase 2: Months 3-9)
 
-**Target:** 200-500 execution-sensitive traders seeking measurably better fills than CEXs.
+**Target:** 400-1,000 execution-sensitive traders seeking measurably better fills than CEXs. These traders drive 70-80% of platform volume.
 
 **Acquisition tactics:**
-- Partner with funded prop platforms (FTMO equivalents): target 100-150 traders
-- Run 2-3 KOL campaigns with execution-focused CT influencers (50K+ followers): target 50-100 traders per campaign
-- Launch CEX migration program: fee discounts + 2x points for high-volume CEX traders (target: 50-80 traders)
-- Direct outreach to power users on competing venues (target: 30-50 traders)
+- Partner with funded prop platforms (FTMO equivalents): target 200-300 traders
+- Run 2-3 KOL campaigns with execution-focused CT influencers (50K+ followers): target 100-200 traders per campaign
+- Launch CEX migration program: fee discounts + 2x points for high-volume CEX traders (target: 100-150 traders)
+- Direct outreach to power users on competing venues (target: 50-100 traders)
 - Publish transparent execution dashboard showing spreads, slippage, depth vs. CEXs
 
 **Value proposition:**
@@ -47,23 +47,23 @@ Tier 1 scales through phase-sequenced distribution: MMs first (supply-side unloc
 - Points tied to sustained volume, not wash trading
 
 **KPIs:**
-- 300+ active traders generating $50M+ daily notional
+- 600-1,000 active traders generating $150-300M daily notional
 - 60%+ 30-day retention
 - <15bps average slippage for $50K trades
-- 40%+ of volume from institutional sources
+- 70-80% of total volume from institutional/active traders
 - 20%+ of signups from organic referrals
 
-**So what for GTM:** Active traders validate execution quality. Publish third-party audit in month 6 comparing Tier 1 vs. top 3 CEXs. Use trader testimonials to build credibility for retail expansion.
+**So what for GTM:** Active traders validate execution quality AND drive majority of volume. A few hundred highly active institutional traders are more valuable than thousands of casual retail users. Publish third-party audit in month 6 comparing Tier 1 vs. top 3 CEXs.
 
 ## Broader Retail Traders (Phase 3: Months 9-18)
 
-**Target:** 5,000-15,000 retail traders seeking fair access to HFT-grade liquidity.
+**Target:** 2,000-8,000 retail traders seeking fair access to HFT-grade liquidity. Retail contributes 20-30% of platform volume.
 
 **Acquisition tactics:**
-- Wallet integrations (MetaMask, Phantom): target 200-300 signups/month per integration
-- DEX aggregator routing (1inch, Matcha): target 100-150 signups/month
+- Wallet integrations (MetaMask, Phantom): target 150-250 signups/month per integration
+- DEX aggregator routing (1inch, Matcha): target 75-125 signups/month
 - Referral schemes with tiered rewards: soft-launch with 20-30 advocates (month 6), public launch (month 9)
-- Partner UIs (top 3 perps platforms): target 300-500 signups/month
+- Partner UIs (top 3 perps platforms): target 200-350 signups/month
 - Educational content: "Why HFT liquidity benefits retail" narrative, transparent liquidation explainers
 
 **Value proposition:**
@@ -73,14 +73,15 @@ Tier 1 scales through phase-sequenced distribution: MMs first (supply-side unloc
 - "HFTs provide liquidity here, not exit liquidity"
 
 **KPIs:**
-- 8,000+ monthly active retail traders
-- $200M+ daily open interest
+- 2,000-8,000 monthly active retail traders
+- $400-600M daily open interest
 - <2% unfair liquidation rate
 - 50%+ of retail active beyond 90 days
 - NPS >40
-- 30%+ of volume via partner UIs
+- 20-30% of total volume from retail
+- 30%+ of retail volume via partner UIs
 
-**So what for GTM:** Retail scales once execution is proven. Launch wallet integrations month 9, activate referral schemes month 10. Emphasize transparent liquidations + on-chain fairness vs. CEX discretion.
+**So what for GTM:** Retail scales once execution is proven. Volume concentration in institutional traders means platform succeeds without massive retail headcount. Launch wallet integrations month 9, activate referral schemes month 10. Emphasize transparent liquidations + on-chain fairness vs. CEX discretion.
 
 ## Ecosystem and Infra Partners (All Phases: Months 6-18)
 
@@ -121,15 +122,15 @@ Tier 1 scales through phase-sequenced distribution: MMs first (supply-side unloc
 
 **Phase 2 (Months 3-9): Trader Validation**
 - Focus: Prop platforms, KOL campaigns, CEX migration
-- Target: 300+ traders, $50M+ volume, 60%+ retention
+- Target: 600-1,000 traders, $150-300M volume, 60%+ retention
 - Tactics: Partner platforms, execution dashboards, third-party audit
-- Success metric: 20%+ organic referrals, measurably better fills vs. CEXs
+- Success metric: 20%+ organic referrals, 70-80% volume from institutional/active traders
 
 **Phase 3 (Months 9-18): Retail Scale**
 - Focus: Wallet integrations, referral schemes, partner UIs
-- Target: 8,000+ retail, $200M+ OI, 50%+ 90-day retention
+- Target: 2,000-8,000 retail, $400-600M OI, 50%+ 90-day retention
 - Tactics: Educational content, transparent liquidations, on-chain fairness narrative
-- Success metric: NPS >40, <2% unfair liquidations
+- Success metric: NPS >40, <2% unfair liquidations, 20-30% volume from retail
 
 **Ecosystem Amplification (Months 6-18):**
 - Focus: Partner integrations, analytics, tooling

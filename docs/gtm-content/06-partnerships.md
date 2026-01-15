@@ -191,12 +191,12 @@ Tier 1's partnerships are operational levers, not strategic narratives. Each par
 
 **Phase 2 (Months 3-9): Trader Validation**
 - Primary: Prop platforms, KOL campaigns, institutional connectivity
-- KPIs: 300+ traders, $50M+ volume, 60%+ retention
+- KPIs: 600-1,000 traders, $150-300M volume, 60%+ retention, 70-80% institutional volume
 - GTM focus: Execution quality proof via third-party validation
 
 **Phase 3 (Months 9-18): Retail Scale**
 - Primary: Wallet integrations, UI partnerships, referral schemes
-- KPIs: 8,000+ retail traders, $200M+ OI, 50%+ 90-day retention
+- KPIs: 2,000-8,000 retail traders, $400-600M OI, 50%+ 90-day retention, 20-30% retail volume
 - GTM focus: Distribution at scale with proven execution quality
 
 ---
