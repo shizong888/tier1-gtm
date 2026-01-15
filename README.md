@@ -1,5 +1,14 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Password Protection
+
+This site is password-protected using Next.js Middleware. To set up:
+
+1. **Local development:** Update the `PASSWORD_HASH` value in `.env.local` with your password
+2. **Vercel deployment:** Add the `PASSWORD_HASH` environment variable in your Vercel project settings with the same password value
+
+The password is stored in plain text in the environment variable for simplicity. Users will be redirected to `/login` and must enter the correct password to access the site.
+
 ## Getting Started
 
 First, run the development server:

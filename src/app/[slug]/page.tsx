@@ -6,17 +6,12 @@ import { MarkdownContent } from '@/components/markdown/markdown-content';
 import Link from 'next/link';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
+export const dynamic = 'force-dynamic';
+
 interface GTMPageProps {
   params: Promise<{
     slug: string;
   }>;
-}
-
-export async function generateStaticParams() {
-  const slugs = await getAllSlugs();
-  return slugs.map((slug) => ({
-    slug,
-  }));
 }
 
 export async function generateMetadata({ params }: GTMPageProps): Promise<Metadata> {
