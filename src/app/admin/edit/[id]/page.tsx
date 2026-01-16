@@ -10,6 +10,12 @@ import Link from 'next/link';
 import { MarkdownContent } from '@/components/markdown/markdown-content';
 import { AnimatedHeader } from '@/components/headers/animated-header';
 import { HEADER_STYLES } from '@/lib/header-styles';
+import dynamic from 'next/dynamic';
+
+const MDEditor = dynamic(
+  () => import('@uiw/react-md-editor').then((mod) => mod.default),
+  { ssr: false }
+);
 
 export default function EditDocumentPage({
   params,
@@ -255,12 +261,19 @@ export default function EditDocumentPage({
             <label className="block text-sm font-bold text-neutral-400 mb-2">
               Markdown Content
             </label>
-            <textarea
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
-              className="w-full h-[calc(100vh-500px)] bg-neutral-950 border border-neutral-900 rounded-lg p-4 text-neutral-300 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-[#d9ff00] focus:border-transparent resize-none"
-              placeholder="Enter markdown content..."
-            />
+            <div data-color-mode="dark">
+              <MDEditor
+                value={content}
+                onChange={(val) => setContent(val || '')}
+                height="calc(100vh - 500px)"
+                preview="edit"
+                hideToolbar={false}
+                enableScroll={true}
+                textareaProps={{
+                  placeholder: 'Enter markdown content...',
+                }}
+              />
+            </div>
           </div>
 
           {/* Preview */}

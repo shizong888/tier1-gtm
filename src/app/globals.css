@@ -236,3 +236,75 @@
 .mermaid-diagram .arrowheadPath {
   @apply fill-brand stroke-brand;
 }
+
+/* Markdown Editor Styles */
+.w-md-editor {
+  @apply bg-neutral-950 border border-neutral-900 rounded-lg overflow-hidden;
+}
+
+.w-md-editor-toolbar {
+  @apply bg-neutral-900 border-b border-neutral-800;
+}
+
+.w-md-editor-toolbar button {
+  @apply text-neutral-400 hover:text-white hover:bg-neutral-800 transition-colors;
+}
+
+.w-md-editor-toolbar button.active {
+  @apply text-brand bg-neutral-800;
+}
+
+.w-md-editor-text-pre,
+.w-md-editor-text-input {
+  @apply bg-neutral-950 text-neutral-300 font-mono;
+}
+
+.w-md-editor-text-pre > code,
+.w-md-editor-text-input {
+  @apply text-neutral-300;
+}
+
+.w-md-editor-preview {
+  @apply bg-neutral-950 text-neutral-300;
+}
+
+.wmde-markdown {
+  @apply bg-neutral-950 text-neutral-300;
+}
+
+.wmde-markdown h1,
+.wmde-markdown h2,
+.wmde-markdown h3,
+.wmde-markdown h4,
+.wmde-markdown h5,
+.wmde-markdown h6 {
+  @apply text-white;
+}
+
+.wmde-markdown a {
+  @apply text-brand;
+}
+
+.wmde-markdown code {
+  @apply bg-neutral-900 text-brand px-1 rounded;
+}
+
+.wmde-markdown pre {
+  @apply bg-neutral-900 border border-neutral-800 rounded-lg;
+}
+
+.wmde-markdown pre code {
+  @apply bg-transparent text-neutral-300;
+}
+
+.wmde-markdown blockquote {
+  @apply border-l-4 border-brand/30 bg-neutral-900/50 pl-4;
+}
+
+.w-md-editor-toolbar li button {
+  @apply rounded;
+}
+
+.w-md-editor-toolbar-divider {
+  @apply bg-neutral-800;
+}
