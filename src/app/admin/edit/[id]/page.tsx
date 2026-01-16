@@ -31,7 +31,7 @@ export default function EditDocumentPage({
   const [userId] = useState(() => `user-${Math.random().toString(36).substr(2, 9)}`);
   const [isSaving, setIsSaving] = useState(false);
   const [hasPendingChanges, setHasPendingChanges] = useState(false);
-  const debounceTimer = useRef<NodeJS.Timeout>();
+  const debounceTimer = useRef<NodeJS.Timeout | undefined>(undefined);
 
   // Initialize content from document
   useEffect(() => {
