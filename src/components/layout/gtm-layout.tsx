@@ -78,10 +78,10 @@ export function GTMLayout({ children, navigation }: GTMLayoutProps) {
               <ThemeToggle />
             </div>
 
-            {/* Search */}
-            <div className="mb-6 px-3">
+            {/* Search - Hidden for now */}
+            {/* <div className="mb-6 px-3">
               <DocumentSearch />
-            </div>
+            </div> */}
 
             <SidebarNav items={navigation} />
           </SidebarContent>
