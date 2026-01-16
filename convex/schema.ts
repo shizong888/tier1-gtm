@@ -38,4 +38,13 @@ export default defineSchema({
     uploadedBy: v.optional(v.string()),
   })
     .index("by_uploaded_at", ["uploadedAt"]),
+
+  // Site settings
+  settings: defineTable({
+    key: v.string(),
+    value: v.string(),
+    updatedAt: v.number(),
+    updatedBy: v.optional(v.string()),
+  })
+    .index("by_key", ["key"]),
 });

@@ -7,6 +7,8 @@ import Link from 'next/link';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
 import { LogOut } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import { useQuery } from 'convex/react';
+import { api } from '../../../convex/_generated/api';
 
 interface GTMLayoutProps {
   children: React.ReactNode;
@@ -15,6 +17,8 @@ interface GTMLayoutProps {
 
 export function GTMLayout({ children, navigation }: GTMLayoutProps) {
   const router = useRouter();
+  const lightLogoUrl = useQuery(api.settings.getLogoUrl, { mode: 'light' });
+  const darkLogoUrl = useQuery(api.settings.getLogoUrl, { mode: 'dark' });
 
   const handleLogout = () => {
     // Clear the auth cookie
@@ -29,8 +33,43 @@ export function GTMLayout({ children, navigation }: GTMLayoutProps) {
         <Sidebar collapsible="offcanvas" className="border-r border-neutral-200 dark:border-neutral-900 bg-neutral-50 dark:bg-neutral-950">
           <SidebarContent className="p-4 bg-neutral-50 dark:bg-neutral-950">
             <div className="mb-8 mt-4 px-3 flex items-center justify-between">
-              <Link href="/" className="text-2xl font-black tracking-tighter text-black dark:text-white">
-                tier_1
+              <Link href="/" className="flex items-center">
+                {lightLogoUrl || darkLogoUrl ? (
+                  <>
+                    {lightLogoUrl && (
+                      <img
+                        src={lightLogoUrl}
+                        alt="Logo"
+                        className="h-6 w-auto object-contain dark:hidden"
+                      />
+                    )}
+                    {darkLogoUrl && (
+                      <img
+                        src={darkLogoUrl}
+                        alt="Logo"
+                        className="h-6 w-auto object-contain hidden dark:block"
+                      />
+                    )}
+                    {!darkLogoUrl && lightLogoUrl && (
+                      <img
+                        src={lightLogoUrl}
+                        alt="Logo"
+                        className="h-6 w-auto object-contain hidden dark:block"
+                      />
+                    )}
+                    {!lightLogoUrl && darkLogoUrl && (
+                      <img
+                        src={darkLogoUrl}
+                        alt="Logo"
+                        className="h-6 w-auto object-contain dark:hidden"
+                      />
+                    )}
+                  </>
+                ) : (
+                  <span className="text-2xl font-black tracking-tighter text-black dark:text-white">
+                    tier_1
+                  </span>
+                )}
               </Link>
               <ThemeToggle />
             </div>
