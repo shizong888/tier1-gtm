@@ -28,6 +28,13 @@ export async function generateMetadata({ params }: GTMPageProps): Promise<Metada
 
 export default async function GTMPage({ params }: GTMPageProps) {
   const { slug } = await params;
+  const document = await getDocumentBySlug(slug);
+
+  // Redirect to home if document doesn't exist or is hidden
+  if (!document || document.hidden) {
+    redirect('/');
+  }
+
   // Redirect to home page with hash anchor
   redirect(`/#${slug}`);
 }

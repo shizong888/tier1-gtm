@@ -1,14 +1,22 @@
 'use client';
 
-import { useQuery } from 'convex/react';
+import { useQuery, useMutation } from 'convex/react';
 import { api } from '../../../convex/_generated/api';
 import Link from 'next/link';
-import { FileText, Plus } from 'lucide-react';
+import { FileText, Plus, Eye, EyeOff } from 'lucide-react';
 
 export const dynamic = 'force-dynamic';
 
 export default function AdminDashboard() {
   const documents = useQuery(api.documents.list);
+  const updateDocument = useMutation(api.documents.update);
+
+  const toggleVisibility = async (id: string, currentHidden: boolean) => {
+    await updateDocument({
+      id: id as any,
+      hidden: !currentHidden,
+    });
+  };
 
   if (documents === undefined) {
     return (
@@ -45,18 +53,22 @@ export default function AdminDashboard() {
             </div>
           ) : (
             documents.map((doc) => (
-              <Link
+              <div
                 key={doc._id}
-                href={`/admin/edit/${doc._id}`}
-                className="group block p-6 border border-neutral-200 dark:border-neutral-900 rounded-lg hover:border-[#d9ff00]/30 transition-all"
+                className="group p-6 border border-neutral-200 dark:border-neutral-900 rounded-lg hover:border-[#d9ff00]/30 transition-all"
               >
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
+                <div className="flex items-start justify-between gap-4">
+                  <Link href={`/admin/edit/${doc._id}`} className="flex-1">
                     <div className="flex items-center gap-3 mb-2">
                       <FileText className="w-5 h-5 text-[#d9ff00]" />
                       <h3 className="text-xl font-bold group-hover:text-[#d9ff00] transition-colors">
                         {doc.title}
                       </h3>
+                      {doc.hidden && (
+                        <span className="px-2 py-1 text-xs bg-neutral-100 dark:bg-neutral-900 text-neutral-600 dark:text-neutral-400 rounded">
+                          Hidden
+                        </span>
+                      )}
                     </div>
                     <div className="flex items-center gap-4 text-sm text-neutral-500 dark:text-neutral-500">
                       <span>/{doc.slug}</span>
@@ -68,12 +80,31 @@ export default function AdminDashboard() {
                         {new Date(doc.updatedAt).toLocaleDateString()}
                       </span>
                     </div>
-                  </div>
-                  <div className="text-neutral-600 dark:text-neutral-600 group-hover:text-[#d9ff00] transition-colors">
-                    →
+                  </Link>
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        toggleVisibility(doc._id, doc.hidden || false);
+                      }}
+                      className="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-900 rounded-lg transition-colors"
+                      title={doc.hidden ? 'Show on public site' : 'Hide from public site'}
+                    >
+                      {doc.hidden ? (
+                        <EyeOff className="w-5 h-5 text-neutral-400 dark:text-neutral-600" />
+                      ) : (
+                        <Eye className="w-5 h-5 text-neutral-400 dark:text-neutral-600" />
+                      )}
+                    </button>
+                    <Link
+                      href={`/admin/edit/${doc._id}`}
+                      className="text-neutral-600 dark:text-neutral-600 group-hover:text-[#d9ff00] transition-colors"
+                    >
+                      →
+                    </Link>
                   </div>
                 </div>
-              </Link>
+              </div>
             ))
           )}
         </div>

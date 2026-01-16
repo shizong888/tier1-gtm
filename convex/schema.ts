@@ -7,6 +7,7 @@ export default defineSchema({
     title: v.string(),
     content: v.string(),
     order: v.number(),
+    hidden: v.optional(v.boolean()), // Hide page from public site
     headerStyle: v.optional(v.string()), // e.g., "executive-summary", "target-audience", etc.
     headerLabel: v.optional(v.string()), // Top label text
     headerTitle: v.optional(v.string()), // Main title text

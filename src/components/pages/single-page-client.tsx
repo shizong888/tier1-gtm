@@ -39,7 +39,9 @@ export function SinglePageClient() {
     );
   }
 
-  const sortedDocs = allDocuments.sort((a, b) => a.order - b.order);
+  // Filter out hidden documents
+  const visibleDocs = allDocuments.filter(doc => !doc.hidden);
+  const sortedDocs = visibleDocs.sort((a, b) => a.order - b.order);
 
   if (sortedDocs.length === 0) {
     return <div>Strategy content not found.</div>;
