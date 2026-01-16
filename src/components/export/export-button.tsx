@@ -33,8 +33,57 @@ export function ExportButton({ documentTitle, documentContent }: ExportButtonPro
   };
 
   const handleExportPDF = () => {
-    // Use browser's print functionality to generate PDF
+    // Add print-specific styles to ensure all content is visible
+    const printStyles = document.createElement('style');
+    printStyles.id = 'print-styles';
+    printStyles.innerHTML = `
+      @media print {
+        /* Hide everything except main content */
+        nav, header, footer, .sidebar, aside, [role="navigation"] {
+          display: none !important;
+        }
+
+        /* Ensure main content takes full width and is visible */
+        main, #main-scroll-container {
+          display: block !important;
+          height: auto !important;
+          overflow: visible !important;
+          max-height: none !important;
+        }
+
+        /* Remove sticky positioning that might hide content */
+        * {
+          position: static !important;
+        }
+
+        /* Ensure all content is visible */
+        body {
+          overflow: visible !important;
+        }
+
+        /* Expand all sections */
+        article, section {
+          page-break-inside: avoid;
+        }
+
+        /* Remove borders and backgrounds for cleaner print */
+        .border-t, .border-b {
+          border: none !important;
+        }
+      }
+    `;
+
+    // Add styles temporarily
+    document.head.appendChild(printStyles);
+
+    // Trigger print
     window.print();
+
+    // Remove styles after printing
+    setTimeout(() => {
+      const styles = document.getElementById('print-styles');
+      if (styles) styles.remove();
+    }, 1000);
   };
 
   // Don't show button if no content
