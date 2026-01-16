@@ -8,6 +8,9 @@ export default defineSchema({
     content: v.string(),
     order: v.number(),
     headerStyle: v.optional(v.string()), // e.g., "executive-summary", "target-audience", etc.
+    headerLabel: v.optional(v.string()), // Top label text
+    headerTitle: v.optional(v.string()), // Main title text
+    headerAccent: v.optional(v.string()), // Bottom accent text
     updatedAt: v.number(),
     updatedBy: v.optional(v.string()),
   })

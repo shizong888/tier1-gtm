@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 import { ArrowLeft, Save, Users, AlertCircle } from 'lucide-react';
 import Link from 'next/link';
 import { MarkdownContent } from '@/components/markdown/markdown-content';
+import { AnimatedHeader } from '@/components/headers/animated-header';
 import { HEADER_STYLES } from '@/lib/header-styles';
 
 export default function EditDocumentPage({
@@ -31,6 +32,9 @@ export default function EditDocumentPage({
   const [content, setContent] = useState('');
   const [title, setTitle] = useState('');
   const [headerStyle, setHeaderStyle] = useState('');
+  const [headerLabel, setHeaderLabel] = useState('');
+  const [headerTitle, setHeaderTitle] = useState('');
+  const [headerAccent, setHeaderAccent] = useState('');
   const [userId] = useState(() => `user-${Math.random().toString(36).substr(2, 9)}`);
   const [isSaving, setIsSaving] = useState(false);
   const [hasPendingChanges, setHasPendingChanges] = useState(false);
@@ -42,6 +46,9 @@ export default function EditDocumentPage({
       setContent(document.content);
       setTitle(document.title);
       setHeaderStyle(document.headerStyle || '');
+      setHeaderLabel(document.headerLabel || '');
+      setHeaderTitle(document.headerTitle || '');
+      setHeaderAccent(document.headerAccent || '');
     }
   }, [document]);
 
@@ -49,7 +56,11 @@ export default function EditDocumentPage({
   useEffect(() => {
     if (!document) return;
 
-    const hasChanges = content !== document.content || title !== document.title || headerStyle !== (document.headerStyle || '');
+    const hasChanges = content !== document.content || title !== document.title ||
+      headerStyle !== (document.headerStyle || '') ||
+      headerLabel !== (document.headerLabel || '') ||
+      headerTitle !== (document.headerTitle || '') ||
+      headerAccent !== (document.headerAccent || '');
     setHasPendingChanges(hasChanges);
 
     if (hasChanges) {
@@ -73,7 +84,7 @@ export default function EditDocumentPage({
         clearTimeout(debounceTimer.current);
       }
     };
-  }, [content, title, headerStyle, document, documentId, userId, updatePending]);
+  }, [content, title, headerStyle, headerLabel, headerTitle, headerAccent, document, documentId, userId, updatePending]);
 
   const handleSave = async () => {
     if (!document) return;
@@ -85,6 +96,9 @@ export default function EditDocumentPage({
         title,
         content,
         headerStyle: headerStyle || undefined,
+        headerLabel: headerLabel || undefined,
+        headerTitle: headerTitle || undefined,
+        headerAccent: headerAccent || undefined,
         userId,
       });
       setHasPendingChanges(false);
@@ -173,23 +187,66 @@ export default function EditDocumentPage({
 
       {/* Editor */}
       <div className="px-8 py-8">
-        {/* Header Style Selector */}
-        <div className="mb-6">
-          <label className="block text-sm font-bold text-neutral-400 mb-2">
-            Header Animation Style
-          </label>
-          <select
-            value={headerStyle}
-            onChange={(e) => setHeaderStyle(e.target.value)}
-            className="w-full bg-neutral-950 border border-neutral-900 rounded-lg p-3 text-white focus:outline-none focus:ring-2 focus:ring-[#d9ff00] focus:border-transparent"
-          >
-            <option value="">Select a header style...</option>
-            {HEADER_STYLES.map((style) => (
-              <option key={style.id} value={style.id}>
-                {style.name} - {style.description}
-              </option>
-            ))}
-          </select>
+        {/* Header Configuration */}
+        <div className="mb-6 space-y-4">
+          <div>
+            <label className="block text-sm font-bold text-neutral-400 mb-2">
+              Header Animation Style
+            </label>
+            <select
+              value={headerStyle}
+              onChange={(e) => setHeaderStyle(e.target.value)}
+              className="w-full bg-neutral-950 border border-neutral-900 rounded-lg p-3 text-white focus:outline-none focus:ring-2 focus:ring-[#d9ff00] focus:border-transparent"
+            >
+              <option value="">Select a header style...</option>
+              {HEADER_STYLES.map((style) => (
+                <option key={style.id} value={style.id}>
+                  {style.name} - {style.description}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {headerStyle && headerStyle !== 'none' && (
+            <div className="grid grid-cols-3 gap-4">
+              <div>
+                <label className="block text-xs font-bold text-neutral-500 mb-2">
+                  Header Label (top)
+                </label>
+                <input
+                  type="text"
+                  value={headerLabel}
+                  onChange={(e) => setHeaderLabel(e.target.value)}
+                  className="w-full bg-neutral-950 border border-neutral-900 rounded-lg p-2 text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#d9ff00] focus:border-transparent"
+                  placeholder="e.g., Participant Segments"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-bold text-neutral-500 mb-2">
+                  Header Title (main)
+                </label>
+                <input
+                  type="text"
+                  value={headerTitle}
+                  onChange={(e) => setHeaderTitle(e.target.value)}
+                  className="w-full bg-neutral-950 border border-neutral-900 rounded-lg p-2 text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#d9ff00] focus:border-transparent"
+                  placeholder="e.g., Target Audience"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-bold text-neutral-500 mb-2">
+                  Header Accent (bottom)
+                </label>
+                <input
+                  type="text"
+                  value={headerAccent}
+                  onChange={(e) => setHeaderAccent(e.target.value)}
+                  className="w-full bg-neutral-950 border border-neutral-900 rounded-lg p-2 text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#d9ff00] focus:border-transparent"
+                  placeholder="e.g., Bridging Institutions and Retail"
+                />
+              </div>
+            </div>
+          )}
         </div>
 
         <div className="grid grid-cols-2 gap-8">
@@ -201,7 +258,7 @@ export default function EditDocumentPage({
             <textarea
               value={content}
               onChange={(e) => setContent(e.target.value)}
-              className="w-full h-[calc(100vh-400px)] bg-neutral-950 border border-neutral-900 rounded-lg p-4 text-neutral-300 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-[#d9ff00] focus:border-transparent resize-none"
+              className="w-full h-[calc(100vh-500px)] bg-neutral-950 border border-neutral-900 rounded-lg p-4 text-neutral-300 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-[#d9ff00] focus:border-transparent resize-none"
               placeholder="Enter markdown content..."
             />
           </div>
@@ -211,7 +268,15 @@ export default function EditDocumentPage({
             <label className="block text-sm font-bold text-neutral-400 mb-2">
               Preview
             </label>
-            <div className="h-[calc(100vh-400px)] bg-neutral-950 border border-neutral-900 rounded-lg p-8 overflow-auto">
+            <div className="h-[calc(100vh-500px)] bg-neutral-950 border border-neutral-900 rounded-lg p-8 overflow-auto">
+              {headerStyle && (
+                <AnimatedHeader
+                  style={headerStyle}
+                  label={headerLabel}
+                  title={headerTitle}
+                  accent={headerAccent}
+                />
+              )}
               <MarkdownContent content={content} />
             </div>
           </div>
