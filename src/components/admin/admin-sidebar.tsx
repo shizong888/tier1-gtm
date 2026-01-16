@@ -154,6 +154,10 @@ export function AdminSidebar() {
     }
   }, [documents]);
 
+  // Separate visible and hidden documents
+  const visibleDocs = localDocs?.filter(doc => !doc.hidden) || [];
+  const hiddenDocs = localDocs?.filter(doc => doc.hidden) || [];
+
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
@@ -166,6 +170,29 @@ export function AdminSidebar() {
 
     if (!over || active.id === over.id || !localDocs) return;
 
+    // Find which lists the items are in
+    const activeDoc = localDocs.find((doc) => doc._id === active.id);
+    const overDoc = localDocs.find((doc) => doc._id === over.id);
+
+    if (!activeDoc || !overDoc) return;
+
+    const activeIsHidden = activeDoc.hidden || false;
+    const overIsHidden = overDoc.hidden || false;
+
+    // If dragging between groups, toggle visibility
+    if (activeIsHidden !== overIsHidden) {
+      try {
+        await updateDocument({
+          id: activeDoc._id,
+          hidden: !activeIsHidden,
+        });
+      } catch (error) {
+        console.error('Failed to toggle visibility:', error);
+      }
+      return;
+    }
+
+    // If within the same group, reorder
     const oldIndex = localDocs.findIndex((doc) => doc._id === active.id);
     const newIndex = localDocs.findIndex((doc) => doc._id === over.id);
 
@@ -270,43 +297,80 @@ export function AdminSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
 
-        <SidebarGroup>
-          <SidebarGroupLabel>
-            Documents
-            <span className="text-xs text-neutral-500 dark:text-neutral-500 ml-2">(Drag to reorder)</span>
-          </SidebarGroupLabel>
-          <SidebarGroupContent>
-            {documents === undefined ? (
+        {documents === undefined ? (
+          <SidebarGroup>
+            <SidebarGroupLabel>Documents</SidebarGroupLabel>
+            <SidebarGroupContent>
               <div className="px-2 py-4 text-xs text-neutral-500 dark:text-neutral-500">Loading...</div>
-            ) : documents.length === 0 ? (
+            </SidebarGroupContent>
+          </SidebarGroup>
+        ) : documents.length === 0 ? (
+          <SidebarGroup>
+            <SidebarGroupLabel>Documents</SidebarGroupLabel>
+            <SidebarGroupContent>
               <div className="px-2 py-4 text-xs text-neutral-500 dark:text-neutral-500">No documents</div>
-            ) : (
-              <DndContext
-                sensors={sensors}
-                collisionDetection={closestCenter}
-                onDragEnd={handleDragEnd}
-              >
-                <SortableContext
-                  items={localDocs?.map(d => d._id) || []}
-                  strategy={verticalListSortingStrategy}
-                >
-                  <SidebarMenu>
-                    {localDocs?.map((doc) => (
-                      <SortableDocumentItem
-                        key={doc._id}
-                        doc={doc}
-                        isActive={pathname === `/admin/edit/${doc._id}`}
-                        onDelete={handleDelete}
-                        onToggleVisibility={handleToggleVisibility}
-                        deletingId={deletingId}
-                      />
-                    ))}
-                  </SidebarMenu>
-                </SortableContext>
-              </DndContext>
-            )}
-          </SidebarGroupContent>
-        </SidebarGroup>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        ) : (
+          <DndContext
+            sensors={sensors}
+            collisionDetection={closestCenter}
+            onDragEnd={handleDragEnd}
+          >
+            <SortableContext
+              items={localDocs?.map(d => d._id) || []}
+              strategy={verticalListSortingStrategy}
+            >
+              <SidebarGroup>
+                <SidebarGroupLabel>
+                  Visible Pages
+                  <span className="text-xs text-neutral-500 dark:text-neutral-500 ml-2">(Drag to reorder)</span>
+                </SidebarGroupLabel>
+                <SidebarGroupContent>
+                  {visibleDocs.length === 0 ? (
+                    <div className="px-2 py-4 text-xs text-neutral-500 dark:text-neutral-500">No visible pages</div>
+                  ) : (
+                    <SidebarMenu>
+                      {visibleDocs.map((doc) => (
+                        <SortableDocumentItem
+                          key={doc._id}
+                          doc={doc}
+                          isActive={pathname === `/admin/edit/${doc._id}`}
+                          onDelete={handleDelete}
+                          onToggleVisibility={handleToggleVisibility}
+                          deletingId={deletingId}
+                        />
+                      ))}
+                    </SidebarMenu>
+                  )}
+                </SidebarGroupContent>
+              </SidebarGroup>
+
+              {hiddenDocs.length > 0 && (
+                <SidebarGroup>
+                  <SidebarGroupLabel>
+                    Hidden Pages
+                    <span className="text-xs text-neutral-500 dark:text-neutral-500 ml-2">(Drag to show)</span>
+                  </SidebarGroupLabel>
+                  <SidebarGroupContent>
+                    <SidebarMenu>
+                      {hiddenDocs.map((doc) => (
+                        <SortableDocumentItem
+                          key={doc._id}
+                          doc={doc}
+                          isActive={pathname === `/admin/edit/${doc._id}`}
+                          onDelete={handleDelete}
+                          onToggleVisibility={handleToggleVisibility}
+                          deletingId={deletingId}
+                        />
+                      ))}
+                    </SidebarMenu>
+                  </SidebarGroupContent>
+                </SidebarGroup>
+              )}
+            </SortableContext>
+          </DndContext>
+        )}
       </SidebarContent>
 
       <SidebarFooter className="border-t border-neutral-200 dark:border-neutral-800 p-4">
