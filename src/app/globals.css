@@ -402,14 +402,65 @@ div[class*="LinkInput"] input {
   content: attr(data-placeholder);
 }
 
-/* Override any white backgrounds */
-[class*="yoopta"] {
+/* Override any white backgrounds - very aggressive */
+[class*="yoopta"],
+[class*="Yoopta"],
+[data-radix-popper-content-wrapper],
+[data-radix-portal] > div {
   color: inherit;
 }
 
-[class*="yoopta"][style*="background: white"],
-[class*="yoopta"][style*="background: #fff"],
-[class*="yoopta"][style*="background-color: white"],
-[class*="yoopta"][style*="background-color: #fff"] {
+/* Target all possible white background variations */
+[class*="yoopta"][style*="background"],
+[class*="Yoopta"][style*="background"],
+div[style*="background: white"],
+div[style*="background: #fff"],
+div[style*="background-color: white"],
+div[style*="background-color: #fff"],
+div[style*="background-color: rgb(255, 255, 255)"],
+div[style*="background-color:white"],
+div[style*="background-color:#fff"],
+div[style*="background-color:rgb(255"],
+div[style*="background:white"],
+div[style*="background:#fff"],
+div[style*="background:rgb(255"] {
+  background: #171717 !important;
   background-color: #171717 !important;
+}
+
+/* Radix UI Portals and Popper (used by Yoopta) */
+[data-radix-popper-content-wrapper],
+[data-radix-popper-content-wrapper] > div,
+[data-radix-portal],
+[data-radix-portal] > div,
+[data-radix-portal] > div > div {
+  background: #171717 !important;
+  background-color: #171717 !important;
+  border: 1px solid #262626 !important;
+  border-radius: 0.5rem !important;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3) !important;
+}
+
+/* All descendant divs in portals */
+[data-radix-popper-content-wrapper] div,
+[data-radix-portal] div {
+  color: #d4d4d4 !important;
+}
+
+/* Menu items and buttons in portals */
+[data-radix-popper-content-wrapper] button,
+[data-radix-portal] button,
+[data-radix-popper-content-wrapper] [role="menuitem"],
+[data-radix-portal] [role="menuitem"] {
+  color: #a3a3a3 !important;
+  background: transparent !important;
+}
+
+[data-radix-popper-content-wrapper] button:hover,
+[data-radix-portal] button:hover,
+[data-radix-popper-content-wrapper] [role="menuitem"]:hover,
+[data-radix-portal] [role="menuitem"]:hover {
+  background: #262626 !important;
+  background-color: #262626 !important;
+  color: #ffffff !important;
 }
