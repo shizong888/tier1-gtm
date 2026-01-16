@@ -99,6 +99,23 @@ export const remove = mutation({
   },
 });
 
+// Update multiple document orders at once
+export const updateOrders = mutation({
+  args: {
+    updates: v.array(
+      v.object({
+        id: v.id("documents"),
+        order: v.number(),
+      })
+    ),
+  },
+  handler: async (ctx, args) => {
+    for (const update of args.updates) {
+      await ctx.db.patch(update.id, { order: update.order });
+    }
+  },
+});
+
 // Update pending changes (real-time collaborative editing)
 export const updatePendingChanges = mutation({
   args: {
