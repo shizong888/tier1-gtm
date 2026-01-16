@@ -5,6 +5,8 @@ import { api } from '../../../convex/_generated/api';
 import Link from 'next/link';
 import { FileText, Plus } from 'lucide-react';
 
+export const dynamic = 'force-dynamic';
+
 export default function AdminDashboard() {
   const documents = useQuery(api.documents.list);
 
