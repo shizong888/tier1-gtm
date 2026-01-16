@@ -84,9 +84,10 @@ export default function EditDocumentPage({
         userId,
       });
       setHasPendingChanges(false);
-      router.push('/admin');
+      // Stay on the same page after saving
     } catch (error) {
       console.error('Failed to save:', error);
+      alert('Failed to save document');
     } finally {
       setIsSaving(false);
     }
@@ -119,38 +120,30 @@ export default function EditDocumentPage({
   const otherUsers = (pendingChanges || []).filter((c) => c.userId !== userId);
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white">
+    <div className="flex-1 bg-[#0a0a0a] text-white">
       {/* Header */}
-      <div className="border-b border-neutral-900 bg-black/50 backdrop-blur sticky top-0 z-10">
-        <div className="max-w-7xl mx-auto px-8 py-4">
+      <div className="border-b border-neutral-900 bg-black/50 backdrop-blur sticky top-14 z-10">
+        <div className="px-8 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <Link
-                href="/admin"
-                className="text-neutral-400 hover:text-white transition-colors"
-              >
-                <ArrowLeft className="w-5 h-5" />
-              </Link>
-              <div>
-                <input
-                  type="text"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                  className="bg-transparent text-xl font-bold border-none outline-none focus:text-[#d9ff00] transition-colors"
-                  placeholder="Document title"
-                />
-                <div className="flex items-center gap-2 text-sm text-neutral-500 mt-1">
-                  <span>/{document.slug}</span>
-                  {otherUsers.length > 0 && (
-                    <>
-                      <span>•</span>
-                      <div className="flex items-center gap-1">
-                        <Users className="w-3 h-3" />
-                        <span>{otherUsers.length} other{otherUsers.length === 1 ? '' : 's'} editing</span>
-                      </div>
-                    </>
-                  )}
-                </div>
+            <div className="flex-1">
+              <input
+                type="text"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                className="bg-transparent text-xl font-bold border-none outline-none focus:text-[#d9ff00] transition-colors w-full"
+                placeholder="Document title"
+              />
+              <div className="flex items-center gap-2 text-sm text-neutral-500 mt-1">
+                <span>/{document.slug}</span>
+                {otherUsers.length > 0 && (
+                  <>
+                    <span>•</span>
+                    <div className="flex items-center gap-1">
+                      <Users className="w-3 h-3" />
+                      <span>{otherUsers.length} other{otherUsers.length === 1 ? '' : 's'} editing</span>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
 
@@ -175,7 +168,7 @@ export default function EditDocumentPage({
       </div>
 
       {/* Editor */}
-      <div className="max-w-7xl mx-auto px-8 py-8">
+      <div className="px-8 py-8">
         <div className="grid grid-cols-2 gap-8">
           {/* Markdown Input */}
           <div>
