@@ -1,6 +1,6 @@
 'use client';
 
-import { SidebarProvider, Sidebar, SidebarContent, SidebarTrigger } from '@/components/ui/sidebar';
+import { SidebarProvider, Sidebar, SidebarContent, SidebarFooter, SidebarTrigger } from '@/components/ui/sidebar';
 import { SidebarNav } from './sidebar-nav';
 import { NavItem } from '@/lib/markdown';
 import Link from 'next/link';
@@ -85,22 +85,21 @@ export function GTMLayout({ children, navigation }: GTMLayoutProps) {
 
             <SidebarNav items={navigation} />
           </SidebarContent>
+          <SidebarFooter className="p-4 border-t border-neutral-200 dark:border-neutral-800">
+            <button
+              onClick={handleLogout}
+              className="flex items-center gap-2 w-full px-3 py-2 text-sm text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-md transition-colors"
+            >
+              <LogOut className="w-4 h-4" />
+              <span>Logout</span>
+            </button>
+          </SidebarFooter>
         </Sidebar>
         <main className="flex-1 flex flex-col min-w-0 relative h-screen">
           <div className="sticky top-0 z-10 bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-neutral-200 dark:border-neutral-900 px-4 py-3 flex items-center justify-between">
             <SidebarTrigger className="text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white" />
-            <div className="flex items-center gap-3">
-              <button
-                onClick={handleLogout}
-                className="flex items-center gap-2 px-3 py-1.5 text-sm text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors"
-                title="Logout"
-              >
-                <LogOut className="w-4 h-4" />
-                <span className="hidden sm:inline">Logout</span>
-              </button>
-              <div className="md:hidden">
-                <ThemeToggle />
-              </div>
+            <div className="md:hidden">
+              <ThemeToggle />
             </div>
           </div>
           <div id="main-scroll-container" className="flex-1 overflow-y-auto overflow-x-hidden min-w-0 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-neutral-300 [&::-webkit-scrollbar-thumb]:rounded-full dark:[&::-webkit-scrollbar-thumb]:bg-neutral-700">
