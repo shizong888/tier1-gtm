@@ -48,7 +48,7 @@ export default function AdminDashboard() {
               <Link
                 key={doc._id}
                 href={`/admin/edit/${doc._id}`}
-                className="group block p-6 border border-neutral-900 rounded-lg hover:border-[#d9ff00]/30 transition-all"
+                className="group block p-6 border border-neutral-200 dark:border-neutral-900 rounded-lg hover:border-[#d9ff00]/30 transition-all"
               >
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
@@ -58,7 +58,7 @@ export default function AdminDashboard() {
                         {doc.title}
                       </h3>
                     </div>
-                    <div className="flex items-center gap-4 text-sm text-neutral-500">
+                    <div className="flex items-center gap-4 text-sm text-neutral-500 dark:text-neutral-500">
                       <span>/{doc.slug}</span>
                       <span>•</span>
                       <span>Order: {doc.order}</span>
@@ -69,7 +69,7 @@ export default function AdminDashboard() {
                       </span>
                     </div>
                   </div>
-                  <div className="text-neutral-600 group-hover:text-[#d9ff00] transition-colors">
+                  <div className="text-neutral-600 dark:text-neutral-600 group-hover:text-[#d9ff00] transition-colors">
                     →
                   </div>
                 </div>

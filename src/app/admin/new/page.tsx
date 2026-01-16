@@ -59,15 +59,15 @@ export default function NewDocumentPage() {
   };
 
   return (
-    <div className="flex-1 bg-[#0a0a0a] text-white">
+    <div className="flex-1 bg-white dark:bg-[#0a0a0a] text-black dark:text-white">
       {/* Header */}
-      <div className="border-b border-neutral-900 bg-black/50 backdrop-blur sticky top-14 z-10">
+      <div className="border-b border-neutral-200 dark:border-neutral-900 bg-white/50 dark:bg-black/50 backdrop-blur sticky top-14 z-10">
         <div className="px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               <Link
                 href="/admin"
-                className="text-neutral-400 hover:text-white transition-colors"
+                className="text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors"
               >
                 <ArrowLeft className="w-5 h-5" />
               </Link>
@@ -91,14 +91,14 @@ export default function NewDocumentPage() {
         <div className="space-y-6">
           {/* Title */}
           <div>
-            <label className="block text-sm font-bold text-neutral-400 mb-2">
+            <label className="block text-sm font-bold text-neutral-600 dark:text-neutral-400 mb-2">
               Document Title
             </label>
             <input
               type="text"
               value={title}
               onChange={(e) => handleTitleChange(e.target.value)}
-              className="w-full bg-neutral-950 border border-neutral-900 rounded-lg p-4 text-white focus:outline-none focus:ring-2 focus:ring-[#d9ff00] focus:border-transparent"
+              className="w-full bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-900 rounded-lg p-4 text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-[#d9ff00] focus:border-transparent"
               placeholder="e.g., Executive Summary"
               autoFocus
             />
@@ -106,38 +106,38 @@ export default function NewDocumentPage() {
 
           {/* Slug */}
           <div>
-            <label className="block text-sm font-bold text-neutral-400 mb-2">
+            <label className="block text-sm font-bold text-neutral-600 dark:text-neutral-400 mb-2">
               URL Slug
             </label>
             <div className="flex items-center gap-2">
-              <span className="text-neutral-500">/</span>
+              <span className="text-neutral-500 dark:text-neutral-500">/</span>
               <input
                 type="text"
                 value={slug}
                 onChange={(e) => setSlug(e.target.value)}
-                className="flex-1 bg-neutral-950 border border-neutral-900 rounded-lg p-4 text-white font-mono text-sm focus:outline-none focus:ring-2 focus:ring-[#d9ff00] focus:border-transparent"
+                className="flex-1 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-900 rounded-lg p-4 text-black dark:text-white font-mono text-sm focus:outline-none focus:ring-2 focus:ring-[#d9ff00] focus:border-transparent"
                 placeholder="e.g., executive-summary"
               />
             </div>
-            <p className="mt-2 text-xs text-neutral-500">
+            <p className="mt-2 text-xs text-neutral-500 dark:text-neutral-500">
               This will be the URL path for your document. Use lowercase letters, numbers, and hyphens only.
             </p>
           </div>
 
           {/* Initial Content */}
           <div>
-            <label className="block text-sm font-bold text-neutral-400 mb-2">
+            <label className="block text-sm font-bold text-neutral-600 dark:text-neutral-400 mb-2">
               Initial Content (Optional)
             </label>
             <textarea
               value={content}
               onChange={(e) => setContent(e.target.value)}
-              className="w-full h-64 bg-neutral-950 border border-neutral-900 rounded-lg p-4 text-neutral-300 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-[#d9ff00] focus:border-transparent resize-none"
+              className="w-full h-64 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-900 rounded-lg p-4 text-neutral-700 dark:text-neutral-300 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-[#d9ff00] focus:border-transparent resize-none"
               placeholder="# Document Title
 
 Start writing your markdown content here..."
             />
-            <p className="mt-2 text-xs text-neutral-500">
+            <p className="mt-2 text-xs text-neutral-500 dark:text-neutral-500">
               You can edit this content after creating the document.
             </p>
           </div>

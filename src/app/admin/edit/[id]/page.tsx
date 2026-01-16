@@ -119,17 +119,17 @@ export default function EditDocumentPage({
 
   if (document === undefined) {
     return (
-      <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center">
-        <div className="text-neutral-400">Loading document...</div>
+      <div className="min-h-screen bg-white dark:bg-[#0a0a0a] flex items-center justify-center">
+        <div className="text-neutral-600 dark:text-neutral-400">Loading document...</div>
       </div>
     );
   }
 
   if (document === null) {
     return (
-      <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center">
+      <div className="min-h-screen bg-white dark:bg-[#0a0a0a] flex items-center justify-center">
         <div className="text-center">
-          <p className="text-neutral-400 mb-4">Document not found</p>
+          <p className="text-neutral-600 dark:text-neutral-400 mb-4">Document not found</p>
           <Link
             href="/admin"
             className="text-[#d9ff00] hover:underline"
@@ -144,9 +144,9 @@ export default function EditDocumentPage({
   const otherUsers = (pendingChanges || []).filter((c) => c.userId !== userId);
 
   return (
-    <div className="flex-1 bg-[#0a0a0a] text-white">
+    <div className="flex-1 bg-white dark:bg-[#0a0a0a] text-black dark:text-white">
       {/* Header */}
-      <div className="border-b border-neutral-900 bg-black/50 backdrop-blur sticky top-14 z-10">
+      <div className="border-b border-neutral-200 dark:border-neutral-900 bg-white/50 dark:bg-black/50 backdrop-blur sticky top-14 z-10">
         <div className="px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex-1">
@@ -157,7 +157,7 @@ export default function EditDocumentPage({
                 className="bg-transparent text-xl font-bold border-none outline-none focus:text-[#d9ff00] transition-colors w-full"
                 placeholder="Document title"
               />
-              <div className="flex items-center gap-2 text-sm text-neutral-500 mt-1">
+              <div className="flex items-center gap-2 text-sm text-neutral-500 dark:text-neutral-500 mt-1">
                 <span>/{document.slug}</span>
                 {otherUsers.length > 0 && (
                   <>
@@ -173,7 +173,7 @@ export default function EditDocumentPage({
 
             <div className="flex items-center gap-3">
               {hasPendingChanges && (
-                <div className="flex items-center gap-2 text-sm text-yellow-500">
+                <div className="flex items-center gap-2 text-sm text-yellow-500 dark:text-yellow-500">
                   <AlertCircle className="w-4 h-4" />
                   <span>Unsaved changes</span>
                 </div>
@@ -196,13 +196,13 @@ export default function EditDocumentPage({
         {/* Header Configuration */}
         <div className="mb-6 space-y-4">
           <div>
-            <label className="block text-sm font-bold text-neutral-400 mb-2">
+            <label className="block text-sm font-bold text-neutral-600 dark:text-neutral-400 mb-2">
               Header Animation Style
             </label>
             <select
               value={headerStyle}
               onChange={(e) => setHeaderStyle(e.target.value)}
-              className="w-full bg-neutral-950 border border-neutral-900 rounded-lg p-3 text-white focus:outline-none focus:ring-2 focus:ring-[#d9ff00] focus:border-transparent"
+              className="w-full bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-900 rounded-lg p-3 text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-[#d9ff00] focus:border-transparent"
             >
               <option value="">Select a header style...</option>
               {HEADER_STYLES.map((style) => (
@@ -216,38 +216,38 @@ export default function EditDocumentPage({
           {headerStyle && headerStyle !== 'none' && (
             <div className="grid grid-cols-3 gap-4">
               <div>
-                <label className="block text-xs font-bold text-neutral-500 mb-2">
+                <label className="block text-xs font-bold text-neutral-500 dark:text-neutral-500 mb-2">
                   Header Label (top)
                 </label>
                 <input
                   type="text"
                   value={headerLabel}
                   onChange={(e) => setHeaderLabel(e.target.value)}
-                  className="w-full bg-neutral-950 border border-neutral-900 rounded-lg p-2 text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#d9ff00] focus:border-transparent"
+                  className="w-full bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-900 rounded-lg p-2 text-black dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#d9ff00] focus:border-transparent"
                   placeholder="e.g., Participant Segments"
                 />
               </div>
               <div>
-                <label className="block text-xs font-bold text-neutral-500 mb-2">
+                <label className="block text-xs font-bold text-neutral-500 dark:text-neutral-500 mb-2">
                   Header Title (main)
                 </label>
                 <input
                   type="text"
                   value={headerTitle}
                   onChange={(e) => setHeaderTitle(e.target.value)}
-                  className="w-full bg-neutral-950 border border-neutral-900 rounded-lg p-2 text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#d9ff00] focus:border-transparent"
+                  className="w-full bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-900 rounded-lg p-2 text-black dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#d9ff00] focus:border-transparent"
                   placeholder="e.g., Target Audience"
                 />
               </div>
               <div>
-                <label className="block text-xs font-bold text-neutral-500 mb-2">
+                <label className="block text-xs font-bold text-neutral-500 dark:text-neutral-500 mb-2">
                   Header Accent (bottom)
                 </label>
                 <input
                   type="text"
                   value={headerAccent}
                   onChange={(e) => setHeaderAccent(e.target.value)}
-                  className="w-full bg-neutral-950 border border-neutral-900 rounded-lg p-2 text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#d9ff00] focus:border-transparent"
+                  className="w-full bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-900 rounded-lg p-2 text-black dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#d9ff00] focus:border-transparent"
                   placeholder="e.g., Bridging Institutions and Retail"
                 />
               </div>
@@ -258,7 +258,7 @@ export default function EditDocumentPage({
         <div className="grid grid-cols-2 gap-8">
           {/* Content Editor */}
           <div>
-            <label className="block text-sm font-bold text-neutral-400 mb-2">
+            <label className="block text-sm font-bold text-neutral-600 dark:text-neutral-400 mb-2">
               Content Editor
             </label>
             <YooptaEditorWrapper
@@ -269,10 +269,10 @@ export default function EditDocumentPage({
 
           {/* Preview */}
           <div>
-            <label className="block text-sm font-bold text-neutral-400 mb-2">
+            <label className="block text-sm font-bold text-neutral-600 dark:text-neutral-400 mb-2">
               Preview
             </label>
-            <div className="h-[calc(100vh-280px)] bg-neutral-950 border border-neutral-900 rounded-lg p-8 overflow-auto">
+            <div className="h-[calc(100vh-280px)] bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-900 rounded-lg p-8 overflow-auto">
               {headerStyle && (
                 <AnimatedHeader
                   style={headerStyle}
@@ -288,8 +288,8 @@ export default function EditDocumentPage({
 
         {/* Active Users Indicator */}
         {otherUsers.length > 0 && (
-          <div className="mt-4 p-4 bg-neutral-950 border border-neutral-900 rounded-lg">
-            <div className="flex items-center gap-2 text-sm text-neutral-400">
+          <div className="mt-4 p-4 bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-900 rounded-lg">
+            <div className="flex items-center gap-2 text-sm text-neutral-600 dark:text-neutral-400">
               <Users className="w-4 h-4" />
               <span>
                 {otherUsers.length} {otherUsers.length === 1 ? 'person is' : 'people are'} currently editing this document

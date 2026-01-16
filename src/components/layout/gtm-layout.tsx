@@ -33,7 +33,7 @@ export function GTMLayout({ children, navigation }: GTMLayoutProps) {
               <ThemeToggle />
             </div>
           </div>
-          <div id="main-scroll-container" className="flex-1 overflow-y-auto overflow-x-hidden min-w-0">
+          <div id="main-scroll-container" className="flex-1 overflow-y-auto overflow-x-hidden min-w-0 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-neutral-300 [&::-webkit-scrollbar-thumb]:rounded-full dark:[&::-webkit-scrollbar-thumb]:bg-neutral-700">
             <div className="w-full mx-auto px-8 py-8 max-w-[1400px]">
               {children}
             </div>

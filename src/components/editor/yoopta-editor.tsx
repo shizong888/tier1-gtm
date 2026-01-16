@@ -21,12 +21,12 @@ export function YooptaEditorWrapper({ value, onChange }: YooptaEditorWrapperProp
   };
 
   return (
-    <div className="bg-neutral-950 border border-neutral-900 rounded-lg overflow-hidden">
+    <div className="bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-900 rounded-lg overflow-hidden">
       <textarea
         value={content}
         onChange={handleChange}
         placeholder="Enter markdown content..."
-        className="w-full h-[calc(100vh-280px)] bg-neutral-950 text-neutral-300 p-6 resize-none outline-none font-mono text-sm leading-relaxed"
+        className="w-full h-[calc(100vh-280px)] bg-white dark:bg-neutral-950 text-neutral-700 dark:text-neutral-300 p-6 resize-none outline-none font-mono text-sm leading-relaxed"
         spellCheck={false}
       />
     </div>
