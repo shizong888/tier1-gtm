@@ -1,11 +1,11 @@
 import { Metadata } from 'next';
-import { HomePageClient } from '@/components/pages/home-page-client';
+import { SinglePageClient } from '@/components/pages/single-page-client';
 
 export const metadata: Metadata = {
-  title: 'Home | Tier 1 GTM Strategy',
-  description: 'Tier 1 Go-To-Market Strategy',
+  title: 'Tier 1 GTM Strategy',
+  description: 'Tier 1 Go-To-Market Strategy - Execution Layer for Professional Trading',
 };
 
 export default function Home() {
-  return <HomePageClient />;
+  return <SinglePageClient />;
 }

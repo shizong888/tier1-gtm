@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { SlugPageClient } from '@/components/pages/slug-page-client';
+import { redirect } from 'next/navigation';
 import { getDocumentBySlug } from '@/lib/convex-server';
 
 export const dynamic = 'force-dynamic';
@@ -28,5 +28,6 @@ export async function generateMetadata({ params }: GTMPageProps): Promise<Metada
 
 export default async function GTMPage({ params }: GTMPageProps) {
   const { slug } = await params;
-  return <SlugPageClient slug={slug} />;
+  // Redirect to home page with hash anchor
+  redirect(`/#${slug}`);
 }
