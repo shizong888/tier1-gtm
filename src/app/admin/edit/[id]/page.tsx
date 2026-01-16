@@ -7,6 +7,7 @@ import { use, useEffect, useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { ArrowLeft, Save, Users, AlertCircle } from 'lucide-react';
 import Link from 'next/link';
+import { MarkdownContent } from '@/components/markdown/markdown-content';
 
 export default function EditDocumentPage({
   params,
@@ -194,16 +195,8 @@ export default function EditDocumentPage({
             <label className="block text-sm font-bold text-neutral-400 mb-2">
               Preview
             </label>
-            <div className="h-[calc(100vh-300px)] bg-neutral-950 border border-neutral-900 rounded-lg p-4 overflow-auto prose prose-invert prose-neutral max-w-none">
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: content
-                    .replace(/^### /gm, '<h3>')
-                    .replace(/^## /gm, '<h2>')
-                    .replace(/^# /gm, '<h1>')
-                    .replace(/\n/g, '<br/>'),
-                }}
-              />
+            <div className="h-[calc(100vh-300px)] bg-neutral-950 border border-neutral-900 rounded-lg p-8 overflow-auto">
+              <MarkdownContent content={content} />
             </div>
           </div>
         </div>
