@@ -1,8 +1,8 @@
-import { internalMutation } from "./_generated/server";
+import { mutation } from "./_generated/server";
 import { v } from "convex/values";
 
 // This mutation can be called once to populate the database with initial documents
-export const seedDocuments = internalMutation({
+export const seedDocuments = mutation({
   args: {
     documents: v.array(
       v.object({
