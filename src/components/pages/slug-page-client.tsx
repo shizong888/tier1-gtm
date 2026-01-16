@@ -86,7 +86,11 @@ export function SlugPageClient({ slug }: SlugPageClientProps) {
   const nextPage = currentIndex < navigation.length - 1 ? navigation[currentIndex + 1] : null;
 
   return (
-    <GTMLayout navigation={navigation}>
+    <GTMLayout
+      navigation={navigation}
+      documentTitle={document.title}
+      documentContent={document.content}
+    >
       {document.headerStyle && document.headerStyle !== 'none' ? (
         <AnimatedHeader
           style={document.headerStyle}

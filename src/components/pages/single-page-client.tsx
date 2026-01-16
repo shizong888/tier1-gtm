@@ -54,8 +54,17 @@ export function SinglePageClient() {
     href: `#${doc.slug}`,
   }));
 
+  // Combine all documents for export
+  const combinedContent = sortedDocs
+    .map(doc => `# ${doc.title}\n\n${doc.content}`)
+    .join('\n\n---\n\n');
+
   return (
-    <GTMLayout navigation={navigation}>
+    <GTMLayout
+      navigation={navigation}
+      documentTitle="Tier 1 Go-To-Market Strategy"
+      documentContent={combinedContent}
+    >
       {sortedDocs.map((doc, index) => (
         <section
           key={doc.slug}

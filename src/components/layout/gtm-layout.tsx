@@ -11,13 +11,16 @@ import { useQuery } from 'convex/react';
 import { api } from '../../../convex/_generated/api';
 import { Skeleton } from '@/components/ui/skeleton';
 import { DocumentSearch } from '@/components/search/document-search';
+import { ExportButton } from '@/components/export/export-button';
 
 interface GTMLayoutProps {
   children: React.ReactNode;
   navigation: NavItem[];
+  documentTitle?: string;
+  documentContent?: string;
 }
 
-export function GTMLayout({ children, navigation }: GTMLayoutProps) {
+export function GTMLayout({ children, navigation, documentTitle, documentContent }: GTMLayoutProps) {
   const router = useRouter();
   const lightLogoUrl = useQuery(api.settings.getLogoUrl, { mode: 'light' });
   const darkLogoUrl = useQuery(api.settings.getLogoUrl, { mode: 'dark' });
@@ -97,7 +100,10 @@ export function GTMLayout({ children, navigation }: GTMLayoutProps) {
         <main className="flex-1 flex flex-col min-w-0 relative h-screen">
           <div className="sticky top-0 z-10 bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-neutral-200 dark:border-neutral-900 px-4 py-3 flex items-center justify-between">
             <SidebarTrigger className="text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white" />
-            <ThemeToggle />
+            <div className="flex items-center gap-2">
+              <ExportButton documentTitle={documentTitle} documentContent={documentContent} />
+              <ThemeToggle />
+            </div>
           </div>
           <div id="main-scroll-container" className="flex-1 overflow-y-auto overflow-x-hidden min-w-0 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-neutral-300 [&::-webkit-scrollbar-thumb]:rounded-full dark:[&::-webkit-scrollbar-thumb]:bg-neutral-700">
             <div className="w-full mx-auto px-8 py-8 max-w-[1400px]">
