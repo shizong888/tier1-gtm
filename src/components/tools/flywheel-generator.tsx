@@ -218,7 +218,7 @@ export function FlywheelGenerator() {
       ctx.fillRect(x - cardWidth / 2, y - cardHeight / 2, cardWidth, cardHeight);
 
       // Draw white border
-      ctx.strokeStyle = '#9ca3af';
+      ctx.strokeStyle = '#ffffff';
       ctx.lineWidth = 1;
       ctx.strokeRect(x - cardWidth / 2, y - cardHeight / 2, cardWidth, cardHeight);
 
