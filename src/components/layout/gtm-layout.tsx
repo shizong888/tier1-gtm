@@ -9,6 +9,7 @@ import { LogOut } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useQuery } from 'convex/react';
 import { api } from '../../../convex/_generated/api';
+import { Skeleton } from '@/components/ui/skeleton';
 
 interface GTMLayoutProps {
   children: React.ReactNode;
@@ -34,7 +35,9 @@ export function GTMLayout({ children, navigation }: GTMLayoutProps) {
           <SidebarContent className="p-4 bg-neutral-50 dark:bg-neutral-950">
             <div className="mb-8 mt-4 px-3 flex items-center justify-between">
               <Link href="/" className="flex items-center">
-                {lightLogoUrl || darkLogoUrl ? (
+                {lightLogoUrl === undefined && darkLogoUrl === undefined ? (
+                  <Skeleton className="h-6 w-24 rounded-sm" />
+                ) : lightLogoUrl || darkLogoUrl ? (
                   <>
                     {lightLogoUrl && (
                       <img
