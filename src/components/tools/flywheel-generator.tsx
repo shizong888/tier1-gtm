@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { Plus, Trash2, Download, GripVertical, Upload, Code } from 'lucide-react';
+import { Plus, Trash2, Download, GripVertical, Upload } from 'lucide-react';
 import { useMutation } from 'convex/react';
 import { api } from '../../../convex/_generated/api';
 import {
@@ -218,7 +218,7 @@ export function FlywheelGenerator() {
       ctx.fillRect(x - cardWidth / 2, y - cardHeight / 2, cardWidth, cardHeight);
 
       // Draw white border
-      ctx.strokeStyle = '#ffffff';
+      ctx.strokeStyle = '#9ca3af';
       ctx.lineWidth = 1;
       ctx.strokeRect(x - cardWidth / 2, y - cardHeight / 2, cardWidth, cardHeight);
 
@@ -257,7 +257,7 @@ export function FlywheelGenerator() {
       const col = index % cardsPerRow;
       const isEvenRow = currentRow % 2 === 0;
 
-      ctx.strokeStyle = '#ffffff';
+      ctx.strokeStyle = '#9ca3af';
       ctx.lineWidth = 2;
 
       // Draw horizontal arrows within the same row
@@ -275,7 +275,7 @@ export function FlywheelGenerator() {
           ctx.stroke();
 
           // Arrow head pointing right
-          ctx.fillStyle = '#ffffff';
+          ctx.fillStyle = '#9ca3af';
           ctx.beginPath();
           ctx.moveTo(arrowX + arrowWidth, arrowY);
           ctx.lineTo(arrowX + arrowWidth - 8, arrowY - 4);
@@ -296,7 +296,7 @@ export function FlywheelGenerator() {
           ctx.stroke();
 
           // Arrow head pointing left
-          ctx.fillStyle = '#ffffff';
+          ctx.fillStyle = '#9ca3af';
           ctx.beginPath();
           ctx.moveTo(arrowX - arrowWidth, arrowY);
           ctx.lineTo(arrowX - arrowWidth + 8, arrowY - 4);
@@ -335,7 +335,7 @@ export function FlywheelGenerator() {
             ctx.stroke();
 
             // Arrow head pointing left into card
-            ctx.fillStyle = '#ffffff';
+            ctx.fillStyle = '#9ca3af';
             ctx.beginPath();
             ctx.moveTo(lastCardInNextRow.x + cardWidth / 2, lastCardInNextRow.y);
             ctx.lineTo(lastCardInNextRow.x + cardWidth / 2 + 8, lastCardInNextRow.y - 4);
@@ -362,7 +362,7 @@ export function FlywheelGenerator() {
             ctx.stroke();
 
             // Arrow head pointing right into card
-            ctx.fillStyle = '#ffffff';
+            ctx.fillStyle = '#9ca3af';
             ctx.beginPath();
             ctx.moveTo(firstCardInNextRow.x - cardWidth / 2, firstCardInNextRow.y);
             ctx.lineTo(firstCardInNextRow.x - cardWidth / 2 - 8, firstCardInNextRow.y - 4);
@@ -380,7 +380,7 @@ export function FlywheelGenerator() {
       const lastRow = Math.floor((cards.length - 1) / cardsPerRow);
       const isLastRowOdd = lastRow % 2 === 1;
 
-      ctx.strokeStyle = '#ffffff';
+      ctx.strokeStyle = '#9ca3af';
       ctx.lineWidth = 2;
 
       if (isLastRowOdd) {
@@ -405,7 +405,7 @@ export function FlywheelGenerator() {
         ctx.stroke();
 
         // Arrow head pointing right into first card (at vertical center)
-        ctx.fillStyle = '#ffffff';
+        ctx.fillStyle = '#9ca3af';
         ctx.beginPath();
         ctx.moveTo(firstPos.x - cardWidth / 2, firstPos.y);
         ctx.lineTo(firstPos.x - cardWidth / 2 - 8, firstPos.y - 4);
@@ -444,7 +444,7 @@ export function FlywheelGenerator() {
         ctx.stroke();
 
         // Arrow head pointing right into first card
-        ctx.fillStyle = '#ffffff';
+        ctx.fillStyle = '#9ca3af';
         ctx.beginPath();
         ctx.moveTo(firstPos.x - cardWidth / 2, firstPos.y);
         ctx.lineTo(firstPos.x - cardWidth / 2 - 8, firstPos.y - 4);
@@ -520,21 +520,6 @@ export function FlywheelGenerator() {
     }
   };
 
-  const copyMarkdown = () => {
-    const config = {
-      cards: cards.map(card => card.text),
-      cardsPerRow,
-      horizontalGap: horizontalGapSize,
-      verticalGap: verticalGapSize,
-      showReturnArrow,
-    };
-
-    const markdown = '```flywheel\n' + JSON.stringify(config, null, 2) + '\n```';
-
-    navigator.clipboard.writeText(markdown);
-    alert('Markdown copied to clipboard! Paste it into your document editor.');
-  };
-
   return (
     <div className="flex-1 bg-white dark:bg-[#0a0a0a] text-black dark:text-white">
       {/* Header */}
@@ -549,13 +534,6 @@ export function FlywheelGenerator() {
             </div>
 
             <div className="flex items-center gap-2">
-              <button
-                onClick={copyMarkdown}
-                className="flex items-center gap-2 px-4 py-2 bg-neutral-100 dark:bg-neutral-900 text-black dark:text-white font-semibold rounded-lg hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-colors"
-              >
-                <Code className="w-4 h-4" />
-                Copy Markdown
-              </button>
               <button
                 onClick={uploadToConvex}
                 disabled={isUploading}

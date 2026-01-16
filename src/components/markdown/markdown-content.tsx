@@ -4,7 +4,6 @@ import rehypeRaw from 'rehype-raw';
 import React from 'react';
 import { ChevronRight, RefreshCw, ArrowRight } from 'lucide-react';
 import { MermaidDiagram } from './mermaid-diagram';
-import { FlywheelDiagram } from './flywheel-diagram';
 import {
   Table,
   TableBody,
@@ -638,27 +637,6 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
 
             if (language === 'mermaid') {
               return <MermaidDiagram chart={String(children)} />;
-            }
-
-            if (language === 'flywheel') {
-              try {
-                const config = JSON.parse(String(children));
-                return (
-                  <FlywheelDiagram
-                    cards={config.cards}
-                    cardsPerRow={config.cardsPerRow}
-                    horizontalGap={config.horizontalGap}
-                    verticalGap={config.verticalGap}
-                    showReturnArrow={config.showReturnArrow}
-                  />
-                );
-              } catch (e) {
-                return (
-                  <div className="text-red-500 p-4 border border-red-500 rounded">
-                    Invalid flywheel configuration
-                  </div>
-                );
-              }
             }
 
             if (isInline) {
