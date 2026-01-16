@@ -95,11 +95,11 @@ export function SlugPageClient({ slug }: SlugPageClientProps) {
           accent={document.headerAccent || ''}
         />
       ) : (
-        <div className="mb-8 pb-8 border-b border-neutral-900">
-          <h1 className="text-sm font-medium text-brand tracking-[0.3em] mb-4">
+        <div className="mb-8 pb-8 border-b border-neutral-200 dark:border-neutral-900">
+          <h1 className="text-sm font-medium text-neutral-600 dark:text-brand tracking-[0.3em] mb-4">
             Tier 1 Go-To-Market Strategy
           </h1>
-          <h2 className="text-4xl md:text-5xl font-medium text-white tracking-tighter">
+          <h2 className="text-4xl md:text-5xl font-medium text-black dark:text-white tracking-tighter">
             {document.title}
           </h2>
         </div>

@@ -105,7 +105,7 @@ export function SinglePageClient() {
                 </>
               ) : (
                 <>
-                  <h1 className="text-sm font-medium text-brand tracking-[0.3em] mb-4">
+                  <h1 className="text-sm font-medium text-neutral-600 dark:text-brand tracking-[0.3em] mb-4">
                     Tier 1 Go-To-Market Strategy
                   </h1>
                   <h2 className="text-4xl md:text-5xl font-medium text-black dark:text-white tracking-tighter">
