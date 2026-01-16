@@ -8,6 +8,75 @@ export const list = query({
   },
 });
 
+// Search documents by content and title
+export const search = query({
+  args: { query: v.string() },
+  handler: async (ctx, args) => {
+    const searchQuery = args.query.trim().toLowerCase();
+
+    if (!searchQuery) {
+      return [];
+    }
+
+    // Get all non-hidden documents
+    const allDocs = await ctx.db
+      .query("documents")
+      .withIndex("by_order")
+      .collect();
+
+    const visibleDocs = allDocs.filter(doc => !doc.hidden);
+
+    // Search and score results
+    const results = visibleDocs
+      .map(doc => {
+        const titleLower = doc.title.toLowerCase();
+        const contentLower = doc.content.toLowerCase();
+
+        // Check if title matches
+        const titleMatch = titleLower.includes(searchQuery);
+
+        // Find all content matches with context
+        const matches: Array<{ text: string; position: number }> = [];
+        let position = contentLower.indexOf(searchQuery);
+
+        while (position !== -1 && matches.length < 3) {
+          // Extract context (50 chars before and after)
+          const start = Math.max(0, position - 50);
+          const end = Math.min(doc.content.length, position + searchQuery.length + 50);
+          let snippet = doc.content.substring(start, end);
+
+          // Add ellipsis if truncated
+          if (start > 0) snippet = "..." + snippet;
+          if (end < doc.content.length) snippet = snippet + "...";
+
+          matches.push({
+            text: snippet,
+            position: position,
+          });
+
+          position = contentLower.indexOf(searchQuery, position + 1);
+        }
+
+        // Calculate score (title matches are worth more)
+        const score = titleMatch ? 100 + matches.length : matches.length;
+
+        return {
+          _id: doc._id,
+          title: doc.title,
+          slug: doc.slug,
+          order: doc.order,
+          titleMatch,
+          matches,
+          score,
+        };
+      })
+      .filter(result => result.score > 0)
+      .sort((a, b) => b.score - a.score);
+
+    return results;
+  },
+});
+
 // Get a single document by slug
 export const getBySlug = query({
   args: { slug: v.string() },

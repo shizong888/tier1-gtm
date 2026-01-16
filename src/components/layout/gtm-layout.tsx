@@ -10,6 +10,7 @@ import { useRouter } from 'next/navigation';
 import { useQuery } from 'convex/react';
 import { api } from '../../../convex/_generated/api';
 import { Skeleton } from '@/components/ui/skeleton';
+import { DocumentSearch } from '@/components/search/document-search';
 
 interface GTMLayoutProps {
   children: React.ReactNode;
@@ -76,6 +77,12 @@ export function GTMLayout({ children, navigation }: GTMLayoutProps) {
               </Link>
               <ThemeToggle />
             </div>
+
+            {/* Search */}
+            <div className="mb-6 px-3">
+              <DocumentSearch />
+            </div>
+
             <SidebarNav items={navigation} />
           </SidebarContent>
         </Sidebar>
