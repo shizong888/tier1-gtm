@@ -26,4 +26,15 @@ export default defineSchema({
   })
     .index("by_document", ["documentId"])
     .index("by_user_and_document", ["userId", "documentId"]),
+
+  // Media files (images, etc.)
+  media: defineTable({
+    filename: v.string(),
+    storageId: v.id("_storage"),
+    contentType: v.string(),
+    size: v.number(),
+    uploadedAt: v.number(),
+    uploadedBy: v.optional(v.string()),
+  })
+    .index("by_uploaded_at", ["uploadedAt"]),
 });

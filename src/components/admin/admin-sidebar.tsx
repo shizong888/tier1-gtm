@@ -5,7 +5,7 @@ import { api } from '../../../convex/_generated/api';
 import { Id } from '../../../convex/_generated/dataModel';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { FileText, Plus, Trash2, Home, GripVertical } from 'lucide-react';
+import { FileText, Plus, Trash2, Home, GripVertical, Workflow, Image } from 'lucide-react';
 import {
   Sidebar,
   SidebarContent,
@@ -196,6 +196,22 @@ export function AdminSidebar() {
                   <Link href="/admin/new">
                     <Plus className="w-4 h-4" />
                     <span>New Document</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild isActive={pathname === '/admin/tools/flywheel'}>
+                  <Link href="/admin/tools/flywheel">
+                    <Workflow className="w-4 h-4" />
+                    <span>Flywheel Generator</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild isActive={pathname === '/admin/media'}>
+                  <Link href="/admin/media">
+                    <Image className="w-4 h-4" />
+                    <span>Media Library</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>

@@ -5,6 +5,8 @@ import { SidebarNav } from './sidebar-nav';
 import { NavItem } from '@/lib/markdown';
 import Link from 'next/link';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
+import { LogOut } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 interface GTMLayoutProps {
   children: React.ReactNode;
@@ -12,6 +14,15 @@ interface GTMLayoutProps {
 }
 
 export function GTMLayout({ children, navigation }: GTMLayoutProps) {
+  const router = useRouter();
+
+  const handleLogout = () => {
+    // Clear the auth cookie
+    document.cookie = 'tier1-auth=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+    // Redirect to login page
+    router.push('/login');
+  };
+
   return (
     <SidebarProvider>
       <div className="flex min-h-screen w-full bg-white dark:bg-black text-black dark:text-white">
@@ -29,8 +40,18 @@ export function GTMLayout({ children, navigation }: GTMLayoutProps) {
         <main className="flex-1 flex flex-col min-w-0 relative h-screen">
           <div className="sticky top-0 z-10 bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-neutral-200 dark:border-neutral-900 px-4 py-3 flex items-center justify-between">
             <SidebarTrigger className="text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white" />
-            <div className="md:hidden">
-              <ThemeToggle />
+            <div className="flex items-center gap-3">
+              <button
+                onClick={handleLogout}
+                className="flex items-center gap-2 px-3 py-1.5 text-sm text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors"
+                title="Logout"
+              >
+                <LogOut className="w-4 h-4" />
+                <span className="hidden sm:inline">Logout</span>
+              </button>
+              <div className="md:hidden">
+                <ThemeToggle />
+              </div>
             </div>
           </div>
           <div id="main-scroll-container" className="flex-1 overflow-y-auto overflow-x-hidden min-w-0 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-neutral-300 [&::-webkit-scrollbar-thumb]:rounded-full dark:[&::-webkit-scrollbar-thumb]:bg-neutral-700">
