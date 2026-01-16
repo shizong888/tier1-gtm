@@ -38,8 +38,26 @@ export function ExportButton({ documentTitle, documentContent }: ExportButtonPro
     printStyles.id = 'print-styles';
     printStyles.innerHTML = `
       @media print {
-        /* Hide everything except main content */
-        nav, header, footer, .sidebar, aside, [role="navigation"] {
+        /* Force light mode colors for printing */
+        * {
+          color-scheme: light !important;
+        }
+
+        html, body {
+          background: white !important;
+          color: black !important;
+        }
+
+        /* Hide all UI chrome - sidebar, nav, buttons, etc */
+        aside, nav, header, footer,
+        [role="navigation"],
+        button:not(.print-keep),
+        .sidebar,
+        [data-sidebar],
+        [class*="sidebar"],
+        [class*="Sidebar"],
+        [class*="trigger"],
+        [class*="Trigger"] {
           display: none !important;
         }
 
@@ -49,9 +67,13 @@ export function ExportButton({ documentTitle, documentContent }: ExportButtonPro
           height: auto !important;
           overflow: visible !important;
           max-height: none !important;
+          width: 100% !important;
+          max-width: 100% !important;
+          padding: 0 !important;
+          margin: 0 !important;
         }
 
-        /* Remove sticky positioning that might hide content */
+        /* Remove all positioning constraints */
         * {
           position: static !important;
         }
@@ -59,16 +81,47 @@ export function ExportButton({ documentTitle, documentContent }: ExportButtonPro
         /* Ensure all content is visible */
         body {
           overflow: visible !important;
+          padding: 2rem !important;
         }
 
-        /* Expand all sections */
-        article, section {
+        /* Remove excessive spacing between sections */
+        section {
+          margin-top: 2rem !important;
+          padding-top: 0 !important;
           page-break-inside: avoid;
         }
 
-        /* Remove borders and backgrounds for cleaner print */
-        .border-t, .border-b {
+        section:first-child {
+          margin-top: 0 !important;
+        }
+
+        /* Remove borders and backgrounds */
+        .border-t, .border-b, .border {
           border: none !important;
+        }
+
+        /* Compact headings */
+        h1, h2, h3 {
+          margin-top: 1.5rem !important;
+          margin-bottom: 0.5rem !important;
+        }
+
+        /* Remove animated headers backgrounds */
+        [class*="animate"],
+        [class*="bg-gradient"],
+        .absolute {
+          display: none !important;
+        }
+
+        /* Ensure text is readable */
+        p, li, span, div {
+          color: black !important;
+          background: transparent !important;
+        }
+
+        /* Remove brand color backgrounds */
+        [style*="background"] {
+          background: transparent !important;
         }
       }
     `;
