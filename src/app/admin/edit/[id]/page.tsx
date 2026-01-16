@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 import { ArrowLeft, Save, Users, AlertCircle } from 'lucide-react';
 import Link from 'next/link';
 import { MarkdownContent } from '@/components/markdown/markdown-content';
+import { HEADER_STYLES } from '@/lib/header-styles';
 
 export default function EditDocumentPage({
   params,
@@ -29,6 +30,7 @@ export default function EditDocumentPage({
   // Local state
   const [content, setContent] = useState('');
   const [title, setTitle] = useState('');
+  const [headerStyle, setHeaderStyle] = useState('');
   const [userId] = useState(() => `user-${Math.random().toString(36).substr(2, 9)}`);
   const [isSaving, setIsSaving] = useState(false);
   const [hasPendingChanges, setHasPendingChanges] = useState(false);
@@ -39,6 +41,7 @@ export default function EditDocumentPage({
     if (document) {
       setContent(document.content);
       setTitle(document.title);
+      setHeaderStyle(document.headerStyle || '');
     }
   }, [document]);
 
@@ -46,7 +49,7 @@ export default function EditDocumentPage({
   useEffect(() => {
     if (!document) return;
 
-    const hasChanges = content !== document.content;
+    const hasChanges = content !== document.content || title !== document.title || headerStyle !== (document.headerStyle || '');
     setHasPendingChanges(hasChanges);
 
     if (hasChanges) {
@@ -70,7 +73,7 @@ export default function EditDocumentPage({
         clearTimeout(debounceTimer.current);
       }
     };
-  }, [content, document, documentId, userId, updatePending]);
+  }, [content, title, headerStyle, document, documentId, userId, updatePending]);
 
   const handleSave = async () => {
     if (!document) return;
@@ -81,6 +84,7 @@ export default function EditDocumentPage({
         id: documentId,
         title,
         content,
+        headerStyle: headerStyle || undefined,
         userId,
       });
       setHasPendingChanges(false);
@@ -169,6 +173,25 @@ export default function EditDocumentPage({
 
       {/* Editor */}
       <div className="px-8 py-8">
+        {/* Header Style Selector */}
+        <div className="mb-6">
+          <label className="block text-sm font-bold text-neutral-400 mb-2">
+            Header Animation Style
+          </label>
+          <select
+            value={headerStyle}
+            onChange={(e) => setHeaderStyle(e.target.value)}
+            className="w-full bg-neutral-950 border border-neutral-900 rounded-lg p-3 text-white focus:outline-none focus:ring-2 focus:ring-[#d9ff00] focus:border-transparent"
+          >
+            <option value="">Select a header style...</option>
+            {HEADER_STYLES.map((style) => (
+              <option key={style.id} value={style.id}>
+                {style.name} - {style.description}
+              </option>
+            ))}
+          </select>
+        </div>
+
         <div className="grid grid-cols-2 gap-8">
           {/* Markdown Input */}
           <div>
@@ -178,7 +201,7 @@ export default function EditDocumentPage({
             <textarea
               value={content}
               onChange={(e) => setContent(e.target.value)}
-              className="w-full h-[calc(100vh-300px)] bg-neutral-950 border border-neutral-900 rounded-lg p-4 text-neutral-300 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-[#d9ff00] focus:border-transparent resize-none"
+              className="w-full h-[calc(100vh-400px)] bg-neutral-950 border border-neutral-900 rounded-lg p-4 text-neutral-300 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-[#d9ff00] focus:border-transparent resize-none"
               placeholder="Enter markdown content..."
             />
           </div>
@@ -188,7 +211,7 @@ export default function EditDocumentPage({
             <label className="block text-sm font-bold text-neutral-400 mb-2">
               Preview
             </label>
-            <div className="h-[calc(100vh-300px)] bg-neutral-950 border border-neutral-900 rounded-lg p-8 overflow-auto">
+            <div className="h-[calc(100vh-400px)] bg-neutral-950 border border-neutral-900 rounded-lg p-8 overflow-auto">
               <MarkdownContent content={content} />
             </div>
           </div>

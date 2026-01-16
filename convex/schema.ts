@@ -7,6 +7,7 @@ export default defineSchema({
     title: v.string(),
     content: v.string(),
     order: v.number(),
+    headerStyle: v.optional(v.string()), // e.g., "executive-summary", "target-audience", etc.
     updatedAt: v.number(),
     updatedBy: v.optional(v.string()),
   })

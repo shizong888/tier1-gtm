@@ -34,6 +34,7 @@ export const create = mutation({
     title: v.string(),
     content: v.string(),
     order: v.number(),
+    headerStyle: v.optional(v.string()),
     userId: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
@@ -42,6 +43,7 @@ export const create = mutation({
       title: args.title,
       content: args.content,
       order: args.order,
+      headerStyle: args.headerStyle,
       updatedAt: Date.now(),
       updatedBy: args.userId,
     });
@@ -56,6 +58,7 @@ export const update = mutation({
     title: v.optional(v.string()),
     content: v.optional(v.string()),
     order: v.optional(v.number()),
+    headerStyle: v.optional(v.string()),
     userId: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
