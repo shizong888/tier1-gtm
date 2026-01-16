@@ -5,7 +5,7 @@ import { api } from '../../../convex/_generated/api';
 import { Id } from '../../../convex/_generated/dataModel';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { FileText, Plus, Trash2, Home, GripVertical, Workflow, Image } from 'lucide-react';
+import { FileText, Plus, Trash2, Home, GripVertical, Workflow, Image, MoreVertical, Eye, EyeOff } from 'lucide-react';
 import {
   Sidebar,
   SidebarContent,
@@ -19,6 +19,12 @@ import {
   SidebarFooter,
 } from '@/components/ui/sidebar';
 import { Button } from '@/components/ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 import { useState, useEffect } from 'react';
 import {
   DndContext,
@@ -44,13 +50,15 @@ interface SortableDocumentItemProps {
     title: string;
     slug: string;
     order: number;
+    hidden?: boolean;
   };
   isActive: boolean;
   onDelete: (id: Id<'documents'>, title: string) => void;
+  onToggleVisibility: (id: Id<'documents'>, currentHidden: boolean) => void;
   deletingId: Id<'documents'> | null;
 }
 
-function SortableDocumentItem({ doc, isActive, onDelete, deletingId }: SortableDocumentItemProps) {
+function SortableDocumentItem({ doc, isActive, onDelete, onToggleVisibility, deletingId }: SortableDocumentItemProps) {
   const {
     attributes,
     listeners,
@@ -81,20 +89,50 @@ function SortableDocumentItem({ doc, isActive, onDelete, deletingId }: SortableD
           isActive={isActive}
           className="flex-1"
         >
-          <Link href={`/admin/edit/${doc._id}`}>
+          <Link href={`/admin/edit/${doc._id}`} className="flex items-center gap-2">
             <FileText className="w-4 h-4" />
-            <span className="truncate">{doc.title}</span>
+            <span className="truncate flex-1">{doc.title}</span>
+            {doc.hidden && (
+              <EyeOff className="w-3 h-3 text-neutral-400 dark:text-neutral-600 flex-shrink-0" />
+            )}
           </Link>
         </SidebarMenuButton>
-        <Button
-          variant="ghost"
-          size="icon"
-          className="h-8 w-8 opacity-0 group-hover:opacity-100 transition-opacity"
-          onClick={() => onDelete(doc._id, doc.title)}
-          disabled={deletingId === doc._id}
-        >
-          <Trash2 className="w-3 h-3 text-red-500" />
-        </Button>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-8 w-8 opacity-0 group-hover:opacity-100 transition-opacity"
+              disabled={deletingId === doc._id}
+            >
+              <MoreVertical className="w-3 h-3" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuItem
+              onClick={() => onToggleVisibility(doc._id, doc.hidden || false)}
+            >
+              {doc.hidden ? (
+                <>
+                  <Eye className="w-4 h-4 mr-2" />
+                  Show on site
+                </>
+              ) : (
+                <>
+                  <EyeOff className="w-4 h-4 mr-2" />
+                  Hide from site
+                </>
+              )}
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() => onDelete(doc._id, doc.title)}
+              className="text-red-500 focus:text-red-500"
+            >
+              <Trash2 className="w-4 h-4 mr-2" />
+              Delete
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
     </SidebarMenuItem>
   );
@@ -104,6 +142,7 @@ export function AdminSidebar() {
   const pathname = usePathname();
   const documents = useQuery(api.documents.list);
   const deleteDocument = useMutation(api.documents.remove);
+  const updateDocument = useMutation(api.documents.update);
   const updateOrders = useMutation(api.documents.updateOrders);
   const [deletingId, setDeletingId] = useState<Id<'documents'> | null>(null);
   const [localDocs, setLocalDocs] = useState<typeof documents>([]);
@@ -161,6 +200,18 @@ export function AdminSidebar() {
       alert('Failed to delete document');
     } finally {
       setDeletingId(null);
+    }
+  };
+
+  const handleToggleVisibility = async (id: Id<'documents'>, currentHidden: boolean) => {
+    try {
+      await updateDocument({
+        id,
+        hidden: !currentHidden,
+      });
+    } catch (error) {
+      console.error('Failed to toggle visibility:', error);
+      alert('Failed to update visibility');
     }
   };
 
@@ -246,6 +297,7 @@ export function AdminSidebar() {
                         doc={doc}
                         isActive={pathname === `/admin/edit/${doc._id}`}
                         onDelete={handleDelete}
+                        onToggleVisibility={handleToggleVisibility}
                         deletingId={deletingId}
                       />
                     ))}
