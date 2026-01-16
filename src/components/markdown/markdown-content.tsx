@@ -561,8 +561,18 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
                   ),
           p: ({ children }) => {
             const childrenArray = React.Children.toArray(children);
+
+            // Check if the paragraph only contains an image (fixes hydration error)
+            const hasOnlyImage = childrenArray.every(
+              child => typeof child === 'object' && child !== null && 'type' in child && child.type === 'img'
+            );
+
+            if (hasOnlyImage) {
+              return <div className="my-12 flex justify-center">{children}</div>;
+            }
+
             const textContent = childrenArray.map(c => typeof c === 'string' ? c : (c as any).props?.children?.toString() || '').join('');
-            
+
             // Heuristic for Roadmap/Flow diagrams from screenshots
             if (textContent.includes(' → ') && !textContent.trim().endsWith('→')) {
               const steps = textContent.split(' → ');
@@ -582,7 +592,7 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
               );
             }
 
-            // ONLY hide if it's explicitly a step indicator ending in arrow, 
+            // ONLY hide if it's explicitly a step indicator ending in arrow,
             // which is usually captured by our flywheel/loop logic
             if (textContent.trim().endsWith('→') && textContent.length < 100) return null;
 
@@ -678,13 +688,11 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
              <em className="italic text-brand/90">{children}</em>
           ),
           img: ({ src, alt }) => (
-            <div className="my-12 flex justify-center">
-              <img
-                src={src}
-                alt={alt || ''}
-                className="max-w-full h-auto"
-              />
-            </div>
+            <img
+              src={src}
+              alt={alt || ''}
+              className="max-w-full h-auto my-12 mx-auto block"
+            />
           )
         }}
       >
