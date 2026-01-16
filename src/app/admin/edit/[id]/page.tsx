@@ -272,7 +272,7 @@ export default function EditDocumentPage({
             <label className="block text-sm font-bold text-neutral-400 mb-2">
               Preview
             </label>
-            <div className="h-[calc(100vh-500px)] bg-neutral-950 border border-neutral-900 rounded-lg p-8 overflow-auto">
+            <div className="h-[calc(100vh-280px)] bg-neutral-950 border border-neutral-900 rounded-lg p-8 overflow-auto">
               {headerStyle && (
                 <AnimatedHeader
                   style={headerStyle}

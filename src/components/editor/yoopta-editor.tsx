@@ -26,7 +26,7 @@ export function YooptaEditorWrapper({ value, onChange }: YooptaEditorWrapperProp
         value={content}
         onChange={handleChange}
         placeholder="Enter markdown content..."
-        className="w-full h-[calc(100vh-500px)] bg-neutral-950 text-neutral-300 p-6 resize-none outline-none font-mono text-sm leading-relaxed"
+        className="w-full h-[calc(100vh-280px)] bg-neutral-950 text-neutral-300 p-6 resize-none outline-none font-mono text-sm leading-relaxed"
         spellCheck={false}
       />
     </div>
