@@ -237,74 +237,110 @@
   @apply fill-brand stroke-brand;
 }
 
-/* Markdown Editor Styles */
-.w-md-editor {
-  @apply bg-neutral-950 border border-neutral-900 rounded-lg overflow-hidden;
+/* Yoopta Editor Styles */
+.yoopta-editor-wrapper {
+  font-family: var(--font-sans);
 }
 
-.w-md-editor-toolbar {
-  @apply bg-neutral-900 border-b border-neutral-800;
-}
-
-.w-md-editor-toolbar button {
-  @apply text-neutral-400 hover:text-white hover:bg-neutral-800 transition-colors;
-}
-
-.w-md-editor-toolbar button.active {
-  @apply text-brand bg-neutral-800;
-}
-
-.w-md-editor-text-pre,
-.w-md-editor-text-input {
-  @apply bg-neutral-950 text-neutral-300 font-mono;
-}
-
-.w-md-editor-text-pre > code,
-.w-md-editor-text-input {
+.yoopta-editor [data-yoopta-editor-id] {
   @apply text-neutral-300;
 }
 
-.w-md-editor-preview {
-  @apply bg-neutral-950 text-neutral-300;
+.yoopta-editor h1,
+.yoopta-editor [data-element-type="heading-one"] {
+  @apply text-white font-medium text-4xl mb-6 mt-8;
 }
 
-.wmde-markdown {
-  @apply bg-neutral-950 text-neutral-300;
+.yoopta-editor h2,
+.yoopta-editor [data-element-type="heading-two"] {
+  @apply text-white font-medium text-2xl mb-4 mt-6;
 }
 
-.wmde-markdown h1,
-.wmde-markdown h2,
-.wmde-markdown h3,
-.wmde-markdown h4,
-.wmde-markdown h5,
-.wmde-markdown h6 {
-  @apply text-white;
+.yoopta-editor h3,
+.yoopta-editor [data-element-type="heading-three"] {
+  @apply text-white font-medium text-xl mb-3 mt-4;
 }
 
-.wmde-markdown a {
-  @apply text-brand;
+.yoopta-editor p,
+.yoopta-editor [data-element-type="paragraph"] {
+  @apply text-neutral-400 leading-relaxed mb-4;
 }
 
-.wmde-markdown code {
-  @apply bg-neutral-900 text-brand px-1 rounded;
+.yoopta-editor strong,
+.yoopta-editor [data-mark-type="bold"] {
+  @apply font-bold text-white;
 }
 
-.wmde-markdown pre {
-  @apply bg-neutral-900 border border-neutral-800 rounded-lg;
+.yoopta-editor em,
+.yoopta-editor [data-mark-type="italic"] {
+  @apply italic text-brand;
 }
 
-.wmde-markdown pre code {
-  @apply bg-transparent text-neutral-300;
+.yoopta-editor code,
+.yoopta-editor [data-element-type="code"] {
+  @apply bg-neutral-900 text-brand px-2 py-1 rounded font-mono text-sm;
 }
 
-.wmde-markdown blockquote {
-  @apply border-l-4 border-brand/30 bg-neutral-900/50 pl-4;
+.yoopta-editor pre {
+  @apply bg-neutral-900 border border-neutral-800 rounded-lg p-4 overflow-x-auto mb-4;
 }
 
-.w-md-editor-toolbar li button {
-  @apply rounded;
+.yoopta-editor pre code {
+  @apply bg-transparent text-neutral-300 p-0;
 }
 
-.w-md-editor-toolbar-divider {
-  @apply bg-neutral-800;
+.yoopta-editor blockquote,
+.yoopta-editor [data-element-type="blockquote"] {
+  @apply border-l-4 border-brand/30 bg-neutral-900/50 pl-4 py-2 mb-4 text-neutral-400 italic;
+}
+
+.yoopta-editor ul,
+.yoopta-editor [data-element-type="bulleted-list"] {
+  @apply list-disc list-inside space-y-2 mb-4 text-neutral-400;
+}
+
+.yoopta-editor ol,
+.yoopta-editor [data-element-type="numbered-list"] {
+  @apply list-decimal list-inside space-y-2 mb-4 text-neutral-400;
+}
+
+.yoopta-editor li strong {
+  @apply text-neutral-200;
+}
+
+.yoopta-editor a,
+.yoopta-editor [data-mark-type="link"] {
+  @apply text-brand hover:underline;
+}
+
+/* Toolbar Styles */
+.yoopta-toolbar {
+  @apply bg-neutral-900 border border-neutral-800 rounded-lg shadow-lg;
+}
+
+.yoopta-toolbar button {
+  @apply text-neutral-400 hover:text-white hover:bg-neutral-800 transition-colors p-2 rounded;
+}
+
+.yoopta-toolbar button[data-state="active"] {
+  @apply text-brand bg-neutral-800;
+}
+
+/* Action Menu Styles */
+.yoopta-action-menu {
+  @apply bg-neutral-900 border border-neutral-800 rounded-lg shadow-lg;
+}
+
+.yoopta-action-menu-item {
+  @apply text-neutral-300 hover:bg-neutral-800 hover:text-white transition-colors p-2 cursor-pointer;
+}
+
+.yoopta-action-menu-item[data-state="active"] {
+  @apply bg-neutral-800 text-brand;
+}
+
+/* Placeholder Styles */
+.yoopta-editor [data-placeholder]:empty:before {
+  @apply text-neutral-600;
+  content: attr(data-placeholder);
 }

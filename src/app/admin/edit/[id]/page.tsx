@@ -12,8 +12,8 @@ import { AnimatedHeader } from '@/components/headers/animated-header';
 import { HEADER_STYLES } from '@/lib/header-styles';
 import dynamic from 'next/dynamic';
 
-const MDEditor = dynamic(
-  () => import('@uiw/react-md-editor').then((mod) => mod.default),
+const YooptaEditorWrapper = dynamic(
+  () => import('@/components/editor/yoopta-editor').then((mod) => mod.YooptaEditorWrapper),
   { ssr: false }
 );
 
@@ -256,24 +256,15 @@ export default function EditDocumentPage({
         </div>
 
         <div className="grid grid-cols-2 gap-8">
-          {/* Markdown Input */}
+          {/* Content Editor */}
           <div>
             <label className="block text-sm font-bold text-neutral-400 mb-2">
-              Markdown Content
+              Content Editor
             </label>
-            <div data-color-mode="dark">
-              <MDEditor
-                value={content}
-                onChange={(val) => setContent(val || '')}
-                height="calc(100vh - 500px)"
-                preview="edit"
-                hideToolbar={false}
-                enableScroll={true}
-                textareaProps={{
-                  placeholder: 'Enter markdown content...',
-                }}
-              />
-            </div>
+            <YooptaEditorWrapper
+              value={content}
+              onChange={(val) => setContent(val)}
+            />
           </div>
 
           {/* Preview */}
