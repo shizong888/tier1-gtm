@@ -9,6 +9,7 @@
  */
 
 import type * as documents from "../documents.js";
+import type * as media from "../media.js";
 import type * as migrate from "../migrate.js";
 
 import type {
@@ -19,6 +20,7 @@ import type {
 
 declare const fullApi: ApiFromModules<{
   documents: typeof documents;
+  media: typeof media;
   migrate: typeof migrate;
 }>;
 

@@ -91,6 +91,7 @@ export function FlywheelGenerator() {
   const [cardsPerRow, setCardsPerRow] = useState<number>(5);
   const [horizontalGapSize, setHorizontalGapSize] = useState<40 | 60 | 80>(60);
   const [verticalGapSize, setVerticalGapSize] = useState<40 | 60 | 80>(60);
+  const [showReturnArrow, setShowReturnArrow] = useState(true);
   const [isUploading, setIsUploading] = useState(false);
 
   const generateUploadUrl = useMutation(api.media.generateUploadUrl);
@@ -164,7 +165,11 @@ export function FlywheelGenerator() {
 
     // Calculate height with space for top, bottom, and return arrow
     const topPadding = 60;
-    const bottomPadding = rows === 1 ? 140 : 80; // More space for single-row return arrow
+    // Adjust bottom padding based on whether return arrow is shown
+    let bottomPadding = 60; // Default padding when no return arrow
+    if (showReturnArrow) {
+      bottomPadding = rows === 1 ? 140 : 80; // More space for single-row return arrow
+    }
     const height = topPadding + (rows * cardHeight) + ((rows - 1) * rowSpacing) + bottomPadding;
 
     // Set canvas size for high DPI
@@ -370,7 +375,7 @@ export function FlywheelGenerator() {
     });
 
     // Draw return arrow from last row to first card
-    if (cards.length > 1) {
+    if (cards.length > 1 && showReturnArrow) {
       const firstPos = cardPositions[0];
       const lastRow = Math.floor((cards.length - 1) / cardsPerRow);
       const isLastRowOdd = lastRow % 2 === 1;
@@ -452,7 +457,7 @@ export function FlywheelGenerator() {
 
   useEffect(() => {
     drawFlywheel();
-  }, [cards, cardsPerRow, horizontalGapSize, verticalGapSize]);
+  }, [cards, cardsPerRow, horizontalGapSize, verticalGapSize, showReturnArrow]);
 
   const exportPNG = () => {
     const canvas = canvasRef.current;
@@ -610,6 +615,21 @@ export function FlywheelGenerator() {
                 <option value="60">60px</option>
                 <option value="80">80px</option>
               </select>
+            </div>
+
+            {/* Return arrow toggle */}
+            <div className="mb-4">
+              <label className="flex items-center gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={showReturnArrow}
+                  onChange={(e) => setShowReturnArrow(e.target.checked)}
+                  className="w-4 h-4 rounded border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-950 text-[#d9ff00] focus:ring-2 focus:ring-[#d9ff00] focus:ring-offset-0 cursor-pointer"
+                />
+                <span className="text-sm font-bold text-neutral-600 dark:text-neutral-400">
+                  Show return arrow
+                </span>
+              </label>
             </div>
 
             <DndContext
