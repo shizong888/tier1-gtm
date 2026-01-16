@@ -70,11 +70,11 @@ function SortableDocumentItem({ doc, isActive, onDelete, deletingId }: SortableD
     <SidebarMenuItem ref={setNodeRef} style={style}>
       <div className="flex items-center gap-1 w-full group">
         <button
-          className="cursor-grab active:cursor-grabbing p-1 hover:bg-neutral-800 rounded opacity-0 group-hover:opacity-100 transition-opacity"
+          className="cursor-grab active:cursor-grabbing p-1 hover:bg-neutral-200 dark:hover:bg-neutral-800 rounded opacity-0 group-hover:opacity-100 transition-opacity"
           {...attributes}
           {...listeners}
         >
-          <GripVertical className="w-4 h-4 text-neutral-500" />
+          <GripVertical className="w-4 h-4 text-neutral-500 dark:text-neutral-500" />
         </button>
         <SidebarMenuButton
           asChild
@@ -166,14 +166,14 @@ export function AdminSidebar() {
 
   return (
     <Sidebar>
-      <SidebarHeader className="border-b border-neutral-800 p-4">
+      <SidebarHeader className="border-b border-neutral-200 dark:border-neutral-800 p-4">
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 bg-[#d9ff00] rounded-sm flex items-center justify-center">
             <span className="text-black font-bold text-sm">T1</span>
           </div>
           <div>
-            <h2 className="text-sm font-bold text-white">Admin Dashboard</h2>
-            <p className="text-xs text-neutral-500">GTM Strategy</p>
+            <h2 className="text-sm font-bold text-black dark:text-white">Admin Dashboard</h2>
+            <p className="text-xs text-neutral-500 dark:text-neutral-500">GTM Strategy</p>
           </div>
         </div>
       </SidebarHeader>
@@ -206,13 +206,13 @@ export function AdminSidebar() {
         <SidebarGroup>
           <SidebarGroupLabel>
             Documents
-            <span className="text-xs text-neutral-500 ml-2">(Drag to reorder)</span>
+            <span className="text-xs text-neutral-500 dark:text-neutral-500 ml-2">(Drag to reorder)</span>
           </SidebarGroupLabel>
           <SidebarGroupContent>
             {documents === undefined ? (
-              <div className="px-2 py-4 text-xs text-neutral-500">Loading...</div>
+              <div className="px-2 py-4 text-xs text-neutral-500 dark:text-neutral-500">Loading...</div>
             ) : documents.length === 0 ? (
-              <div className="px-2 py-4 text-xs text-neutral-500">No documents</div>
+              <div className="px-2 py-4 text-xs text-neutral-500 dark:text-neutral-500">No documents</div>
             ) : (
               <DndContext
                 sensors={sensors}
@@ -241,10 +241,10 @@ export function AdminSidebar() {
         </SidebarGroup>
       </SidebarContent>
 
-      <SidebarFooter className="border-t border-neutral-800 p-4">
+      <SidebarFooter className="border-t border-neutral-200 dark:border-neutral-800 p-4">
         <Link
           href="/"
-          className="text-xs text-neutral-500 hover:text-[#d9ff00] transition-colors"
+          className="text-xs text-neutral-500 dark:text-neutral-500 hover:text-[#d9ff00] transition-colors"
         >
           ← Back to site
         </Link>

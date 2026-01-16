@@ -162,23 +162,23 @@
 
 /* Markdown Content Styles */
 .markdown-content {
-  @apply text-neutral-300;
+  @apply text-neutral-700 dark:text-neutral-300;
 }
 
 .markdown-content h1 {
-  @apply scroll-mt-20 text-white font-medium text-4xl mb-8;
+  @apply scroll-mt-20 text-black dark:text-white font-medium text-4xl mb-8;
 }
 
 .markdown-content h2 {
-  @apply scroll-mt-20 text-white font-medium text-2xl mb-4 mt-12;
+  @apply scroll-mt-20 text-black dark:text-white font-medium text-2xl mb-4 mt-12;
 }
 
 .markdown-content h3 {
-  @apply scroll-mt-20 text-white font-medium text-xl mb-4 mt-8;
+  @apply scroll-mt-20 text-neutral-900 dark:text-white font-medium text-xl mb-4 mt-8;
 }
 
 .markdown-content strong {
-  @apply font-bold text-white;
+  @apply font-bold text-black dark:text-white;
 }
 
 .markdown-content em {
@@ -190,11 +190,11 @@
 }
 
 .markdown-content li {
-  @apply text-neutral-400;
+  @apply text-neutral-700 dark:text-neutral-400;
 }
 
 .markdown-content li strong {
-  @apply text-neutral-200;
+  @apply text-black dark:text-neutral-200;
 }
 
 /* Prose styles for better reading experience */
@@ -203,11 +203,11 @@
 }
 
 .prose p {
-  @apply text-neutral-400 leading-relaxed mb-6;
+  @apply text-neutral-700 dark:text-neutral-400 leading-relaxed mb-6;
 }
 
 .prose strong {
-  @apply text-white font-bold;
+  @apply text-black dark:text-white font-bold;
 }
 
 /* Mermaid Diagram Styles */
@@ -222,7 +222,7 @@
 }
 
 .mermaid-diagram .node .label {
-  @apply text-white font-bold;
+  @apply text-black dark:text-white font-bold;
 }
 
 .mermaid-diagram .edgeLabel {

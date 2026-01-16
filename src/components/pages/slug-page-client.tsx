@@ -9,6 +9,7 @@ import Link from 'next/link';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
+import { Skeleton } from '@/components/ui/skeleton';
 
 interface SlugPageClientProps {
   slug: string;
@@ -18,6 +19,14 @@ export function SlugPageClient({ slug }: SlugPageClientProps) {
   const router = useRouter();
   const allDocuments = useQuery(api.documents.list);
   const document = useQuery(api.documents.getBySlug, { slug });
+
+  // Create skeleton navigation items
+  const skeletonNavigation = Array.from({ length: 6 }, (_, i) => ({
+    title: '',
+    slug: `skeleton-${i}`,
+    order: i,
+    href: '#',
+  }));
 
   useEffect(() => {
     if (allDocuments && document && allDocuments.length > 0) {
@@ -31,17 +40,30 @@ export function SlugPageClient({ slug }: SlugPageClientProps) {
 
   if (!allDocuments || document === undefined) {
     return (
-      <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center">
-        <div className="text-neutral-400">Loading...</div>
-      </div>
+      <GTMLayout navigation={skeletonNavigation}>
+        <div className="mb-16">
+          <Skeleton className="h-80 w-full rounded-sm" />
+        </div>
+        <div className="space-y-6">
+          <Skeleton className="h-8 w-3/4" />
+          <Skeleton className="h-6 w-full" />
+          <Skeleton className="h-6 w-full" />
+          <Skeleton className="h-6 w-5/6" />
+          <div className="pt-8">
+            <Skeleton className="h-6 w-2/3" />
+            <Skeleton className="h-6 w-full mt-4" />
+            <Skeleton className="h-6 w-full mt-2" />
+          </div>
+        </div>
+      </GTMLayout>
     );
   }
 
   if (document === null) {
     return (
-      <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center">
+      <div className="min-h-screen bg-white dark:bg-black flex items-center justify-center">
         <div className="text-center">
-          <p className="text-neutral-400 mb-4">Document not found</p>
+          <p className="text-neutral-700 dark:text-neutral-400 mb-4">Document not found</p>
           <Link href="/" className="text-brand hover:underline">
             Back to home
           </Link>
@@ -88,16 +110,16 @@ export function SlugPageClient({ slug }: SlugPageClientProps) {
       </article>
 
       {/* Pagination Navigation */}
-      <div className="mt-16 pt-8 border-t border-neutral-900 grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="mt-16 pt-8 border-t border-neutral-200 dark:border-neutral-900 grid grid-cols-1 md:grid-cols-2 gap-4">
         {prevPage ? (
           <Link
             href={prevPage.href}
-            className="group flex flex-col p-6 rounded-sm border border-neutral-900 hover:border-brand/30 transition-all text-left"
+            className="group flex flex-col p-6 rounded-sm border border-neutral-200 dark:border-neutral-900 hover:border-neutral-400 dark:hover:border-brand/30 transition-all text-left"
           >
-            <span className="text-[10px] font-bold text-neutral-600 uppercase tracking-widest mb-2 flex items-center gap-1 group-hover:text-brand/70 transition-colors">
+            <span className="text-[10px] font-bold text-neutral-500 dark:text-neutral-600 uppercase tracking-widest mb-2 flex items-center gap-1 group-hover:text-neutral-700 dark:group-hover:text-brand/70 transition-colors">
               <ChevronLeft className="w-3 h-3" /> Previous
             </span>
-            <span className="text-lg font-bold text-neutral-400 group-hover:text-white transition-colors">
+            <span className="text-lg font-bold text-neutral-700 dark:text-neutral-400 group-hover:text-black dark:group-hover:text-white transition-colors">
               {prevPage.title}
             </span>
           </Link>
@@ -108,12 +130,12 @@ export function SlugPageClient({ slug }: SlugPageClientProps) {
         {nextPage ? (
           <Link
             href={nextPage.href}
-            className="group flex flex-col p-6 rounded-sm border border-neutral-900 hover:border-brand/30 transition-all text-right"
+            className="group flex flex-col p-6 rounded-sm border border-neutral-200 dark:border-neutral-900 hover:border-neutral-400 dark:hover:border-brand/30 transition-all text-right"
           >
-            <span className="text-[10px] font-bold text-neutral-600 uppercase tracking-widest mb-2 flex items-center justify-end gap-1 group-hover:text-brand/70 transition-colors">
+            <span className="text-[10px] font-bold text-neutral-500 dark:text-neutral-600 uppercase tracking-widest mb-2 flex items-center justify-end gap-1 group-hover:text-neutral-700 dark:group-hover:text-brand/70 transition-colors">
               Next <ChevronRight className="w-3 h-3" />
             </span>
-            <span className="text-lg font-bold text-neutral-400 group-hover:text-white transition-colors">
+            <span className="text-lg font-bold text-neutral-700 dark:text-neutral-400 group-hover:text-black dark:group-hover:text-white transition-colors">
               {nextPage.title}
             </span>
           </Link>

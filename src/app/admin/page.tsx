@@ -12,19 +12,19 @@ export default function AdminDashboard() {
 
   if (documents === undefined) {
     return (
-      <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center">
-        <div className="text-neutral-400">Loading documents...</div>
+      <div className="min-h-screen bg-white dark:bg-[#0a0a0a] flex items-center justify-center">
+        <div className="text-neutral-600 dark:text-neutral-400">Loading documents...</div>
       </div>
     );
   }
 
   return (
-    <div className="flex-1 bg-[#0a0a0a] text-white">
+    <div className="flex-1 bg-white dark:bg-[#0a0a0a] text-black dark:text-white">
       <div className="px-8 py-12">
         {/* Header */}
         <div className="mb-12">
           <h1 className="text-4xl font-bold mb-2">Documents</h1>
-          <p className="text-neutral-400">
+          <p className="text-neutral-600 dark:text-neutral-400">
             Manage your GTM strategy documents
           </p>
         </div>
@@ -32,12 +32,12 @@ export default function AdminDashboard() {
         {/* Documents List */}
         <div className="grid gap-4">
           {documents.length === 0 ? (
-            <div className="text-center py-16 border border-neutral-900 rounded-lg">
-              <FileText className="w-12 h-12 mx-auto mb-4 text-neutral-600" />
-              <p className="text-neutral-400 mb-4">No documents yet</p>
+            <div className="text-center py-16 border border-neutral-200 dark:border-neutral-900 rounded-lg">
+              <FileText className="w-12 h-12 mx-auto mb-4 text-neutral-400 dark:text-neutral-600" />
+              <p className="text-neutral-600 dark:text-neutral-400 mb-4">No documents yet</p>
               <Link
                 href="/admin/new"
-                className="inline-flex items-center gap-2 px-4 py-2 bg-neutral-900 text-white rounded-lg hover:bg-neutral-800 transition-colors"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-neutral-100 dark:bg-neutral-900 text-black dark:text-white rounded-lg hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-colors"
               >
                 <Plus className="w-4 h-4" />
                 Create your first document

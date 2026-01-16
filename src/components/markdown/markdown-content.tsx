@@ -79,18 +79,18 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
                   {items.map((item, i) => (
                     <div
                       key={i}
-                      className="bg-neutral-950 border border-neutral-800 p-10 rounded-sm flex flex-col min-h-[280px] group hover:border-brand/40 hover:bg-neutral-900 transition-all duration-500 hover:-translate-y-2 shadow-2xl"
+                      className="bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 p-10 rounded-sm flex flex-col min-h-[280px] group hover:border-brand/40 hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-all duration-500 hover:-translate-y-2 shadow-2xl"
                     >
-                      <div className="text-3xl font-bold text-white mb-12">
+                      <div className="text-3xl font-bold text-black dark:text-white mb-12">
                         0{i + 1}
                       </div>
                       <div className="flex-1 flex flex-col justify-end">
                         {item.title && (
-                          <h4 className="text-xs font-black text-white/40 uppercase tracking-[0.2em] mb-3 group-hover:text-brand transition-colors">
+                          <h4 className="text-xs font-black text-neutral-600 dark:text-white/40 uppercase tracking-[0.2em] mb-3 group-hover:text-brand transition-colors">
                             {item.title}
                           </h4>
                         )}
-                        <p className="text-sm font-medium text-white leading-relaxed">
+                        <p className="text-sm font-medium text-black dark:text-white leading-relaxed">
                           {item.description}
                         </p>
                       </div>
@@ -133,7 +133,7 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
                         <div className="bg-brand/5 border border-brand/20 p-6 rounded-sm relative overflow-hidden group/outcome transition-all hover:bg-brand/10 hover:border-brand/40 w-full">
                           <div className="absolute top-0 right-0 w-24 h-24 bg-brand/5 blur-2xl rounded-full -mr-12 -mt-12 group-hover/outcome:bg-brand/10 transition-all"></div>
                           <span className="text-[10px] font-black text-brand uppercase tracking-[0.3em] block mb-3 text-left relative z-10">Outcome</span>
-                          <p className="text-[13px] text-neutral-200 font-bold leading-relaxed text-left relative z-10">
+                          <p className="text-[13px] text-neutral-800 dark:text-neutral-200 font-bold leading-relaxed text-left relative z-10">
                             {fullText.replace(/Outcome:\s*/i, '').trim()}
                           </p>
                         </div>
@@ -149,12 +149,12 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
               return (
                 <div className="grid grid-cols-1 gap-6 my-12">
                   {cards.map((card, i) => (
-                    <div key={i} className="bg-neutral-950 border border-neutral-800 p-10 rounded-sm flex flex-col min-h-[280px] group hover:border-brand/40 hover:bg-neutral-900 transition-all duration-500 hover:-translate-y-2 shadow-2xl">
+                    <div key={i} className="bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 p-10 rounded-sm flex flex-col min-h-[280px] group hover:border-brand/40 hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-all duration-500 hover:-translate-y-2 shadow-2xl">
                       <div className="flex-1 flex flex-col justify-end">
-                        <h3 className="text-xs font-black text-white/40 uppercase tracking-[0.2em] mb-3 group-hover:text-brand transition-colors">
+                        <h3 className="text-xs font-black text-neutral-600 dark:text-white/40 uppercase tracking-[0.2em] mb-3 group-hover:text-brand transition-colors">
                           {card.title}
                         </h3>
-                        <div className="flex-1 flex flex-col text-[13px] text-neutral-400 leading-relaxed text-left">
+                        <div className="flex-1 flex flex-col text-[13px] text-neutral-700 dark:text-neutral-400 leading-relaxed text-left">
                           <div className="space-y-4 mb-6">
                             {card.content.filter(c => !React.isValidElement(c) || (c as any).type !== 'div')}
                           </div>
@@ -202,7 +202,7 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
                         <div className="bg-brand/5 border border-brand/20 p-6 rounded-sm relative overflow-hidden group/outcome transition-all hover:bg-brand/10 hover:border-brand/40 w-full">
                           <div className="absolute top-0 right-0 w-24 h-24 bg-brand/5 blur-2xl rounded-full -mr-12 -mt-12 group-hover/outcome:bg-brand/10 transition-all"></div>
                           <span className="text-[10px] font-black text-brand uppercase tracking-[0.3em] block mb-3 text-left relative z-10">Outcome</span>
-                          <p className="text-[13px] text-neutral-200 font-bold leading-relaxed text-left relative z-10">
+                          <p className="text-[13px] text-neutral-800 dark:text-neutral-200 font-bold leading-relaxed text-left relative z-10">
                             {fullText.replace(/Outcome:\s*/i, '').trim()}
                           </p>
                         </div>
@@ -224,13 +224,13 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
                     return (
                       <div
                         key={i}
-                        className={`bg-neutral-950 border border-neutral-800 p-10 rounded-sm flex flex-col min-h-[280px] group hover:border-brand/40 hover:bg-neutral-900 transition-all duration-500 hover:-translate-y-2 shadow-2xl ${isLastCardOdd ? 'md:col-span-2' : ''}`}
+                        className={`bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 p-10 rounded-sm flex flex-col min-h-[280px] group hover:border-brand/40 hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-all duration-500 hover:-translate-y-2 shadow-2xl ${isLastCardOdd ? 'md:col-span-2' : ''}`}
                       >
                         <div className="flex-1 flex flex-col justify-end">
-                          <h3 className="text-xs font-black text-white/40 uppercase tracking-[0.2em] mb-3 group-hover:text-brand transition-colors">
+                          <h3 className="text-xs font-black text-neutral-600 dark:text-white/40 uppercase tracking-[0.2em] mb-3 group-hover:text-brand transition-colors">
                             {card.title}
                           </h3>
-                          <div className="flex-1 flex flex-col text-[13px] text-neutral-400 leading-relaxed text-left">
+                          <div className="flex-1 flex flex-col text-[13px] text-neutral-700 dark:text-neutral-400 leading-relaxed text-left">
                             <div className="space-y-4 mb-6">
                               {card.content.filter(c => !React.isValidElement(c) || (c as any).type !== 'div')}
                             </div>
@@ -301,18 +301,18 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
                             {items.map((item, i) => (
                               <div
                                 key={i}
-                                className="bg-neutral-950 border border-neutral-800 p-8 rounded-sm flex flex-col min-h-[360px] group hover:border-brand/40 hover:bg-neutral-900 transition-all duration-500 hover:-translate-y-2 shadow-2xl"
+                                className="bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 p-8 rounded-sm flex flex-col min-h-[360px] group hover:border-brand/40 hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-all duration-500 hover:-translate-y-2 shadow-2xl"
                               >
-                                <div className="text-3xl font-bold text-white mb-12">
+                                <div className="text-3xl font-bold text-black dark:text-white mb-12">
                                   0{i + 1}
                                 </div>
                                 <div className="flex-1 flex flex-col justify-end">
                                   {item.title && (
-                                    <h4 className="text-xs font-black text-white/40 uppercase tracking-[0.2em] mb-3 group-hover:text-brand transition-colors">
+                                    <h4 className="text-xs font-black text-neutral-600 dark:text-white/40 uppercase tracking-[0.2em] mb-3 group-hover:text-brand transition-colors">
                                       {item.title}
                                     </h4>
                                   )}
-                                  <p className="text-sm font-medium text-white leading-relaxed">
+                                  <p className="text-sm font-medium text-black dark:text-white leading-relaxed">
                                     {item.description}
                                   </p>
                                 </div>
@@ -369,19 +369,19 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
                       {items.map((item, i) => (
                         <React.Fragment key={i}>
                           <div className="flex-1 flex flex-col">
-                            <div className="w-full bg-neutral-800 border border-neutral-700/30 py-6 px-4 rounded-xl mb-6 text-center group hover:border-brand/40 hover:bg-neutral-700/50 transition-all shadow-xl flex items-center justify-center min-h-[80px]">
-                              <h4 className="text-[11px] font-black text-white uppercase tracking-[0.2em] leading-tight">
+                            <div className="w-full bg-neutral-100 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700/30 py-6 px-4 rounded-xl mb-6 text-center group hover:border-brand/40 hover:bg-neutral-200 dark:hover:bg-neutral-700/50 transition-all shadow-xl flex items-center justify-center min-h-[80px]">
+                              <h4 className="text-[11px] font-black text-black dark:text-white uppercase tracking-[0.2em] leading-tight">
                                 {item.title}
                               </h4>
                             </div>
-                            <p className="text-[11px] font-bold text-neutral-500 text-center leading-relaxed px-2">
+                            <p className="text-[11px] font-bold text-neutral-600 dark:text-neutral-500 text-center leading-relaxed px-2">
                               {item.description}
                             </p>
                           </div>
                           {i < items.length - 1 && (
                             <div className="flex items-center justify-center h-[80px] w-12 shrink-0">
-                              <div className="w-full h-px bg-neutral-800 relative">
-                                <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1.5 h-1.5 border-t border-r border-neutral-600 rotate-45"></div>
+                              <div className="w-full h-px bg-neutral-300 dark:bg-neutral-800 relative">
+                                <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1.5 h-1.5 border-t border-r border-neutral-400 dark:border-neutral-600 rotate-45"></div>
                               </div>
                             </div>
                           )}
@@ -396,13 +396,13 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
             if (divClass === 'gtm-positive-loop') {
               return (
                 <div className="my-10 group">
-                  <div className="relative bg-neutral-900 border border-neutral-800 p-8 rounded-sm overflow-hidden transition-all hover:border-brand/30">
+                  <div className="relative bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-8 rounded-sm overflow-hidden transition-all hover:border-brand/30">
                     <div className="absolute top-0 right-0 w-32 h-32 bg-brand/5 blur-3xl rounded-full -mr-16 -mt-16 group-hover:bg-brand/10 transition-all"></div>
                     <div className="relative z-10">
                       <div className="text-[10px] font-black text-brand uppercase tracking-[0.3em] mb-4 flex items-center gap-2">
                         <RefreshCw className="w-3 h-3 animate-spin-slow" /> Positive Loop
                       </div>
-                      <div className="text-base font-bold text-neutral-200 leading-relaxed italic">
+                      <div className="text-base font-bold text-neutral-800 dark:text-neutral-200 leading-relaxed italic">
                         {children}
                       </div>
                     </div>
@@ -478,7 +478,7 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
 
               return (
                 <div className="my-16">
-                  <div className="bg-gradient-to-br from-neutral-950 via-neutral-900 to-neutral-950 border-2 border-brand/30 p-12 rounded-sm relative overflow-hidden group hover:border-brand/50 transition-all duration-700 shadow-2xl">
+                  <div className="bg-gradient-to-br from-neutral-50 via-neutral-100 to-neutral-50 dark:from-neutral-950 dark:via-neutral-900 dark:to-neutral-950 border-2 border-brand/30 p-12 rounded-sm relative overflow-hidden group hover:border-brand/50 transition-all duration-700 shadow-2xl">
                     {/* Animated background elements */}
                     <div className="absolute top-0 right-0 w-64 h-64 bg-brand/5 blur-3xl rounded-full -mr-32 -mt-32 group-hover:bg-brand/10 transition-all duration-700"></div>
                     <div className="absolute bottom-0 left-0 w-48 h-48 bg-brand/3 blur-2xl rounded-full -ml-24 -mb-24 group-hover:bg-brand/8 transition-all duration-700"></div>
@@ -487,11 +487,11 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
                     <div className="relative z-10">
                       {title && (
                         <div className="mb-8">
-                          <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-brand transition-colors duration-500">
+                          <h3 className="text-2xl font-bold text-black dark:text-white mb-4 group-hover:text-brand transition-colors duration-500">
                             {title}
                           </h3>
                           {description && (
-                            <div className="text-sm text-neutral-400 leading-relaxed">
+                            <div className="text-sm text-neutral-700 dark:text-neutral-400 leading-relaxed">
                               {description}
                             </div>
                           )}
@@ -503,7 +503,7 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
                         {listItems.map((item, i) => (
                           <div
                             key={i}
-                            className="bg-black/40 border border-brand/20 p-6 rounded-sm backdrop-blur-sm hover:border-brand/40 hover:bg-black/60 transition-all duration-500 group/item"
+                            className="bg-white/60 dark:bg-black/40 border border-brand/20 p-6 rounded-sm backdrop-blur-sm hover:border-brand/40 hover:bg-white dark:hover:bg-black/60 transition-all duration-500 group/item"
                           >
                             <div className="flex items-start gap-3 mb-3">
                               <div className="w-8 h-8 rounded-full bg-brand/10 border border-brand/30 flex items-center justify-center shrink-0 group-hover/item:bg-brand/20 transition-all">
@@ -513,7 +513,7 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
                                 {item.title}
                               </h4>
                             </div>
-                            <p className="text-[13px] text-neutral-300 leading-relaxed pl-11">
+                            <p className="text-[13px] text-neutral-800 dark:text-neutral-300 leading-relaxed pl-11">
                               {item.description}
                             </p>
                           </div>
@@ -530,7 +530,7 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
                             </div>
                             <div>
                               <span className="text-[10px] font-black text-brand uppercase tracking-[0.3em] block mb-2">Outcome</span>
-                              <p className="text-sm text-white font-bold leading-relaxed">
+                              <p className="text-sm text-black dark:text-white font-bold leading-relaxed">
                                 {outcome}
                               </p>
                             </div>
@@ -546,18 +546,18 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
             return <section className={sectionClass} {...props}>{children}</section>;
           },
                   h1: ({ children }) => (
-                    <h1 className="text-4xl md:text-5xl font-medium mb-8 mt-12 first:mt-0 text-white tracking-tighter">{children}</h1>
+                    <h1 className="text-4xl md:text-5xl font-medium mb-8 mt-12 first:mt-0 text-black dark:text-white tracking-tighter">{children}</h1>
                   ),
                   h2: ({ children }) => (
-                    <h2 className="text-2xl font-medium mb-4 mt-12 pb-2 border-b border-neutral-900 text-white">
+                    <h2 className="text-2xl font-medium mb-4 mt-12 pb-2 border-b border-neutral-200 dark:border-neutral-900 text-black dark:text-white">
                       {children}
                     </h2>
                   ),
                   h3: ({ children }) => (
-                    <h3 className="text-xl font-medium mb-3 mt-8 text-neutral-100">{children}</h3>
+                    <h3 className="text-xl font-medium mb-3 mt-8 text-neutral-900 dark:text-neutral-100">{children}</h3>
                   ),
                   h4: ({ children }) => (
-                    <h4 className="text-lg font-medium mb-2 mt-6 text-neutral-200">{children}</h4>
+                    <h4 className="text-lg font-medium mb-2 mt-6 text-neutral-800 dark:text-neutral-200">{children}</h4>
                   ),
           p: ({ children }) => {
             const childrenArray = React.Children.toArray(children);
@@ -577,10 +577,10 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
             if (textContent.includes(' → ') && !textContent.trim().endsWith('→')) {
               const steps = textContent.split(' → ');
               return (
-                <div className="flex flex-wrap items-center gap-3 mb-10 bg-neutral-900/30 p-6 rounded-sm border border-neutral-800/50">
+                <div className="flex flex-wrap items-center gap-3 mb-10 bg-neutral-100 dark:bg-neutral-900/30 p-6 rounded-sm border border-neutral-200 dark:border-neutral-800/50">
                   {steps.map((step, i) => (
                     <React.Fragment key={i}>
-                      <div className="bg-neutral-800/50 border border-neutral-800 px-5 py-3 rounded-sm text-sm font-bold text-neutral-300 shadow-sm">
+                      <div className="bg-neutral-200 dark:bg-neutral-800/50 border border-neutral-300 dark:border-neutral-800 px-5 py-3 rounded-sm text-sm font-bold text-neutral-800 dark:text-neutral-300 shadow-sm">
                         {step.trim()}
                       </div>
                       {i < steps.length - 1 && (
@@ -597,29 +597,29 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
             if (textContent.trim().endsWith('→') && textContent.length < 100) return null;
 
             return (
-              <p className="text-base mb-6 leading-relaxed text-neutral-400">
+              <p className="text-base mb-6 leading-relaxed text-neutral-700 dark:text-neutral-400">
                 {children}
               </p>
             );
           },
           ul: ({ children }) => (
-            <ul className="ml-6 mb-8 space-y-3 list-disc text-neutral-400">{children}</ul>
+            <ul className="ml-6 mb-8 space-y-3 list-disc text-neutral-700 dark:text-neutral-400">{children}</ul>
           ),
           ol: ({ children }) => (
-            <ol className="ml-6 mb-8 space-y-3 list-decimal text-neutral-400">{children}</ol>
+            <ol className="ml-6 mb-8 space-y-3 list-decimal text-neutral-700 dark:text-neutral-400">{children}</ol>
           ),
           li: ({ children }) => (
             <li className="leading-relaxed mb-1">{children}</li>
           ),
           blockquote: ({ children }) => (
-            <blockquote className="border-t-2 border-brand/20 bg-neutral-900/50 p-8 my-10 rounded-sm relative overflow-hidden group hover:border-brand/40 transition-all">
+            <blockquote className="border-t-2 border-brand/20 bg-neutral-100 dark:bg-neutral-900/50 p-8 my-10 rounded-sm relative overflow-hidden group hover:border-brand/40 transition-all">
               <div className="absolute top-0 right-0 w-32 h-32 bg-brand/5 blur-3xl rounded-full -mr-16 -mt-16 group-hover:bg-brand/10 transition-all"></div>
-              <div className="text-neutral-300 relative z-10 prose-p:mb-0">
+              <div className="text-neutral-800 dark:text-neutral-300 relative z-10 prose-p:mb-0">
                 {children}
               </div>
             </blockquote>
           ),
-          hr: () => <hr className="my-12 border-neutral-900" />,
+          hr: () => <hr className="my-12 border-neutral-200 dark:border-neutral-900" />,
           a: ({ href, children }) => (
             <a
               href={href}
@@ -641,13 +641,13 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
 
             if (isInline) {
               return (
-                <code className="bg-neutral-900 px-1.5 py-0.5 rounded-sm text-sm font-mono text-brand">
+                <code className="bg-neutral-200 dark:bg-neutral-900 px-1.5 py-0.5 rounded-sm text-sm font-mono text-brand">
                   {children}
                 </code>
               );
             }
             return (
-              <code className="block bg-neutral-950 p-4 rounded-sm text-sm font-mono overflow-x-auto text-neutral-300 border border-neutral-900">
+              <code className="block bg-neutral-100 dark:bg-neutral-950 p-4 rounded-sm text-sm font-mono overflow-x-auto text-neutral-800 dark:text-neutral-300 border border-neutral-200 dark:border-neutral-900">
                 {children}
               </code>
             );
@@ -656,8 +656,8 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
             <pre className="mb-6 overflow-x-auto">{children}</pre>
           ),
           table: ({ children }) => (
-            <div className="mb-8">
-              <Table>
+            <div className="mb-8 border border-neutral-200 dark:border-neutral-800 rounded-lg overflow-hidden">
+              <Table className="[&_th]:bg-neutral-100 dark:[&_th]:bg-neutral-900 [&_th]:text-black dark:[&_th]:text-white [&_td]:text-neutral-700 dark:[&_td]:text-neutral-400 [&_tr]:border-neutral-200 dark:[&_tr]:border-neutral-800">
                 {children}
               </Table>
             </div>
@@ -682,7 +682,7 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
             </TableCell>
           ),
           strong: ({ children }) => (
-             <strong className="font-bold text-white">{children}</strong>
+             <strong className="font-bold text-black dark:text-white">{children}</strong>
           ),
           em: ({ children }) => (
              <em className="italic text-brand/90">{children}</em>
