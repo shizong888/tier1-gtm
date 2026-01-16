@@ -314,33 +314,102 @@
 }
 
 /* Toolbar Styles */
-.yoopta-toolbar {
-  @apply bg-neutral-900 border border-neutral-800 rounded-lg shadow-lg;
+[data-yoopta-toolbar],
+.yoopta-toolbar,
+div[class*="Toolbar"] {
+  @apply bg-neutral-900 border border-neutral-800 rounded-lg shadow-xl;
+  background-color: #171717 !important;
+  border-color: #262626 !important;
 }
 
-.yoopta-toolbar button {
+[data-yoopta-toolbar] button,
+.yoopta-toolbar button,
+div[class*="Toolbar"] button {
   @apply text-neutral-400 hover:text-white hover:bg-neutral-800 transition-colors p-2 rounded;
+  color: #a3a3a3 !important;
 }
 
-.yoopta-toolbar button[data-state="active"] {
+[data-yoopta-toolbar] button:hover,
+.yoopta-toolbar button:hover,
+div[class*="Toolbar"] button:hover {
+  background-color: #262626 !important;
+  color: #ffffff !important;
+}
+
+[data-yoopta-toolbar] button[data-state="active"],
+.yoopta-toolbar button[data-state="active"],
+div[class*="Toolbar"] button[aria-pressed="true"] {
   @apply text-brand bg-neutral-800;
+  background-color: #262626 !important;
+  color: #d9ff00 !important;
 }
 
 /* Action Menu Styles */
-.yoopta-action-menu {
-  @apply bg-neutral-900 border border-neutral-800 rounded-lg shadow-lg;
+[data-yoopta-action-menu],
+.yoopta-action-menu,
+div[class*="ActionMenu"],
+div[role="menu"] {
+  @apply bg-neutral-900 border border-neutral-800 rounded-lg shadow-xl;
+  background-color: #171717 !important;
+  border-color: #262626 !important;
 }
 
-.yoopta-action-menu-item {
+[data-yoopta-action-menu-item],
+.yoopta-action-menu-item,
+div[class*="ActionMenuItem"],
+div[role="menuitem"] {
   @apply text-neutral-300 hover:bg-neutral-800 hover:text-white transition-colors p-2 cursor-pointer;
+  color: #d4d4d4 !important;
+  background-color: transparent !important;
 }
 
-.yoopta-action-menu-item[data-state="active"] {
+[data-yoopta-action-menu-item]:hover,
+.yoopta-action-menu-item:hover,
+div[class*="ActionMenuItem"]:hover,
+div[role="menuitem"]:hover {
+  background-color: #262626 !important;
+  color: #ffffff !important;
+}
+
+[data-yoopta-action-menu-item][data-state="active"],
+.yoopta-action-menu-item[data-state="active"],
+div[class*="ActionMenuItem"][data-state="active"],
+div[role="menuitem"][aria-selected="true"] {
   @apply bg-neutral-800 text-brand;
+  background-color: #262626 !important;
+  color: #d9ff00 !important;
+}
+
+/* Link Tool Styles */
+div[class*="LinkTool"],
+div[class*="LinkInput"] {
+  @apply bg-neutral-900 border border-neutral-800 rounded-lg;
+  background-color: #171717 !important;
+  border-color: #262626 !important;
+}
+
+div[class*="LinkTool"] input,
+div[class*="LinkInput"] input {
+  @apply bg-neutral-950 text-white border-neutral-800;
+  background-color: #0a0a0a !important;
+  color: #ffffff !important;
+  border-color: #262626 !important;
 }
 
 /* Placeholder Styles */
 .yoopta-editor [data-placeholder]:empty:before {
   @apply text-neutral-600;
   content: attr(data-placeholder);
+}
+
+/* Override any white backgrounds */
+[class*="yoopta"] {
+  color: inherit;
+}
+
+[class*="yoopta"][style*="background: white"],
+[class*="yoopta"][style*="background: #fff"],
+[class*="yoopta"][style*="background-color: white"],
+[class*="yoopta"][style*="background-color: #fff"] {
+  background-color: #171717 !important;
 }
