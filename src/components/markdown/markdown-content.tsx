@@ -4,6 +4,7 @@ import rehypeRaw from 'rehype-raw';
 import React from 'react';
 import { ChevronRight, RefreshCw, ArrowRight } from 'lucide-react';
 import { MermaidDiagram } from './mermaid-diagram';
+import { FlywheelDiagram } from './flywheel-diagram';
 import {
   Table,
   TableBody,
@@ -79,7 +80,7 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
                   {items.map((item, i) => (
                     <div
                       key={i}
-                      className="bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 p-10 rounded-sm flex flex-col min-h-[280px] group hover:border-brand/40 hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-all duration-500 hover:-translate-y-2 shadow-2xl"
+                      className="bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 p-10 rounded-sm flex flex-col min-h-[280px] group hover:border-black dark:hover:border-brand/40 hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-all duration-500 hover:-translate-y-2 shadow-2xl"
                     >
                       <div className="text-3xl font-bold text-black dark:text-white mb-12">
                         0{i + 1}
@@ -149,7 +150,7 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
               return (
                 <div className="grid grid-cols-1 gap-6 my-12">
                   {cards.map((card, i) => (
-                    <div key={i} className="bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 p-10 rounded-sm flex flex-col min-h-[280px] group hover:border-brand/40 hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-all duration-500 hover:-translate-y-2 shadow-2xl">
+                    <div key={i} className="bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 p-10 rounded-sm flex flex-col min-h-[280px] group hover:border-black dark:hover:border-brand/40 hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-all duration-500 hover:-translate-y-2 shadow-2xl">
                       <div className="flex-1 flex flex-col justify-end">
                         <h3 className="text-xs font-black text-neutral-600 dark:text-white/40 uppercase tracking-[0.2em] mb-3 group-hover:text-brand transition-colors">
                           {card.title}
@@ -224,7 +225,7 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
                     return (
                       <div
                         key={i}
-                        className={`bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 p-10 rounded-sm flex flex-col min-h-[280px] group hover:border-brand/40 hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-all duration-500 hover:-translate-y-2 shadow-2xl ${isLastCardOdd ? 'md:col-span-2' : ''}`}
+                        className={`bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 p-10 rounded-sm flex flex-col min-h-[280px] group hover:border-black dark:hover:border-brand/40 hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-all duration-500 hover:-translate-y-2 shadow-2xl ${isLastCardOdd ? 'md:col-span-2' : ''}`}
                       >
                         <div className="flex-1 flex flex-col justify-end">
                           <h3 className="text-xs font-black text-neutral-600 dark:text-white/40 uppercase tracking-[0.2em] mb-3 group-hover:text-brand transition-colors">
@@ -301,7 +302,7 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
                             {items.map((item, i) => (
                               <div
                                 key={i}
-                                className="bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 p-8 rounded-sm flex flex-col min-h-[360px] group hover:border-brand/40 hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-all duration-500 hover:-translate-y-2 shadow-2xl"
+                                className="bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 p-8 rounded-sm flex flex-col min-h-[360px] group hover:border-black dark:hover:border-brand/40 hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-all duration-500 hover:-translate-y-2 shadow-2xl"
                               >
                                 <div className="text-3xl font-bold text-black dark:text-white mb-12">
                                   0{i + 1}
@@ -369,7 +370,7 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
                       {items.map((item, i) => (
                         <React.Fragment key={i}>
                           <div className="flex-1 flex flex-col">
-                            <div className="w-full bg-neutral-100 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700/30 py-6 px-4 rounded-xl mb-6 text-center group hover:border-brand/40 hover:bg-neutral-200 dark:hover:bg-neutral-700/50 transition-all shadow-xl flex items-center justify-center min-h-[80px]">
+                            <div className="w-full bg-neutral-100 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700/30 py-6 px-4 rounded-xl mb-6 text-center group hover:border-black dark:hover:border-brand/40 hover:bg-neutral-200 dark:hover:bg-neutral-700/50 transition-all shadow-xl flex items-center justify-center min-h-[80px]">
                               <h4 className="text-[11px] font-black text-black dark:text-white uppercase tracking-[0.2em] leading-tight">
                                 {item.title}
                               </h4>
@@ -396,7 +397,7 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
             if (divClass === 'gtm-positive-loop') {
               return (
                 <div className="my-10 group">
-                  <div className="relative bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-8 rounded-sm overflow-hidden transition-all hover:border-brand/30">
+                  <div className="relative bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-8 rounded-sm overflow-hidden transition-all hover:border-black dark:hover:border-brand/30">
                     <div className="absolute top-0 right-0 w-32 h-32 bg-brand/5 blur-3xl rounded-full -mr-16 -mt-16 group-hover:bg-brand/10 transition-all"></div>
                     <div className="relative z-10">
                       <div className="text-[10px] font-black text-brand uppercase tracking-[0.3em] mb-4 flex items-center gap-2">
@@ -478,7 +479,7 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
 
               return (
                 <div className="my-16">
-                  <div className="bg-gradient-to-br from-neutral-50 via-neutral-100 to-neutral-50 dark:from-neutral-950 dark:via-neutral-900 dark:to-neutral-950 border-2 border-brand/30 p-12 rounded-sm relative overflow-hidden group hover:border-brand/50 transition-all duration-700 shadow-2xl">
+                  <div className="bg-gradient-to-br from-neutral-50 via-neutral-100 to-neutral-50 dark:from-neutral-950 dark:via-neutral-900 dark:to-neutral-950 border-2 border-brand/30 p-12 rounded-sm relative overflow-hidden group hover:border-black dark:hover:border-brand/50 transition-all duration-700 shadow-2xl">
                     {/* Animated background elements */}
                     <div className="absolute top-0 right-0 w-64 h-64 bg-brand/5 blur-3xl rounded-full -mr-32 -mt-32 group-hover:bg-brand/10 transition-all duration-700"></div>
                     <div className="absolute bottom-0 left-0 w-48 h-48 bg-brand/3 blur-2xl rounded-full -ml-24 -mb-24 group-hover:bg-brand/8 transition-all duration-700"></div>
@@ -612,7 +613,7 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
             <li className="leading-relaxed mb-1">{children}</li>
           ),
           blockquote: ({ children }) => (
-            <blockquote className="border-t-2 border-brand/20 bg-neutral-100 dark:bg-neutral-900/50 p-8 my-10 rounded-sm relative overflow-hidden group hover:border-brand/40 transition-all">
+            <blockquote className="border-t-2 border-brand/20 bg-neutral-100 dark:bg-neutral-900/50 p-8 my-10 rounded-sm relative overflow-hidden group hover:border-black dark:hover:border-brand/40 transition-all">
               <div className="absolute top-0 right-0 w-32 h-32 bg-brand/5 blur-3xl rounded-full -mr-16 -mt-16 group-hover:bg-brand/10 transition-all"></div>
               <div className="text-neutral-800 dark:text-neutral-300 relative z-10 prose-p:mb-0">
                 {children}
@@ -637,6 +638,27 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
 
             if (language === 'mermaid') {
               return <MermaidDiagram chart={String(children)} />;
+            }
+
+            if (language === 'flywheel') {
+              try {
+                const config = JSON.parse(String(children));
+                return (
+                  <FlywheelDiagram
+                    cards={config.cards}
+                    cardsPerRow={config.cardsPerRow}
+                    horizontalGap={config.horizontalGap}
+                    verticalGap={config.verticalGap}
+                    showReturnArrow={config.showReturnArrow}
+                  />
+                );
+              } catch (e) {
+                return (
+                  <div className="text-red-500 p-4 border border-red-500 rounded">
+                    Invalid flywheel configuration
+                  </div>
+                );
+              }
             }
 
             if (isInline) {

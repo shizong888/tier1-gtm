@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { Plus, Trash2, Download, GripVertical, Upload } from 'lucide-react';
+import { Plus, Trash2, Download, GripVertical, Upload, Code } from 'lucide-react';
 import { useMutation } from 'convex/react';
 import { api } from '../../../convex/_generated/api';
 import {
@@ -520,6 +520,21 @@ export function FlywheelGenerator() {
     }
   };
 
+  const copyMarkdown = () => {
+    const config = {
+      cards: cards.map(card => card.text),
+      cardsPerRow,
+      horizontalGap: horizontalGapSize,
+      verticalGap: verticalGapSize,
+      showReturnArrow,
+    };
+
+    const markdown = '```flywheel\n' + JSON.stringify(config, null, 2) + '\n```';
+
+    navigator.clipboard.writeText(markdown);
+    alert('Markdown copied to clipboard! Paste it into your document editor.');
+  };
+
   return (
     <div className="flex-1 bg-white dark:bg-[#0a0a0a] text-black dark:text-white">
       {/* Header */}
@@ -534,6 +549,13 @@ export function FlywheelGenerator() {
             </div>
 
             <div className="flex items-center gap-2">
+              <button
+                onClick={copyMarkdown}
+                className="flex items-center gap-2 px-4 py-2 bg-neutral-100 dark:bg-neutral-900 text-black dark:text-white font-semibold rounded-lg hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-colors"
+              >
+                <Code className="w-4 h-4" />
+                Copy Markdown
+              </button>
               <button
                 onClick={uploadToConvex}
                 disabled={isUploading}
